@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="src/app.css" />
+
+    <script src="src/app.js" defer></script>
+  </head>
+  <body>
+  <nav>
+    <a href="">Home</a>
+    <a href="two">Two</a>
+  </nav>
+    <h1>Frameworks forbidden</h1>
+
+    <div
+      data-component="router"
+      data-run-immediate="true"
+      style="display: none"
+    >
+      <div data-component="route" data-path="/">Content 1</div>
+      <div data-component="route" data-path="/two">Content 2</div>
+    </div>
+  </body>
+</html>
