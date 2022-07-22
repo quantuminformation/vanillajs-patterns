@@ -28,7 +28,6 @@ const runImmediateComponents =  () => {
         module.default(component);
 
     })
-  debugger
 };
 
 importComponentsToComponentRegistry()
