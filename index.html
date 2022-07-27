@@ -15,12 +15,18 @@
     <h1>Frameworks forbidden</h1>
 
     <div data-component="router" data-run-immediate="true">
-      <div style="display: none" data-component="route" data-path="">
-        Content 1
-      </div>
-      <div style="display: none" data-component="route" data-path="two">
-        Content 2
-      </div>
+      <div
+        style="display: none"
+        data-component="route"
+        data-path=""
+        data-template="/src/pages/home.js"
+      ></div>
+      <div
+        style="display: none"
+        data-component="route"
+        data-template="/src/pages/two.js"
+        data-path="two"
+      ></div>
     </div>
   </body>
 </html>

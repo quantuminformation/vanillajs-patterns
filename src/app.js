@@ -4,8 +4,8 @@ const componentRegistry = new Map();
 /**
  * find components, and import their code dynamically and store in the componentRegistry
  */
-const importComponentsToComponentRegistry = async () => {
-  const components = document.querySelectorAll("[data-component]");
+const importImmediateComponentsToComponentRegistry = async () => {
+  const components = document.querySelectorAll("[data-run-immediate]");
 
   const promises = Array.from(components).map(async (component) => {
     const componentName = component.getAttribute("data-component");
@@ -20,6 +20,7 @@ const importComponentsToComponentRegistry = async () => {
     runImmediateComponents()
 };
 
+
 const runImmediateComponents =  () => {
   const components = document.querySelectorAll("[data-run-immediate]");
     components.forEach((component) => {
@@ -30,4 +31,4 @@ const runImmediateComponents =  () => {
     })
 };
 
-importComponentsToComponentRegistry()
+ importImmediateComponentsToComponentRegistry()

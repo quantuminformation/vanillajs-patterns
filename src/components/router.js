@@ -6,8 +6,8 @@
  * @param routes
  */
 export default (hostComponent) => {
-  // get routes from the host component
-  const routes = Array.from(
+  // get html routes from the host component and the store
+  const htmlRoutes = Array.from(
     hostComponent.querySelectorAll("[data-component='route']")
   );
 
@@ -25,8 +25,8 @@ export default (hostComponent) => {
     return routes.find((route) => route.getAttribute("data-path") === url);
   };
 
-  const displayMatchingRoute = () => {
-    const newActiveRoute = findHashUrlRoute(routes);
+  const displayMatchingRoute = async () => {
+    const newActiveRoute = findHashUrlRoute(htmlRoutes);
 
     // get the current active route from the dom and hide it
     const activeRoute = hostComponent.querySelector("[data-active='true']");
@@ -36,7 +36,12 @@ export default (hostComponent) => {
       activeRoute.style.display = "none";
     }
     newActiveRoute.dataset.active = "true";
-    //enable the active route to be visible
+
+    //tell the active route to be visible
+    //import the new route html template if loaded for first time
+    const templatePath = `${newActiveRoute.dataset.template}`;
+    const module = await import(templatePath);
+    newActiveRoute.innerHTML = module.template;
     newActiveRoute.style.display = "initial";
   };
 
