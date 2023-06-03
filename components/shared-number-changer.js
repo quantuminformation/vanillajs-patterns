@@ -7,7 +7,7 @@ export default (hostComponent) => {
   // Render
   const render = () => {
     hostComponent.innerHTML = `
-      <h1>Global State</h1>
+      <h1>Shared</h1>
       <div>count: ${globalState.count}</div>
       <button id="increase-count">+</button>
       <button id="decrease-count">-</button>
@@ -25,7 +25,7 @@ export default (hostComponent) => {
     globalState.count += changeAmount;
     render();
     hostComponent.dispatchEvent(
-      new CustomEvent("globalStateCountUpdated", {
+      new CustomEvent(window.SHARED_STATE_COUNT_UPDATED, {
         bubbles: true,
         detail: globalState.count,
       })
@@ -33,32 +33,18 @@ export default (hostComponent) => {
   };
 
   // Function to update the global state
-  const incrementGlobalStateCount = (event) => {
-    window.eventListenLog(
-      event,
-      hostComponent,
-      "Received incrementGlobalStateCount"
-    );
+  const inc = (event) => {
+    window.eventListenLog(event, hostComponent);
     setCount(1);
   };
 
-  const decrementGlobalStateCount = (event) => {
-    window.eventListenLog(
-      event,
-      hostComponent,
-      "Received decrementGlobalStateCount"
-    );
+  const dec = (event) => {
+    window.eventListenLog(event, hostComponent);
     setCount(-1);
   };
 
-  document.addEventListener(
-    "incrementGlobalStateCount",
-    incrementGlobalStateCount
-  );
-  document.addEventListener(
-    "decrementGlobalStateCount",
-    decrementGlobalStateCount
-  );
+  document.addEventListener(window.INCREMENT_SHARED_STATE_COUNT, inc);
+  document.addEventListener(window.DECREMENT_SHARED_STATE_COUNT, dec);
 
   render();
 };

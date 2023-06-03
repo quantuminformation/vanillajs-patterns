@@ -22,6 +22,10 @@
           `Received ${event.type}  From Component: ${targetName},To Component: ${currentTargetName}${detailPart}`
         );
       }
+
+      window.INCREMENT_SHARED_STATE_COUNT = "incrementGlobalStateCount";
+      window.DECREMENT_SHARED_STATE_COUNT = "decrementGlobalStateCount";
+      window.SHARED_STATE_COUNT_UPDATED = "globalStateCountUpdated";
     </script>
     <style>
       .alternate-children {
@@ -54,7 +58,7 @@
         <div class="flex flex-col gap-4" data-component="number-changer"></div>
       </div>
       <div class="w-44">
-        <div class="bg-gray-200 p-4 rounded" data-component="global-state"></div>
+        <div class="bg-gray-200 p-4 rounded" data-component="shared-number-changer"></div>
 
 
       </div>
