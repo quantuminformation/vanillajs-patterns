@@ -32,19 +32,14 @@ export default (hostComponent) => {
     );
   };
 
-  // Function to update the global state
-  const inc = (event) => {
-    window.eventListenLog(event, hostComponent);
+  document.addEventListener(window.INCREMENT_SHARED_STATE_COUNT, (e) => {
+    window.eventListenLog(e, hostComponent);
     setCount(1);
-  };
-
-  const dec = (event) => {
-    window.eventListenLog(event, hostComponent);
+  });
+  document.addEventListener(window.DECREMENT_SHARED_STATE_COUNT, (e) => {
+    window.eventListenLog(e, hostComponent);
     setCount(-1);
-  };
-
-  document.addEventListener(window.INCREMENT_SHARED_STATE_COUNT, inc);
-  document.addEventListener(window.DECREMENT_SHARED_STATE_COUNT, dec);
+  });
 
   render();
 };
