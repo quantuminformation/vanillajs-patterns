@@ -3,11 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@tailwindcss/typography@0.1.2/dist/typography.min.css"
+    />
 
     <script src="./ComponentLoader.js" defer></script>
+    <style>
+      .alternate-children {
+        > div {
+          padding: 1rem;
+        }
+
+        > div:nth-child(odd) {
+          background-color: #98beff; /* This is the color for bg-blue-500 in Tailwind */
+        }
+
+        > div:nth-child(even) {
+          background-color: #ffb0b0; /* This is the color for bg-red-500 in Tailwind */
+        }
+      }
+      button {
+        padding: 0  0.5rem !important;
+        border-radius: 0.25rem;
+        border: 1px solid #ccc;
+        background-color: #eee !important;
+      }
+    </style>
   </head>
-  <body>
+  <body class="m-4 prose">
     <h1>AI friendly browser framework</h1>
-  <div data-component="hello-world-timer"></div>
+    <div class="flex flex-col gap-4 alternate-children">
+      <div data-component="hello-world-timer"></div>
+      <div class="flex justify-between" data-component="number-changer"></div>
+    </div>
   </body>
 </html>

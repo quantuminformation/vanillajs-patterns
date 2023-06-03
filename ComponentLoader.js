@@ -1,29 +1,32 @@
 let componentRegistry = new Map();
 
-/**
- * find components, and import their code dynamically and store in the componentRegistry
- */
 const importComponents = async (components) => {
   const importedComponents = new Map();
-  const importingComponentRegistry = new Map();
 
   const promises = components.map(async (component) => {
     const componentName = component.getAttribute("data-component");
     const componentPath = `./components/${componentName}.js`;
-    const module = await import(componentPath);
-
-    importingComponentRegistry.set(componentName, module);
+    try {
+      const module = await import(componentPath);
+      importedComponents.set(componentName, module);
+    } catch (err) {
+      console.error(`Failed to load component ${componentName}:`, err);
+    }
   });
 
   await Promise.all(promises);
-  return importingComponentRegistry;
+  return importedComponents;
 };
 
 const runComponents = (components) => {
   components.forEach((component) => {
     const componentName = component.getAttribute("data-component");
     const module = componentRegistry.get(componentName);
-    module.default(component);
+    if (typeof module.default === 'function') {
+      module.default(component);
+    } else {
+      console.error(`Component ${componentName} does not have a default export that is a function.`);
+    }
   });
 };
 
@@ -32,7 +35,9 @@ const getAllComponents = () => {
   return Array.from(components);
 };
 
-debugger;
-const components = getAllComponents();
-componentRegistry = await importComponents(components);
-runComponents(components);
+// Wrap the top-level async operation in an immediately-invoked function expression
+(async () => {
+  const components = getAllComponents();
+  componentRegistry = await importComponents(components);
+  runComponents(components);
+})();
