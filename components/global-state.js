@@ -4,11 +4,21 @@ export default (hostComponent) => {
     count: 0,
   };
 
-  //render
+  // Render
   const render = () => {
-    hostComponent.innerHTML = `<h1>
-        Global State
-</h1><div>count:${globalState.count}</div>`;
+    hostComponent.innerHTML = `
+      <h1>Global State</h1>
+      <div>count: ${globalState.count}</div>
+      <button id="increase-count">+</button>
+      <button id="decrease-count">-</button>
+    `;
+
+    hostComponent
+      .querySelector("#increase-count")
+      .addEventListener("click", () => setCount(1));
+    hostComponent
+      .querySelector("#decrease-count")
+      .addEventListener("click", () => setCount(-1));
   };
 
   const setCount = (changeAmount) => {
