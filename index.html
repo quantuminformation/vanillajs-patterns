@@ -14,6 +14,7 @@
       .alternate-children {
         > div {
           padding: 1rem;
+          border-radius: 0.25rem;
         }
 
         > div:nth-child(odd) {
@@ -25,18 +26,25 @@
         }
       }
       button {
-        padding: 0  0.5rem !important;
+        padding: 0 0.5rem !important;
         border-radius: 0.25rem;
         border: 1px solid #ccc;
         background-color: #eee !important;
       }
     </style>
   </head>
-  <body class="m-4 prose">
+  <body class="m-4 ">
     <h1>AI friendly browser framework</h1>
-    <div class="flex flex-col gap-4 alternate-children">
-      <div data-component="hello-world-timer"></div>
-      <div class="flex justify-between" data-component="number-changer"></div>
+    <div class="flex gap-4">
+      <div class="flex w-full flex-col gap-4 alternate-children">
+        <div data-component="hello-world-timer"></div>
+        <div data-component="number-changer"></div>
+      </div>
+      <div class="w-44">
+        <div data-component="global-state"></div>
+
+        <span>Global Event</span>
+      </div>
     </div>
   </body>
 </html>

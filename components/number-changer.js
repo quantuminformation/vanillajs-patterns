@@ -17,10 +17,19 @@ export default (hostComponent) => {
 
     // language=HTML
     hostComponent.innerHTML = `
-      Count: ${count}
+      <div class="flex justify-between">
+      Local Count: ${count}
       <div>
       <button id="increment">+</button>
       <button id="decrement">-</button>
+      </div>
+      </div>
+      <div class="flex justify-between">
+      Global Count: ${count}
+      <div>
+      <button id="incrementGlobal">+ global</button>
+      <button id="decrementGlobal">- global</button>
+      </div>
       </div>
     `;
 
@@ -31,10 +40,21 @@ export default (hostComponent) => {
     hostComponent
       .querySelector("#decrement")
       .addEventListener("click", decrementCount);
+    hostComponent
+      .querySelector("#incrementGlobal")
+      .addEventListener("click", () => {
+        hostComponent.dispatchEvent(
+          new CustomEvent("incrementGlobalStateCount")
+        );
+      });
+    hostComponent
+      .querySelector("#decrementGlobal")
+      .addEventListener("click", () => {
+        hostComponent.dispatchEvent(
+          new CustomEvent("decrementGlobalStateCount")
+        );
+      });
   };
-
-  // Add custom event listener on body
-  document.body.addEventListener("increment", incrementCount);
 
   // Display the initial count
   displayCount();
