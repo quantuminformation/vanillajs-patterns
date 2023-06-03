@@ -11,12 +11,26 @@ export default (hostComponent) => {
 </h1><div>count:${globalState.count}</div>`;
   };
 
+  const setCount = (changeAmount) => {
+    globalState.count += changeAmount;
+    render();
+    //dispatchEvent
+    hostComponent.dispatchEvent(
+      new CustomEvent("globalStateCountUpdated", {
+        bubbles: true,
+        detail: globalState.count,
+      })
+    );
+  };
   // Function to update the global state
   const incrementGlobalStateCount = (event) => {
     // Update the global state based on the event
-    debugger
-    globalState.count += 1;
-    console.log("Global state count:", globalState.count);
+    setCount(1);
+    render();
+  };
+  const decrementGlobalStateCount = (event) => {
+    // Update the global state based on the event
+    setCount(-1);
     render();
   };
 
@@ -26,11 +40,13 @@ export default (hostComponent) => {
     updateGlobalState(event);
   };
 
-  // Add event listener to the host component
   document.addEventListener(
     "incrementGlobalStateCount",
     incrementGlobalStateCount
   );
-  document.addEventListener("decrementGlobalStateCount", handleEvent);
+  document.addEventListener(
+    "decrementGlobalStateCount",
+    decrementGlobalStateCount
+  );
   render();
 };

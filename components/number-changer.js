@@ -1,17 +1,18 @@
 export default (hostComponent) => {
   let count = 0;
+  let globalCountReceived = undefined;
 
   const incrementCount = () => {
     count += 1;
-    displayCount();
+    render();
   };
 
   const decrementCount = () => {
     count -= 1;
-    displayCount();
+    render();
   };
 
-  const displayCount = () => {
+  const render = () => {
     // Update the count display and button markup together
     //webstorm html es6 template
 
@@ -25,7 +26,7 @@ export default (hostComponent) => {
       </div>
       </div>
       <div class="flex justify-between">
-      Global Count: ${count}
+      Global Count: ${globalCountReceived}
       <div>
       <button id="incrementGlobal">+ global</button>
       <button id="decrementGlobal">- global</button>
@@ -44,18 +45,23 @@ export default (hostComponent) => {
       .querySelector("#incrementGlobal")
       .addEventListener("click", () => {
         hostComponent.dispatchEvent(
-          new CustomEvent("incrementGlobalStateCount")
+          new CustomEvent("incrementGlobalStateCount", { bubbles: true })
         );
       });
     hostComponent
       .querySelector("#decrementGlobal")
       .addEventListener("click", () => {
         hostComponent.dispatchEvent(
-          new CustomEvent("decrementGlobalStateCount")
+          new CustomEvent("decrementGlobalStateCount", { bubbles: true })
         );
       });
+    document.addEventListener("globalStateCountUpdated", (e) => {
+      const { detail } = e;
+      globalCountReceived = detail;
+      render();
+    });
   };
 
   // Display the initial count
-  displayCount();
+  render();
 };
