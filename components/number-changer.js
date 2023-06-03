@@ -15,7 +15,7 @@ export default (hostComponent) => {
   const updateGlobalCountDisplay = () => {
     const globalCountDiv = hostComponent.querySelector(".global-count");
     if (globalCountDiv) {
-      globalCountDiv.textContent = `Shared Count: ${globalCountReceived}`;
+      globalCountDiv.textContent = `Shared Count: ${window.appStore.getState()}`;
     }
   };
 
@@ -30,7 +30,7 @@ export default (hostComponent) => {
         </div>
       </div>
       <div class="flex justify-between">
-        <div class="global-count">Shared Count: ${globalCountReceived}</div>
+        <div class="global-count">Shared Count: ${window.appStore.getState()}</div>
         <div>
           <button id="incrementGlobal">+ global</button>
           <button id="decrementGlobal">- global</button>
@@ -48,6 +48,7 @@ export default (hostComponent) => {
     hostComponent
       .querySelector("#incrementGlobal")
       .addEventListener("click", () => {
+
         hostComponent.dispatchEvent(
           new CustomEvent(window.INCREMENT_SHARED_STATE_COUNT, {
             bubbles: true,
@@ -67,7 +68,7 @@ export default (hostComponent) => {
 
   // Listen for global state updates
   document.addEventListener(window.SHARED_STATE_COUNT_UPDATED, (e) => {
-    window.eventListenLog(e, hostComponent);
+ //   window.eventListenLog(e, hostComponent);
     const { detail } = e;
     globalCountReceived = detail;
     updateGlobalCountDisplay();
