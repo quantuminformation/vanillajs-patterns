@@ -14,7 +14,6 @@ export default (hostComponent) => {
   const setCount = (changeAmount) => {
     globalState.count += changeAmount;
     render();
-    //dispatchEvent
     hostComponent.dispatchEvent(
       new CustomEvent("globalStateCountUpdated", {
         bubbles: true,
@@ -22,22 +21,24 @@ export default (hostComponent) => {
       })
     );
   };
+
   // Function to update the global state
   const incrementGlobalStateCount = (event) => {
-    // Update the global state based on the event
+    window.eventListenLog(
+      event,
+      hostComponent,
+      "Received incrementGlobalStateCount"
+    );
     setCount(1);
-    render();
-  };
-  const decrementGlobalStateCount = (event) => {
-    // Update the global state based on the event
-    setCount(-1);
-    render();
   };
 
-  // Event listener function
-  const handleEvent = (event) => {
-    // Call the updateGlobalState function to update the global state
-    updateGlobalState(event);
+  const decrementGlobalStateCount = (event) => {
+    window.eventListenLog(
+      event,
+      hostComponent,
+      "Received decrementGlobalStateCount"
+    );
+    setCount(-1);
   };
 
   document.addEventListener(
@@ -48,5 +49,6 @@ export default (hostComponent) => {
     "decrementGlobalStateCount",
     decrementGlobalStateCount
   );
+
   render();
 };

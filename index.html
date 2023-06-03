@@ -10,6 +10,19 @@
     />
 
     <script src="./ComponentLoader.js" defer></script>
+    <script>
+      function eventListenLog(event, currentTarget) {
+        const targetName = event.target.getAttribute("data-component");
+        const currentTargetName = currentTarget.getAttribute("data-component");
+        const detailPart =
+          event.detail === null
+            ? ""
+            : `, Data: ${JSON.stringify(event.detail)}`;
+        console.log(
+          `Received ${event.type}  From Component: ${targetName},To Component: ${currentTargetName}${detailPart}`
+        );
+      }
+    </script>
     <style>
       .alternate-children {
         > div {
@@ -33,12 +46,12 @@
       }
     </style>
   </head>
-  <body class="m-4 ">
+  <body class="m-4">
     <h1>AI friendly browser framework</h1>
     <div class="flex gap-4">
       <div class="flex w-full flex-col gap-4 alternate-children">
         <div data-component="hello-world-timer"></div>
-        <div data-component="number-changer"></div>
+        <div class="flex flex-col gap-4" data-component="number-changer"></div>
       </div>
       <div class="w-44">
         <div data-component="global-state"></div>
