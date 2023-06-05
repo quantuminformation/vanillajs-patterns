@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 
     <script>
+      //todo move this code to separate store.js file
       window.eventListenLog = function (event, currentTarget) {
         const targetName = event.target.getAttribute("data-component");
         const currentTargetName = currentTarget.getAttribute("data-component");
@@ -80,11 +81,14 @@
     <h1>AI friendly browser framework</h1>
     <div class="flex gap-4">
       <div class="flex w-full flex-col gap-4 alternate-children">
+        <div class="" data-component="3d-road"></div>
+<!--
+        <div class="" data-component="2d-road"></div>
+-->
         <div data-component="hello-world-timer"></div>
         <div class="flex flex-col gap-4" data-component="number-changer"></div>
         <div class="flex flex-col gap-4" data-component="number-changer"></div>
         <div class="flex flex-col gap-4" data-component="user-signup"></div>
-        <div class="" data-component="3d-road"></div>
       </div>
       <div class="w-44">
         <!--
