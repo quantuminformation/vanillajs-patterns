@@ -6,52 +6,8 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 
-    <script>
-      //todo move this code to separate store.js file
-      window.eventListenLog = function (event, currentTarget) {
-        const targetName = event.target.getAttribute("data-component");
-        const currentTargetName = currentTarget.getAttribute("data-component");
-        const detailPart =
-          event.detail === null
-            ? ""
-            : `, Data: ${JSON.stringify(event.detail)}`;
-        console.log(
-          `Received ${event.type}  From Component: ${targetName},To Component: ${currentTargetName}${detailPart}`
-        );
-      };
-
-      window.INCREMENT_SHARED_STATE_COUNT = "INCREMENT_SHARED_STATE_COUNT";
-      window.DECREMENT_SHARED_STATE_COUNT = "DECREMENT_SHARED_STATE_COUNT";
-      window.SHARED_STATE_COUNT_UPDATED = "SHARED_STATE_COUNT_UPDATED";
-      window.REQUEST_SIGN_UP = "REQUEST_SIGN_UP";
-
-      window.appStore = (() => {
-        let state = {
-          sharedCount: 0,
-        };
-
-        return {
-          getState: () => state.sharedCount,
-          setState: (updateFunction) => {
-            const newState = updateFunction(state.sharedCount);
-            state.sharedCount = newState;
-            document.dispatchEvent(
-              new CustomEvent(window.SHARED_STATE_COUNT_UPDATED, {
-                detail: state.sharedCount,
-              })
-            );
-          },
-        };
-      })();
-      document.addEventListener(window.INCREMENT_SHARED_STATE_COUNT, (e) => {
-        window.appStore.setState((currentState) => currentState + 1);
-      });
-
-      document.addEventListener(window.DECREMENT_SHARED_STATE_COUNT, (e) => {
-        window.appStore.setState((currentState) => currentState - 1);
-      });
-    </script>
-
+    <script src="./events.js" defer></script>
+    <script src="./store.js" defer></script>
     <script src="./ComponentLoader.js" defer></script>
 
     <style>
@@ -81,14 +37,18 @@
     <h1>AI friendly browser framework</h1>
     <div class="flex gap-4">
       <div class="flex w-full flex-col gap-4 alternate-children">
-        <div class="" data-component="3d-road"></div>
 <!--
+        <div class="" data-component="3d-road"></div>
+-->
+        <!--
         <div class="" data-component="2d-road"></div>
 -->
         <div data-component="hello-world-timer"></div>
         <div class="flex flex-col gap-4" data-component="number-changer"></div>
         <div class="flex flex-col gap-4" data-component="number-changer"></div>
+<!--
         <div class="flex flex-col gap-4" data-component="user-signup"></div>
+-->
       </div>
       <div class="w-44">
         <!--
