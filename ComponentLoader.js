@@ -22,7 +22,7 @@ const runComponents = (components) => {
   components.forEach((component) => {
     const componentName = component.getAttribute("data-component");
     const module = componentRegistry.get(componentName);
-    if (typeof module.default === 'function') {
+    if (module && typeof module.default === 'function') {
       module.default(component);
     } else {
       console.error(`Component ${componentName} does not have a default export that is a function.`);

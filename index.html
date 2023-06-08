@@ -6,8 +6,9 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 
-    <script src="./events.js" defer></script>
-    <script src="./store.js" defer></script>
+    <script src="./lib/events.js" defer></script>
+    <script src="./lib/store.js" defer></script>
+    <script src="./lib/table.js" defer></script>
     <script src="./ComponentLoader.js" defer></script>
 
     <style>
@@ -43,10 +44,13 @@
         <!--
         <div class="" data-component="2d-road"></div>
 -->
+        <!--
         <div data-component="hello-world-timer"></div>
-        <div class="flex flex-col gap-4" data-component="number-changer"></div>
-        <div class="flex flex-col gap-4" data-component="number-changer"></div>
-        <table id="myTable" data-component="sortable-table">
+-->
+        <!--      <div class="flex flex-col gap-4" data-component="number-changer"></div>
+        <div class="flex flex-col gap-4" data-component="number-changer"></div>-->
+        <div class="flex flex-col gap-4" data-component="csv-loader"></div>
+        <!--  <table id="myTable" data-component="sortable-table">
           <thead>
             <tr>
               <th data-sortable="true">Name</th>
@@ -72,7 +76,7 @@
             </tr>
           </tbody>
         </table>
-
+-->
         <!--
                   <div class="flex flex-col gap-4" data-component="user-signup"></div>
           -->
