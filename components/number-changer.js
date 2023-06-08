@@ -1,14 +1,13 @@
 export default (hostComponent) => {
-  let count = 0;
-  let globalCountReceived = undefined;
+  let localCount = 0;
 
   const incrementCount = () => {
-    count += 1;
+    localCount += 1;
     render();
   };
 
   const decrementCount = () => {
-    count -= 1;
+    localCount -= 1;
     render();
   };
 
@@ -23,14 +22,14 @@ export default (hostComponent) => {
     // Update the count display and button markup together
     hostComponent.innerHTML = `
       <div class="flex justify-between">
-        Local Count: ${count}
+        Local Count: ${localCount}
         <div>
           <button id="increment">+</button>
           <button id="decrement">-</button>
         </div>
       </div>
       <div class="flex justify-between">
-        <div class="global-count">Shared Count: ${window.appStore.getState()}</div>
+        <div class="global-count">Global Count: ${window.appStore.getState()}</div>
         <div>
           <button id="incrementGlobal">+ global</button>
           <button id="decrementGlobal">- global</button>
@@ -69,8 +68,6 @@ export default (hostComponent) => {
   // Listen for global state updates
   document.addEventListener(window.SHARED_STATE_COUNT_UPDATED, (e) => {
  //   window.eventListenLog(e, hostComponent);
-    const { detail } = e;
-    globalCountReceived = detail;
     updateGlobalCountDisplay();
   });
 

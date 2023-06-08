@@ -37,7 +37,7 @@
     <h1>AI friendly browser framework</h1>
     <div class="flex gap-4">
       <div class="flex w-full flex-col gap-4 alternate-children">
-<!--
+        <!--
         <div class="" data-component="3d-road"></div>
 -->
         <!--
@@ -46,18 +46,45 @@
         <div data-component="hello-world-timer"></div>
         <div class="flex flex-col gap-4" data-component="number-changer"></div>
         <div class="flex flex-col gap-4" data-component="number-changer"></div>
-<!--
-        <div class="flex flex-col gap-4" data-component="user-signup"></div>
--->
-      </div>
-      <div class="w-44">
+        <table id="myTable" data-component="sortable-table">
+          <thead>
+            <tr>
+              <th data-sortable="true">Name</th>
+              <th data-sortable="true">Age</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Doe</td>
+              <td>25</td>
+              <td>USA</td>
+            </tr>
+            <tr>
+              <td>Jane Smith</td>
+              <td>32</td>
+              <td>Canada</td>
+            </tr>
+            <tr>
+              <td>Mark Johnson</td>
+              <td>28</td>
+              <td>Australia</td>
+            </tr>
+          </tbody>
+        </table>
+
         <!--
+                  <div class="flex flex-col gap-4" data-component="user-signup"></div>
+          -->
+      </div>
+      <!--      <div class="w-44">
+        &lt;!&ndash;
         <div
           class="bg-gray-200 p-4 rounded"
           data-component="shared-number-changer"
         ></div>
--->
-      </div>
+&ndash;&gt;
+      </div>-->
     </div>
   </body>
 </html>
