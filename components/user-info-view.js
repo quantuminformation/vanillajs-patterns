@@ -2,15 +2,16 @@ export default (hostComponent) => {
   const renderUser = () => {
     const user = window.appStore.getCurrentUser();
 
+    let template = "<h2>Current User</h2>";
     if (user) {
-      hostComponent.innerHTML = `
-        <h2>Current User</h2>
+      template += `
         <div class="user-info">
           <p>Name: ${user.firstName} ${user.lastName}</p>
           <p>Email: ${user.email}</p>
         </div>
       `;
     }
+    hostComponent.innerHTML = template;
   };
 
   // Render current user

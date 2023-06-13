@@ -53,7 +53,7 @@ export default (hostComponent) => {
   ];
 
   const table = window.csvDataToTable(csvData);
-  const sortedTable = window.sortableTable(table);
+  window.sortableTable(table);
 
   hostComponent.appendChild(table);
 };

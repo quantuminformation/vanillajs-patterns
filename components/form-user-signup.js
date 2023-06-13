@@ -1,6 +1,5 @@
 export default (hostComponent) => {
   const handleSubmit = (event) => {
-    debugger;
     event.preventDefault();
 
     const form = event.target;
