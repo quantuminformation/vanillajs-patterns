@@ -1,5 +1,6 @@
 export default (hostComponent) => {
   const handleSubmit = (event) => {
+    debugger;
     event.preventDefault();
 
     const form = event.target;
@@ -11,8 +12,9 @@ export default (hostComponent) => {
       email: formData.get("email"),
     };
 
-    hostComponent.dispatchEvent(new CustomEvent("userSignUp", { detail: user }));
-
+    window.appStore.setCurrentUser((currentUser) => {
+      return user;
+    });
     form.reset();
   };
 
