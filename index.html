@@ -19,7 +19,6 @@
           border-radius: 0.25rem;
           border: 2px solid #ccc;
         }
-
       }
       button {
         padding: 0 0.5rem !important;
@@ -27,9 +26,15 @@
         border: 1px solid #ccc;
         background-color: #eee !important;
       }
+      @media (prefers-color-scheme: dark) {
+        input,
+        button {
+          background-color: #2d3748 !important; /* This is roughly equivalent to Tailwind's bg-gray-800 */
+        }
+      }
     </style>
   </head>
-  <body class="m-4">
+  <body class="m-4 dark:text-white dark:bg-black">
     <h1>AI friendly browser framework</h1>
     <div class="flex gap-4">
       <div class="flex w-full flex-col gap-8 alternate-children">
@@ -45,7 +50,9 @@
         <!--      <div class="flex flex-col gap-4" data-component="number-changer"></div>
         <div class="flex flex-col gap-4" data-component="number-changer"></div>-->
 
+        <!--
         <div class="flex flex-col gap-4" data-component="csv-loader"></div>
+-->
 
         <div
           class="flex flex-col gap-4"
