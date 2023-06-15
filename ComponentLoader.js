@@ -1,6 +1,6 @@
 let componentRegistry = new Map();
 
-const importComponents = async (components) => {
+window.importComponents = async (components) => {
   const importedComponents = new Map();
 
   const promises = components.map(async (component) => {
@@ -18,7 +18,7 @@ const importComponents = async (components) => {
   return importedComponents;
 };
 
-const runComponents = (components) => {
+window.runComponents = (components) => {
   components.forEach((component) => {
     const componentName = component.getAttribute("data-component");
     const module = componentRegistry.get(componentName);
@@ -38,6 +38,6 @@ const getAllComponents = () => {
 // Wrap the top-level async operation in an immediately-invoked function expression
 (async () => {
   const components = getAllComponents();
-  componentRegistry = await importComponents(components);
-  runComponents(components);
+  componentRegistry = await window.importComponents(components);
+  window.runComponents(components);
 })();

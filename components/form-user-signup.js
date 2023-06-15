@@ -27,12 +27,12 @@ export default (hostComponent) => {
     const currentUser = window.appStore.getCurrentUser();
 
     let userFields = currentUser
-        ? {
+      ? {
           firstName: currentUser.firstName,
           lastName: currentUser.lastName,
           email: currentUser.email,
         }
-        : {
+      : {
           firstName: "",
           lastName: "",
           email: "",
@@ -40,7 +40,7 @@ export default (hostComponent) => {
 
     if (editMode) {
       // Save snapshot of user's data
-      userDataSnapshot = {...userFields};
+      userDataSnapshot = { ...userFields };
 
       hostComponent.innerHTML = `
         <h2>User Profile</h2>
@@ -70,11 +70,14 @@ export default (hostComponent) => {
     } else {
       hostComponent.innerHTML = `
         <h2>User Profile</h2>
-        <div class="flex gap-4 mb-4 flex-wrap">
+        ${
+          currentUser !== null &&
+          `<div class="flex gap-4 mb-4 flex-wrap">
           <div>${userFields.firstName}</div>
           <div>${userFields.lastName}</div>
           <div>${userFields.email}</div>
-        </div>
+        </div>`
+        }
         <button type="button" id="edit-profile">Edit</button>
       `;
 
