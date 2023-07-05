@@ -14,7 +14,7 @@ export default (hostComponent) => {
   resizeCanvas();
 
   // Resize the canvas whenever the window size changes
-  window.addEventListener('resize', resizeCanvas);
+  addEventListener('resize', resizeCanvas);
 
   // Draw the initial state of the road
   const drawRoad = (offsetY) => {

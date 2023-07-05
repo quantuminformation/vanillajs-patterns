@@ -52,8 +52,8 @@ export default (hostComponent) => {
     },
   ];
 
-  const table = window.csvDataToTable(csvData);
-  window.sortableTable(table);
+  const table = csvDataToTable(csvData);
+  sortableTable(table);
 
   hostComponent.appendChild(table);
 };

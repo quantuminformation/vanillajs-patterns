@@ -1,26 +1,43 @@
 let componentRegistry = new Map();
 
-window.importComponents = async (components) => {
+export const importComponents = async (components) => {
   const importedComponents = new Map();
 
-  const promises = components.map(async (component) => {
+  // Only consider components that have not been imported yet
+  const componentsToImport = Array.from(components).filter((component) => {
+    const componentName = component.getAttribute("data-component");
+    if (componentRegistry.has(componentName)) {
+      console.log(`Component ${componentName} is already imported, so it's ignored`);
+      return false;
+    }
+    return true;
+  });
+
+  const promises = componentsToImport.map(async (component) => {
     const componentName = component.getAttribute("data-component");
     const componentPath = `./components/${componentName}.js`;
+    console.log(`Importing component ${componentName} from ${componentPath}`);
     try {
       const module = await import(componentPath);
       importedComponents.set(componentName, module);
+      console.log(`Successfully imported component ${componentName}`);
     } catch (err) {
       console.error(`Failed to load component ${componentName}:`, err);
     }
   });
 
   await Promise.all(promises);
+
+  // Merge imported components into componentRegistry
+  componentRegistry = new Map([...componentRegistry, ...importedComponents]);
+
   return importedComponents;
 };
 
-window.runComponents = (components) => {
+export const runComponents = (components) => {
   components.forEach((component) => {
     const componentName = component.getAttribute("data-component");
+    console.log(`Running component ${componentName}`);
     const module = componentRegistry.get(componentName);
     if (module && typeof module.default === 'function') {
       module.default(component);
@@ -38,6 +55,6 @@ const getAllComponents = () => {
 // Wrap the top-level async operation in an immediately-invoked function expression
 (async () => {
   const components = getAllComponents();
-  componentRegistry = await window.importComponents(components);
-  window.runComponents(components);
+  await importComponents(components);
+  runComponents(components);
 })();

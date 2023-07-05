@@ -1,38 +1,43 @@
-export default (hostComponent) => {
-    const loadRoute = async (url) => {
-        try {
-            const response = await fetch(url);
-            const pageHTML = await response.text();
-            const newPage = new DOMParser().parseFromString(pageHTML, "text/html");
+// stored in /components/router.js
 
-            // Replace the hostComponent's inner HTML with the new page's body HTML
-            hostComponent.innerHTML = newPage.body.innerHTML;
+import { importComponents, runComponents } from '../componentLoader.js';
 
-            // Import and run any new components
-            const components = hostComponent.querySelectorAll("[data-component]");
-            window.importComponents(components);
-        } catch (err) {
-            console.error(`Failed to load route: ${url}`, err);
-        }
-    };
+export default async (hostComponent) => {
+  const loadRoute = async (url) => {
+    try {
+      const response = await fetch(`${url}?newRoute=true`);
+      const pageHTML = await response.text();
 
-    // Intercept navigation events
-    document.body.addEventListener("click", (event) => {
-        if (event.target.matches("a[data-nav]")) {
-            event.preventDefault();
-            const url = event.target.getAttribute("href");
-            window.history.pushState(null, null, url);
-            loadRoute(url);
-        }
-    });
+      const newPage = new DOMParser().parseFromString(pageHTML, 'text/html');
 
-    // Listen for popstate events
-    window.addEventListener("popstate", () => {
-        loadRoute(window.location.pathname);
-    });
+      // Replace the hostComponent's inner HTML with the new page's body HTML
+      hostComponent.innerHTML = newPage.body.innerHTML;
 
-    // Load the initial route
-    loadRoute(
-        window.location.pathname === "/" ? "pages/index" : window.location.pathname
-    );
+      // Import and run any new components
+      const components = hostComponent.querySelectorAll('[data-component]');
+      await importComponents(components);
+      runComponents(components);
+    } catch (err) {
+      console.error(`Failed to load route: ${url}`, err);
+    }
+  };
+
+  // Intercept navigation events
+  document.body.addEventListener('click', async (event) => {
+    if (event.target.matches('a[data-nav]')) {
+      event.preventDefault();
+      const url = event.target.getAttribute('href');
+      history.pushState(null, null, url);
+      await loadRoute(url);
+    }
+  });
+
+  // Listen for popstate events
+  addEventListener('popstate', async () => {
+    await loadRoute(location.pathname);
+  });
+
+  // Load the initial route
+  //loadRoute(location.pathname === "/" ? "/pages/index" : location.pathname);
+  await loadRoute('/pages/index.html');
 };

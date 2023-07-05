@@ -1,6 +1,8 @@
+import { store, STORE_CURRENT_USER_UPDATED } from "../store.js";
+
 export default (hostComponent) => {
   const renderUser = () => {
-    const user = window.appStore.getCurrentUser();
+    const user = store.getCurrentUser();
 
     let template = "<h2>Current User</h2>";
     if (user) {
@@ -18,5 +20,5 @@ export default (hostComponent) => {
   renderUser();
 
   // Listen to store update
-  document.addEventListener(window.STORE_CURRENT_USER_UPDATED, renderUser);
+  document.addEventListener(STORE_CURRENT_USER_UPDATED, renderUser);
 };

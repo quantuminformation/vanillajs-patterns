@@ -2,11 +2,9 @@
   "name": "javascript-frameworks-forbidden",
   "version": "1.0.0",
   "description": "",
-  "main": "ComponentLoader.js",
   "dependencies": {
     "prettier": "^2.7.1"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "npx http-server -P http://localhost:8080/index.html"
   },

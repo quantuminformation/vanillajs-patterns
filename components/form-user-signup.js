@@ -14,7 +14,7 @@ export default (hostComponent) => {
       email: formData.get("email"),
     };
 
-    window.appStore.setCurrentUser(() => {
+    store.setCurrentUser(() => {
       return user;
     });
 
@@ -24,7 +24,7 @@ export default (hostComponent) => {
   };
 
   const renderForm = () => {
-    const currentUser = window.appStore.getCurrentUser();
+    const currentUser = store.getCurrentUser();
 
     let userFields = currentUser
       ? {
@@ -61,7 +61,7 @@ export default (hostComponent) => {
       const cancelEditButton = hostComponent.querySelector("#cancel-edit");
       cancelEditButton.addEventListener("click", () => {
         // On cancel, restore the user's data from the snapshot
-        window.appStore.setCurrentUser(() => {
+        store.setCurrentUser(() => {
           return userDataSnapshot;
         });
         editMode = false;
