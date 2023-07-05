@@ -6,7 +6,7 @@
     "prettier": "^2.7.1"
   },
   "scripts": {
-    "start": "npx http-server -P http://localhost:8080/index.html"
+    "start": "npx serve -s . -l 8080"
   },
   "repository": {
     "type": "git",

@@ -1,17 +1,27 @@
-// stored in /components/router.js
+// Stored in /components/router.js
 
 import { importComponents, runComponents } from '../componentLoader.js';
 
 export default async (hostComponent) => {
+  // This object defines the paths to your route files
+  const routePaths = {
+    '/': '/routes/index.js',
+    '/form': '/routes/form.js',
+  };
+
   const loadRoute = async (url) => {
     try {
-      const response = await fetch(`${url}?newRoute=true`);
-      const pageHTML = await response.text();
+      // Check if the requested URL matches one of your routes
+      const routePath = routePaths[url];
+      if (!routePath) {
+        throw new Error(`No route found for URL: ${url}`);
+      }
 
-      const newPage = new DOMParser().parseFromString(pageHTML, 'text/html');
+      // Import the route file
+      const route = await import(routePath);
 
-      // Replace the hostComponent's inner HTML with the new page's body HTML
-      hostComponent.innerHTML = newPage.body.innerHTML;
+      // Call the exported function with the hostComponent as the argument
+      route.default(hostComponent);
 
       // Import and run any new components
       const components = hostComponent.querySelectorAll('[data-component]');
@@ -38,6 +48,5 @@ export default async (hostComponent) => {
   });
 
   // Load the initial route
-  //loadRoute(location.pathname === "/" ? "/pages/index" : location.pathname);
-  await loadRoute('/pages/index.html');
+  await loadRoute(location.pathname);
 };

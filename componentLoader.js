@@ -1,3 +1,5 @@
+// Stored in /componentLoader.js
+
 let componentRegistry = new Map();
 
 export const importComponents = async (components) => {

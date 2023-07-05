@@ -3,59 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
+    <link rel="icon" href="data:," />
 
     <script src="/store.js" defer type="module"></script>
     <script src="/componentLoader.js" defer type="module"></script>
-
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        margin: 4rem;
-        color: #1a202c;
-        background-color: #fff;
-      }
-      @media (prefers-color-scheme: dark) {
-        body {
-          color: #fff;
-          background-color: #1a202c;
-        }
-      }
-
-      footer {
-        margin-top: auto;
-      }
-
-      button {
-        padding: 0 0.5rem !important;
-        border-radius: 0.25rem;
-        border: 1px solid #ccc;
-        background-color: #eee !important;
-      }
-      @media (prefers-color-scheme: dark) {
-        input,
-        button {
-          background-color: #2d3748 !important; /* This is roughly equivalent to Tailwind's bg-gray-800 */
-        }
-      }
-      nav {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        > a {
-          padding: 0.5rem;
-          border-radius: 0.25rem;
-          border: 1px solid #ccc;
-          background-color: #eee;
-        }
-        @media (prefers-color-scheme: dark) {
-            > a {
-            background-color: #2d3748;
-            }
-
-      }
-    </style>
   </head>
   <body>
     <nav>
@@ -64,27 +15,13 @@
     </nav>
     <h1>Vanilla.js patterns</h1>
     <div>
-      Router in here ->
       <div style="border: 1px solid black; padding: 1em" data-component="router">
-
         <!--components in /pages that will be fetched by router when user clicks on a data-nav -->
-
       </div>
     </div>
-    <div class="flex gap-4">
-      <div class="flex flex-col gap-4" data-component="user-info-view"></div>
-    </div>
+
     <div class="w-44">
-      <!--
-        <div
-          class="bg-gray-200 p-4 rounded"
-          data-component="shared-number-changer"
-        ></div>
--->
+      <div class="bg-gray-200 p-4 rounded" data-component="number-changer"></div>
     </div>
-    <footer>
-      <hr />
-      <p>a footer</p>
-    </footer>
   </body>
 </html>
