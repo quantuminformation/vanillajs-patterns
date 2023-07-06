@@ -3,11 +3,15 @@
   --primary-color: #000;
   --secondary-color: #fff;
   --border-color: #ddd;
+  --button-hover-color: #bbb;
 }
 
 body {
   background-color: var(--secondary-color);
   color: var(--primary-color);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 nav {
@@ -16,16 +20,46 @@ nav {
   margin-bottom: 1rem;
   background-color: var(--secondary-color);
   color: var(--primary-color);
+  padding: 10px 20px;
+
+  & > a {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: background-color 0.2s; /* Added transition */
+
+    &:hover {
+      background-color: var(--border-color);
+    }
+  }
 }
 
-nav > a {
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid var(--border-color);
-  color: var(--primary-color);
-  text-decoration: none;
+h1 {
+  font-size: 2rem;
+  margin: 20px 0;
+}
 
-  &:hover {
-    background-color: var(--border-color);
-  }
+[data-component] {
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+button {
+  padding: 0.5rem 1rem; /* Increased padding */
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+  transition: background-color 0.2s; /* Smooth color transition */
+}
+
+button:hover {
+  background-color: var(--button-hover-color); /* Change color on hover */
+}
+
+button:active {
+  transform: scale(0.95); /* Slightly reduce size when button is pressed */
 }

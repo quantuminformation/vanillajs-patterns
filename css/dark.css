@@ -1,6 +1,7 @@
 :root {
+  /* Dark theme colors */
   --primary-color: #fff;
   --secondary-color: #333;
   --border-color: #666;
+  --button-hover-color: #999; /* Darker hover color for dark mode */
 }
-
