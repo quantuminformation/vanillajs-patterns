@@ -1,0 +1,31 @@
+:root {
+  /* Light theme colors */
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --border-color: #ddd;
+}
+
+body {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+nav > a {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--border-color);
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover {
+    background-color: var(--border-color);
+  }
+}
