@@ -5,6 +5,7 @@
     <title>Vanilla.js patterns</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/light.css" media="(prefers-color-scheme: light)" />
     <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)" />
 
     <script src="/store.js" defer type="module"></script>
@@ -19,10 +20,12 @@
       <div data-component="router">
         <!--components in /pages that will be fetched by router when user clicks on a data-nav -->
       </div>
+      <div>
+        <div data-component="number-changer"></div>
+      </div>
     </div>
-
-    <div>
-      <div data-component="number-changer"></div>
-    </div>
+    <footer>
+      <div data-component="theme-switcher"></div>
+    </footer>
   </body>
 </html>

@@ -1,3 +1,5 @@
+//stored in /components/number-changer.js
+
 import { store, STORE_COUNT_UPDATED } from '../store.js';
 
 export default (hostComponent) => {

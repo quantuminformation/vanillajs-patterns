@@ -1,0 +1,19 @@
+:root {
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --border-color: #ddd;
+  --button-hover-color: #bbb;
+  --nav-bg-color: #ccc;
+  --nav-hover-color: #aaa;  /* Fix: Add a color for the navbar hover state */
+}
+
+/* ...rest of your CSS... */
+
+.grey-theme {
+  --primary-color: #333;
+  --secondary-color: #bbb;
+  --border-color: #888;
+  --button-hover-color: #666;
+  --nav-bg-color: #aaa;
+  --nav-hover-color: #ddd;  /* Fix: Add a color for the navbar hover state in grey theme */
+}

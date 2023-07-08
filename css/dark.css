@@ -1,7 +1,57 @@
+/* stored in /css/dark.css */
+
 :root {
-  /* Dark theme colors */
+  /* Base dark theme colors */
   --primary-color: #fff;
   --secondary-color: #333;
   --border-color: #666;
-  --button-hover-color: #999; /* Darker hover color for dark mode */
+  --button-hover-color: #999;
+  --nav-bg-color: #444;
+  --nav-text-color: #fff; /* Default navigation text color for dark mode */
+  --nav-hover-color: #666;
+}
+
+.red-theme {
+  --primary-color: #FF9685;
+  --secondary-color: #480607;
+  --border-color: #A41A11;
+  --button-hover-color: #FF9685;
+  --nav-bg-color: #A41A11;
+  --nav-hover-color: #FF9685;
+}
+
+.blue-theme {
+  --primary-color: #80D4FF;
+  --secondary-color: #011F5B;
+  --border-color: #0147A1;
+  --button-hover-color: #80D4FF;
+  --nav-bg-color: #0147A1;
+  --nav-hover-color: #80D4FF;
+}
+
+.green-theme {
+  --primary-color: #7DFFB3;
+  --secondary-color: #014421;
+  --border-color: #036A34;
+  --button-hover-color: #7DFFB3;
+  --nav-bg-color: #036A34;
+  --nav-hover-color: #7DFFB3;
+}
+
+.grey-theme {
+  --primary-color: #CCC;
+  --secondary-color: #666;
+  --border-color: #999;
+  --button-hover-color: #999;
+  --nav-bg-color: #444;
+  --nav-hover-color: #CCC;
+}
+
+.light-grey-theme {
+  --primary-color: #ddd;
+  --secondary-color: #333;
+  --border-color: #666;
+  --button-hover-color: #aaa;
+  --nav-bg-color: #555;
+  --nav-hover-color: #ddd;
 }
