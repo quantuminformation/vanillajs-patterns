@@ -1,57 +1,30 @@
 /* stored in /css/dark.css */
 
 :root {
-  /* Base dark theme colors */
-  --primary-color: #fff;
-  --secondary-color: #333;
-  --border-color: #666;
-  --button-hover-color: #999;
-  --nav-bg-color: #444;
-  --nav-text-color: #fff; /* Default navigation text color for dark mode */
-  --nav-hover-color: #666;
+  --base-hue: 0; /* Red hue */
+  --base-saturation: 50%;
+  --base-lightness: 30%;
+
+  --primary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 40%));
+  --button-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 30%));
+
+  --secondary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 20%));
+  --border-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 10%));
 }
 
 .red-theme {
-  --primary-color: #FF9685;
-  --secondary-color: #480607;
-  --border-color: #A41A11;
-  --button-hover-color: #FF9685;
-  --nav-bg-color: #A41A11;
-  --nav-hover-color: #FF9685;
+  --base-hue: 0; /* Red hue */
 }
 
 .blue-theme {
-  --primary-color: #80D4FF;
-  --secondary-color: #011F5B;
-  --border-color: #0147A1;
-  --button-hover-color: #80D4FF;
-  --nav-bg-color: #0147A1;
-  --nav-hover-color: #80D4FF;
+  --base-hue: 240; /* Blue hue */
 }
 
 .green-theme {
-  --primary-color: #7DFFB3;
-  --secondary-color: #014421;
-  --border-color: #036A34;
-  --button-hover-color: #7DFFB3;
-  --nav-bg-color: #036A34;
-  --nav-hover-color: #7DFFB3;
+  --base-hue: 120; /* Green hue */
 }
 
 .grey-theme {
-  --primary-color: #CCC;
-  --secondary-color: #666;
-  --border-color: #999;
-  --button-hover-color: #999;
-  --nav-bg-color: #444;
-  --nav-hover-color: #CCC;
-}
-
-.light-grey-theme {
-  --primary-color: #ddd;
-  --secondary-color: #333;
-  --border-color: #666;
-  --button-hover-color: #aaa;
-  --nav-bg-color: #555;
-  --nav-hover-color: #ddd;
+  --base-hue: 0; /* Grey hue */
+  --base-saturation: 0%; /* Grey is less saturated */
 }

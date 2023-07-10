@@ -11,7 +11,7 @@ export default (hostComponent) => {
     <label for="name">Name:</label>
     <input type="text" id="name" name="name">
     <br>
-    <input type="submit" value="Submit">
+    <button type="submit" value="Submit">Submit</button>
   </form>
         <div class="bg-gray-200 p-4 rounded" data-component="number-changer"></div>
 

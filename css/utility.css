@@ -1,0 +1,23 @@
+/* use tailwind naming
+
+Use purely for laying out components with things I use almost always
+don't style specific components in here
+*/
+
+.border {
+  border: 1px solid #000;
+  @media (prefers-color-scheme: dark) {
+    border: 1px solid #fff;
+  }
+}
+
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+
+.justify-between {
+  justify-content: space-between;
+}

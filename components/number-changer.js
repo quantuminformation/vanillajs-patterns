@@ -25,14 +25,14 @@ export default (hostComponent) => {
   const render = () => {
     // Update the count display and button markup together
     hostComponent.innerHTML = `
-      <div class="flex justify-between">
+      <div class="">
         Local Count: ${localCount}
         <div>
           <button id="increment">+</button>
           <button id="decrement">-</button>
         </div>
       </div>
-      <div class="flex justify-between">
+      <div>
         <div class="global-count">Global Count: ${store.getCount()}</div>
         <div>
           <button id="incrementGlobal">+ global</button>

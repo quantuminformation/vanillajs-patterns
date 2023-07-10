@@ -33,13 +33,13 @@ export default async (hostComponent) => {
   };
 
   // Intercept navigation events
-  document.body.addEventListener('click', async (event) => {
-    if (event.target.matches('a[data-nav]')) {
+  document.querySelectorAll('a[data-nav]').forEach((link) => {
+    link.addEventListener('click', async (event) => {
       event.preventDefault();
-      const url = event.target.getAttribute('href');
+      const url = event.currentTarget.getAttribute('href');
       history.pushState(null, null, url);
       await loadRoute(url);
-    }
+    });
   });
 
   // Listen for popstate events

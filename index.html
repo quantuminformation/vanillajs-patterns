@@ -1,9 +1,12 @@
+<!--Stored in /index.html-->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="grey-theme">
   <head>
     <meta charset="UTF-8" />
     <title>Vanilla.js patterns</title>
     <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/utility.css" />
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/light.css" media="(prefers-color-scheme: light)" />
     <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)" />
@@ -11,13 +14,22 @@
     <script src="/store.js" defer type="module"></script>
     <script src="/componentLoader.js" defer type="module"></script>
   </head>
-  <body>
+  <body class="flex">
     <nav>
-      <a data-nav href="/">Home</a>
-      <a data-nav href="/form">Form</a>
+      <a data-nav href="/">
+        <span class="icon">&#x1F3E0;</span>
+        <!-- Unicode for a house, similar to a home icon -->
+        <span class="text">Home</span>
+      </a>
+      <a data-nav href="/form">
+        <span class="icon">&#x270F;</span>
+        <!-- Unicode for a pencil, similar to an edit or form icon -->
+        <span class="text">Form</span>
+      </a>
     </nav>
-    <div>
-      <div data-component="router">
+    <div class="flex flex-col">
+      <p>Router wrapper border</p>
+      <div data-component="router" class="border">
         <!--components in /pages that will be fetched by router when user clicks on a data-nav -->
       </div>
       <div>

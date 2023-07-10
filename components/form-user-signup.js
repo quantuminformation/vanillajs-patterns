@@ -9,9 +9,9 @@ export default (hostComponent) => {
     const formData = new FormData(form);
 
     const user = {
-      firstName: formData.get("firstName"),
-      lastName: formData.get("lastName"),
-      email: formData.get("email"),
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      email: formData.get('email'),
     };
 
     store.setCurrentUser(() => {
@@ -33,9 +33,9 @@ export default (hostComponent) => {
           email: currentUser.email,
         }
       : {
-          firstName: "",
-          lastName: "",
-          email: "",
+          firstName: '',
+          lastName: '',
+          email: '',
         };
 
     if (editMode) {
@@ -45,7 +45,7 @@ export default (hostComponent) => {
       hostComponent.innerHTML = `
         <h2>User Profile</h2>
         <form>
-          <div class="flex gap-4 mb-4 flex-wrap">
+          <div >
             <input type="text" id="firstName" name="firstName" placeholder="First Name" required value="${userFields.firstName}" />
             <input type="text" id="lastName" name="lastName" placeholder="Last Name" required value="${userFields.lastName}" />
             <input type="email" id="email" name="email" placeholder="Email" required value="${userFields.email}" />
@@ -55,11 +55,11 @@ export default (hostComponent) => {
         </form>
       `;
 
-      const form = hostComponent.querySelector("form");
-      form.addEventListener("submit", handleSubmit);
+      const form = hostComponent.querySelector('form');
+      form.addEventListener('submit', handleSubmit);
 
-      const cancelEditButton = hostComponent.querySelector("#cancel-edit");
-      cancelEditButton.addEventListener("click", () => {
+      const cancelEditButton = hostComponent.querySelector('#cancel-edit');
+      cancelEditButton.addEventListener('click', () => {
         // On cancel, restore the user's data from the snapshot
         store.setCurrentUser(() => {
           return userDataSnapshot;
@@ -72,7 +72,7 @@ export default (hostComponent) => {
         <h2>User Profile</h2>
         ${
           currentUser !== null &&
-          `<div class="flex gap-4 mb-4 flex-wrap">
+          `<div>
           <div>${userFields.firstName}</div>
           <div>${userFields.lastName}</div>
           <div>${userFields.email}</div>
@@ -81,8 +81,8 @@ export default (hostComponent) => {
         <button type="button" id="edit-profile">Edit</button>
       `;
 
-      const editButton = hostComponent.querySelector("#edit-profile");
-      editButton.addEventListener("click", () => {
+      const editButton = hostComponent.querySelector('#edit-profile');
+      editButton.addEventListener('click', () => {
         editMode = true;
         renderForm();
       });

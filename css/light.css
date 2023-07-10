@@ -1,19 +1,30 @@
+/* stored in /css/light.css */
+
 :root {
-  --primary-color: #000;
-  --secondary-color: #fff;
-  --border-color: #ddd;
-  --button-hover-color: #bbb;
-  --nav-bg-color: #ccc;
-  --nav-hover-color: #aaa;  /* Fix: Add a color for the navbar hover state */
+  --base-hue: 30; /* Red hue */
+  --base-saturation: 100%;
+  --base-lightness: 70%;
+
+  --primary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 30%));
+  --button-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 20%));
+
+  --secondary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 20%));
+  --border-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 10%));
 }
 
-/* ...rest of your CSS... */
+.red-theme {
+  --base-hue: 30; /* Red hue */
+}
+
+.blue-theme {
+  --base-hue: 240; /* Blue hue */
+}
+
+.green-theme {
+  --base-hue: 120; /* Green hue */
+}
 
 .grey-theme {
-  --primary-color: #333;
-  --secondary-color: #bbb;
-  --border-color: #888;
-  --button-hover-color: #666;
-  --nav-bg-color: #aaa;
-  --nav-hover-color: #ddd;  /* Fix: Add a color for the navbar hover state in grey theme */
+  --base-hue: 0; /* Grey hue */
+  --base-saturation: 0%; /* Grey is less saturated */
 }
