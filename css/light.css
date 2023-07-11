@@ -1,7 +1,7 @@
 /* stored in /css/light.css */
 
 :root {
-  --base-hue: 30; /* Red hue */
+  --base-hue: 240; /* Blue hue */
   --base-saturation: 100%;
   --base-lightness: 100%; /* this can be adjusted at runtime */
 
