@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "serve": "^14.2.0"
   },
   "scripts": {
-    "start": "npx serve -s . -l 8080"
+    "start": "serve -s . -l 8080"
   },
   "repository": {
     "type": "git",

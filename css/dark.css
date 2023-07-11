@@ -6,7 +6,7 @@
   --base-lightness: 30%;
 
   --primary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 40%));
-  --button-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 30%));
+  --primary-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 30%));
 
   --secondary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 20%));
   --border-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 10%));

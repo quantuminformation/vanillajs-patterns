@@ -6,6 +6,7 @@ don't style specific components in here
 
 .border {
   border: 1px solid #000;
+  border-radius: var(--rounded);
   @media (prefers-color-scheme: dark) {
     border: 1px solid #fff;
   }
@@ -20,4 +21,15 @@ don't style specific components in here
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+.align-center {
+  align-items: center;
+}
+
+.gap-md {
+  gap: 1rem;
 }

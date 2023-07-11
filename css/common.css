@@ -1,8 +1,17 @@
 /* Stored in /css/common.css */
+:root {
+  --rounded: 4px;
+  --rounded-full: 40px;
+
+  /* for buttons and ui controls */
+  --p-sm: 0.5rem;
+  --p-md: 1rem;
+}
 
 body {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  color: var(--default-text);
+  background-color: var(--bg-color);
+  color: black;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -18,16 +27,19 @@ body {
     transform: translateX(0);
   }
 }
-
+[data-component='router'] {
+  flex-grow: 1;
+  flex-basis: 200px;
+  flex-shrink: 1;
+  padding: var(--p-md);
+}
 nav {
   animation: 0.5s ease-in-out 0s 1 slideInFromLeft;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: var(--nav-bg-color);
-  color: var(--nav-text-color);
   padding: 10px 20px;
-  height: 100vh;
+  background-color: var(--sidenav-color);
 
   @media (max-width: 600px) {
     & .text {
@@ -38,12 +50,14 @@ nav {
     padding: 0.5rem;
     border-radius: 0.25rem;
     border: 1px solid var(--border-color);
-    color: var(--nav-text-color);
+    background-color: var(--secondary-color);
+
+    color: var(--primary-color);
     text-decoration: none;
     transition: background-color 0.2s;
   }
   > a:hover {
-    background-color: var(--button-hover-color);
+    background-color: var(--secondary-hover-color);
   }
 }
 
@@ -52,35 +66,20 @@ h1 {
   margin: 20px 0;
 }
 
-[data-component] {
-  padding: 1em;
-  margin-bottom: 1em;
-}
-
-button {
-  padding: 10px 20px;
-  border: none;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  cursor: pointer;
-  transition: all 0.2s;
-  &:hover {
-    background-color: var(--button-hover-color);
-  }
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
 footer {
-  position: fixed;
   bottom: 0;
   width: 100%;
-  background: var(--nav-bg-color);
-  color: var(--nav-text-color);
+  background: var(--primary-color);
+  color: var(--default-text-inv);
   padding: 10px;
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  /*override button.css*/
+}
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
 }
