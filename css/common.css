@@ -11,7 +11,6 @@
 body {
   color: var(--default-text);
   background-color: var(--bg-color);
-  color: black;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -40,24 +39,18 @@ nav {
   gap: 1rem;
   padding: 10px 20px;
   background-color: var(--sidenav-color);
+  min-width: 140px; /* Width when text is visible */
+
 
   @media (max-width: 600px) {
     & .text {
       display: none;
     }
-  }
-  > a {
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    border: 1px solid var(--border-color);
-    background-color: var(--secondary-color);
+    min-width: auto; /* Min-width when text is hidden, auto will take up necessary space */
 
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: background-color 0.2s;
   }
-  > a:hover {
-    background-color: var(--secondary-hover-color);
+  & button {
+    width: 100%;
   }
 }
 
@@ -71,15 +64,12 @@ footer {
   width: 100%;
   background: var(--primary-color);
   color: var(--default-text-inv);
-  padding: 10px;
+  padding: var(--p-md);
   display: flex;
   justify-content: center;
+  flex-shrink: 0;
   /*override button.css*/
 }
 main {
   flex: 1 0 auto;
-}
-
-footer {
-  flex-shrink: 0;
 }

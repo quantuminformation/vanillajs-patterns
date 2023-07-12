@@ -7,6 +7,7 @@ export default async (hostComponent) => {
   const routePaths = {
     '/': '/routes/index.js',
     '/form': '/routes/form.js',
+    '/maps': '/routes/maps.js',
   };
 
   const loadRoute = async (url) => {

@@ -33,3 +33,7 @@ don't style specific components in here
 .gap-md {
   gap: 1rem;
 }
+
+.squarify {
+  border-radius: 0.25rem !important;
+}

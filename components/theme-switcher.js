@@ -5,7 +5,7 @@ export default (hostComponent) => {
   const themeButtons = themes
     .map(
       (theme) => `
-    <button class="secondary" data-theme="${theme}">
+    <button class="secondary squarify" data-theme="${theme}">
       ${theme.charAt(0).toUpperCase() + theme.slice(1)}
     </button>
   `
