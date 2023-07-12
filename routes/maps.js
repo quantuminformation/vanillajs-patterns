@@ -3,6 +3,7 @@
 import { getGeoLocation } from '../lib/geoLocation.js';
 import env from '../env.js';
 
+
 export default async (hostComponent) => {
   const location = await getGeoLocation(true);
   let locationMarkers = [
@@ -20,7 +21,8 @@ export default async (hostComponent) => {
   const loadGoogleMapsScript = () => {
     return new Promise((resolve) => {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCNmLH1_G7oAQNCE31nqVrtKkO4QXji-pg&callback=initMap`;
+      // Use the environment variable here
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${env.API_KEY_GOOGLE_MAPS}&callback=initMap`;
       script.async = true;
       script.defer = true;
       window.initMap = initMap;
@@ -28,7 +30,6 @@ export default async (hostComponent) => {
       script.onload = resolve;
     });
   };
-
   const initMap = () => {
     const mapOptions = {
       center: new google.maps.LatLng(location.latitude, location.longitude),
