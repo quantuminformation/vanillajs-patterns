@@ -4,7 +4,7 @@ import { importComponents, runComponents } from '../componentLoader.js';
 
 export default async (hostComponent) => {
   // This object defines the paths to your route files
-  const routePaths = {
+  const routePathsOverrides = {
     '/': '/routes/index.js',
     '/form': '/routes/form.js',
     '/maps': '/routes/maps.js',
@@ -13,9 +13,9 @@ export default async (hostComponent) => {
   const loadRoute = async (url) => {
     try {
       // Check if the requested URL matches one of your routes
-      const routePath = routePaths[url];
+      let routePath = routePathsOverrides[url];
       if (!routePath) {
-        throw new Error(`No route found for URL: ${url}`);
+        routePath = `/routes${url}.js`;
       }
 
       // Import the route file

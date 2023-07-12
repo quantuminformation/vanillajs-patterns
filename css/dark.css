@@ -4,16 +4,15 @@
   --base-hue: 240; /* Blue hue */
   --base-saturation: 80%;
   --base-lightness: 0%; /* this can be adjusted at runtime */
+  --form-control-bg: #333;
 
   --bg-color: hsl(var(--base-hue), var(--base-saturation), var(--base-lightness));
   --primary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 70%));
   --primary-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 80%));
 
-  --secondary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 10%));
-  --secondary-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 20%));
+  --secondary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 20%));
+  --secondary-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 30%));
   --sidenav-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 5%));
-
-  --border-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 10%));
 
   --default-text: hsl(var(--base-hue), var(--base-saturation), 100%);
   --default-text-inv: hsl(var(--base-hue), var(--base-saturation), 0%);

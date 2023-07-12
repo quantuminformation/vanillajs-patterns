@@ -6,7 +6,7 @@ button,
   border: none;
   border-radius: var(--rounded-full);
   background-color: var(--primary-color);
-  color: var(--secondary-color);
+  color: var(--default-text-inv);
   cursor: pointer;
   transition: all 0.2s;
   &:hover {
@@ -18,9 +18,18 @@ button,
 
   &.secondary {
     background-color: var(--secondary-color);
-    color: var(--primary-color);
+    color: var(--default-text);
     &:hover {
       background-color: var(--secondary-hover-color);
+    }
+  }
+
+  &.outline {
+    background-color: var(--bg-color);
+    color: var(--default-text);
+    border: 1px solid var(--default-text);
+    &:hover {
+      background-color: var(--secondary-color);
     }
   }
 }
