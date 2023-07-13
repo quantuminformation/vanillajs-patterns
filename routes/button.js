@@ -5,30 +5,58 @@ export default (hostComponent) => {
   hostComponent.innerHTML = '';
 
   //@language=HTML
-  const indexHTML = `  <form>
-      <h1>Buttons</h1>
+  const indexHTML = `
+  <style>
+    #form-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr; /* heading takes 1/3rd and buttons take 2/3rd of the row */
+      gap: 1rem;
+      align-items: center;
+    }
+    @media screen and (max-width: 600px) {
+      #form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 
-<h2>Primary (changes with theme)</h2>
-    <button >Text</button>
-    <button ><span class="icon">&#x270F;</span>
-          <!-- Unicode for a pencil, similar to an edit or form icon -->
-          <span class="text">Text + Icon</span></button>
+  <form>
+    <h1>Buttons</h1>
 
-<h2>Secondary (changes with theme)</h2>
-    <button class="secondary" >Text</button>
-    <button class="secondary"><span class="icon">&#x270F;</span>
-          <!-- Unicode for a pencil, similar to an edit or form icon -->
-          <span class="text">Text + Icon</span></button>
-          <h2>Variants (Using primary)</h2>
-    <button class="squarify" >Squarify</button>
-    
-<h2>Outline (hover matches secondary)</h2>
-    <button class="outline" >Text</button>
-    <button class="outline"><span class="icon">&#x270F;</span>
-          <!-- Unicode for a pencil, similar to an edit or form icon -->
-          <span class="text">Text + Icon</span></button>
-    
-`;
+    <div id="form-grid">
+      <p>Primary (changes with theme)</p>
+      <div>
+        <button>Text</button>
+        <button>
+          <span class="icon">&#x270F;</span>
+          <span class="text">Text + Icon</span>
+        </button>
+      </div>
+
+      <p>Secondary (changes with theme)</p>
+      <div>
+        <button class="secondary">Text</button>
+        <button class="secondary">
+          <span class="icon">&#x270F;</span>
+          <span class="text">Text + Icon</span>
+        </button>
+      </div>
+
+      <p>Variants (Using primary)</p>
+      <div><button class="squarify">Squarify</button></div>
+
+      <p>Outline (hover matches secondary)</p>
+      <div>
+        <button class="outline">Text</button>
+        <button class="outline">
+          <span class="icon">&#x270F;</span>
+          <span class="text">Text + Icon</span>
+        </button>
+      </div>
+    </div>
+  </form>
+  `;
+
   // Append the new content to the hostComponent
   hostComponent.innerHTML = indexHTML;
 };

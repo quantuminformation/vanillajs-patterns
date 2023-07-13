@@ -41,13 +41,11 @@ nav {
   background-color: var(--sidenav-color);
   min-width: 140px; /* Width when text is visible */
 
-
   @media (max-width: 600px) {
     & .text {
       display: none;
     }
     min-width: auto; /* Min-width when text is hidden, auto will take up necessary space */
-
   }
   & button {
     width: 100%;
@@ -70,6 +68,6 @@ footer {
   flex-shrink: 0;
   /*override button.css*/
 }
-main {
+body > div {
   flex: 1 0 auto;
 }
