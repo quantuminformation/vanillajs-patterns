@@ -3,6 +3,8 @@
 import { importComponents, runComponents } from '../componentLoader.js';
 
 export default async (hostComponent) => {
+  const useHash = hostComponent.hasAttribute('use-hash');
+
   // This object defines the paths to your route files
   const routePathsOverrides = {
     '/': '/routes/index.js',
@@ -38,16 +40,36 @@ export default async (hostComponent) => {
     link.addEventListener('click', async (event) => {
       event.preventDefault();
       const url = event.currentTarget.getAttribute('href');
-      history.pushState(null, null, url);
-      await loadRoute(url);
+      if (useHash) {
+        location.hash = `#${url}`;
+      } else {
+        history.pushState(null, null, url);
+        await loadRoute(url);
+      }
     });
   });
 
   // Listen for popstate events
   addEventListener('popstate', async () => {
-    await loadRoute(location.pathname);
+    if (!useHash) {
+      await loadRoute(location.pathname);
+    }
   });
 
-  // Load the initial route
-  await loadRoute(location.pathname);
+  // Listen for hashchange events
+  if (useHash) {
+    addEventListener('hashchange', async () => {
+      const url = location.hash.substring(1);  // Get the URL from the hash, remove the leading '#'
+      await loadRoute(url);
+    });
+    // Load the initial route from the hash
+    if (location.hash) {
+      await loadRoute(location.hash.substring(1));
+    } else {
+      await loadRoute('/');
+    }
+  } else {
+    // Load the initial route
+    await loadRoute(location.pathname);
+  }
 };
