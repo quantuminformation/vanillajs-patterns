@@ -7,9 +7,7 @@ export default async (hostComponent) => {
 
   // This object defines the paths to your route files
   const routePathsOverrides = {
-    '/': '/routes/index.js',
-    '/form': '/routes/form.js',
-    '/maps': '/routes/maps.js',
+    '/form': './routes/form.js', //example of overriding the path
   };
 
   const loadRoute = async (url) => {
@@ -17,7 +15,7 @@ export default async (hostComponent) => {
       // Check if the requested URL matches one of your routes
       let routePath = routePathsOverrides[url];
       if (!routePath) {
-        routePath = `/routes${url}.js`;
+        routePath = `./routes${url}.js`;
       }
 
       // Import the route file
