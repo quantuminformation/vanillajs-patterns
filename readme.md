@@ -1,19 +1,35 @@
-# What’s wrong with using frameworks and libraries, react etc?
+# Vanilla.js Patterns
 
-Frameworks are a crutch and you need to keep updating them. No one likes that. Plus they all have extra things you need to learn. You can do everything you need with vanilla JS. This way you know exactly what is happening, you can see exactly how the router works (< 100 LoC). Good luck, trying to change anything with the routing system and react.
+This project explores a robust approach to web development using Vanilla JavaScript and CSS, eliminating the need for heavy frameworks or libraries. Below, we delve into our motivations for this choice.
 
-# What is your motivation?
+## Why opt out of frameworks and libraries like React, Vue, etc?
 
-The motivation is, I never need to rewrite these things. These vanilla.js patterns are much more flexible and can be modified without having to work within the framework, conventions and restrictions. Also, if something was wrong, you’re not dependent on the framework authors. You can fix it yourself. You are removing some of the risk of using a framework.
+Frameworks and libraries, though incredibly useful, come with their share of drawbacks:
 
-# Are you not reinventing the wheel?
+1. **Dependency and Updating**: Frequent updates mean constantly aligning your codebase. These updates sometimes bring breaking changes, demanding considerable time and effort to manage.
 
-It's more like removing the fluff. You learn and take back control. The wheel is the web browser.
+2. **Learning Curve**: Each framework/library imposes its conventions and rules, adding to the learning stack beyond JavaScript itself.
 
-# What’s wrong with using a CSS preprocessor like Sass?
+3. **Black Box**: Frameworks often function as a black box - customizing parts of it (like the router in React) can be a daunting task due to the complexity of the existing code.
 
-CSS is a simple and powerful language. You don’t need a preprocessor. You can do everything you need with vanilla CSS, especially with the new features like nesting. You can even nest media queries.
+Embracing Vanilla JavaScript allows us to bypass these issues, offering more transparency, eradication of update concerns, and full control over your application.
 
+## What fuels Vanilla.js Patterns?
 
+The objective of this project is to present a suite of patterns in Vanilla JavaScript that are highly flexible and can be effortlessly modified without adhering to the conventions or restrictions of any framework. You're liberated from the dependency on framework authors for fixes or changes.
 
+## Aren't we just reinventing the wheel?
 
+On the contrary, we're streamlining the wheel. By learning and implementing these patterns, you regain control over your code. The browser is the real "wheel" here; our task is to utilize its capacities efficiently.
+
+## What’s wrong with using a CSS preprocessor like Sass?
+
+CSS has matured significantly over the years, and with features like native CSS variables and nesting (including nested media queries), the necessity for a preprocessor like Sass diminishes.
+
+Like JavaScript frameworks, CSS preprocessors introduce an extra layer of complexity and learning to your workflow. This could be avoided by resorting to a pure CSS approach.
+
+## Getting Started
+
+To run the project locally, clone the repository and run `npm install` followed by `npm start`.
+
+The `npm` is required solely to run the `server` package if you don't already have one. Feel free to use any other server of your choice. Alternatively, you can operate without a server by enabling `use-hash` in the `router` component. The hash routing method is utilized in our GitHub Pages live demo: https://quantuminformation.github.io/vanillajs-patterns/.
