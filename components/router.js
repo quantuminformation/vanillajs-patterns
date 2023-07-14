@@ -1,13 +1,14 @@
 // Stored in /components/router.js
 
 import { importComponents, runComponents } from '../componentLoader.js';
+import config from '../config.js';
 
 export default async (hostComponent) => {
   const useHash = hostComponent.hasAttribute('use-hash');
 
   // This object defines the paths to your route files
   const routePathsOverrides = {
-    '/form': './routes/form.js', //example of overriding the path
+    '/form': `${config.BASE_URL}/routes/form.js`, //example of overriding the path
   };
 
   const loadRoute = async (url) => {
@@ -15,7 +16,8 @@ export default async (hostComponent) => {
       // Check if the requested URL matches one of your routes
       let routePath = routePathsOverrides[url];
       if (!routePath) {
-        routePath = `./routes${url}.js`;
+        // If the URL is '/', use '/index.js', otherwise use `/routes${url}.js`
+        routePath = url === '/' ? `${config.BASE_URL}/routes/index.js` : `${config.BASE_URL}/routes${url}.js`;
       }
 
       // Import the route file

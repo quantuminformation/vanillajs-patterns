@@ -1,7 +1,7 @@
 // stored in /routes/maps.js
 
 import { getGeoLocation } from '../lib/geoLocation.js';
-import env from '../env.js';
+import config from '../config.js';
 
 
 export default async (hostComponent) => {
@@ -22,7 +22,7 @@ export default async (hostComponent) => {
     return new Promise((resolve) => {
       const script = document.createElement('script');
       // Use the environment variable here
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${env.API_KEY_GOOGLE_MAPS}&callback=initMap`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${config.API_KEY_GOOGLE_MAPS}&callback=initMap`;
       script.async = true;
       script.defer = true;
       window.initMap = initMap;
