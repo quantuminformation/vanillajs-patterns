@@ -4,6 +4,7 @@
   --rounded-full: 40px;
 
   /* for buttons and ui controls */
+  --p-xs: 0.2rem;
   --p-sm: 0.5rem;
   --p-md: 1rem;
 }
@@ -70,4 +71,10 @@ footer {
 }
 body > div {
   flex: 1 0 auto;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
 }

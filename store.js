@@ -29,5 +29,5 @@ export const store = (() => {
     },
   };
 })();
- export const STORE_COUNT_UPDATED = "STORE_COUNT_UPDATED"
- export const STORE_CURRENT_USER_UPDATED = "STORE_CURRENT_USER_UPDATED"
+export const STORE_COUNT_UPDATED = 'STORE_COUNT_UPDATED';
+export const STORE_CURRENT_USER_UPDATED = 'STORE_CURRENT_USER_UPDATED';

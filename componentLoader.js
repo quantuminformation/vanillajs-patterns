@@ -7,7 +7,7 @@ export const importComponents = async (components) => {
 
   // Only consider components that have not been imported yet
   const componentsToImport = Array.from(components).filter((component) => {
-    const componentName = component.getAttribute("data-component");
+    const componentName = component.getAttribute('data-component');
     if (componentRegistry.has(componentName)) {
       console.log(`Component ${componentName} is already imported, so it's ignored`);
       return false;
@@ -16,7 +16,7 @@ export const importComponents = async (components) => {
   });
 
   const promises = componentsToImport.map(async (component) => {
-    const componentName = component.getAttribute("data-component");
+    const componentName = component.getAttribute('data-component');
     const componentPath = `./components/${componentName}.js`;
     console.log(`Importing component ${componentName} from ${componentPath}`);
     try {
@@ -38,7 +38,7 @@ export const importComponents = async (components) => {
 
 export const runComponents = (components) => {
   components.forEach((component) => {
-    const componentName = component.getAttribute("data-component");
+    const componentName = component.getAttribute('data-component');
     console.log(`Running component ${componentName}`);
     const module = componentRegistry.get(componentName);
     if (module && typeof module.default === 'function') {
@@ -50,7 +50,7 @@ export const runComponents = (components) => {
 };
 
 const getAllComponents = () => {
-  const components = document.querySelectorAll("[data-component]");
+  const components = document.querySelectorAll('[data-component]');
   return Array.from(components);
 };
 

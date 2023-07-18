@@ -3,7 +3,6 @@
 import { getGeoLocation } from '../lib/geoLocation.js';
 import config from '../config.js';
 
-
 export default async (hostComponent) => {
   const location = await getGeoLocation(true);
   let locationMarkers = [

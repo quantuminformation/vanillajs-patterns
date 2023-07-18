@@ -2,55 +2,55 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Vanilla.js patterns</title>
-  <link rel="icon" href="data:," />
-  <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css" />
-  <link rel="stylesheet" href="./css/reset.css" />
-  <link rel="stylesheet" href="./css/utility.css" />
-  <link rel="stylesheet" href="./css/common.css" />
-  <link rel="stylesheet" href="./css/form.css" />
-  <link rel="stylesheet" href="./css/button.css" />
-  <link rel="stylesheet" href="./css/light.css" media="(prefers-color-scheme: light)" />
-  <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vanilla.js patterns</title>
+    <link rel="icon" href="data:," />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/utility.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="css/button-badge.css" />
+    <link rel="stylesheet" href="./css/light.css" media="(prefers-color-scheme: light)" />
+    <link rel="stylesheet" href="./css/dark.css" media="(prefers-color-scheme: dark)" />
 
-  <script src="./store.js" defer type="module"></script>
-  <script src="./componentLoader.js" defer type="module"></script>
-</head>
-<body class="flex flex-col">
-<div class="flex">
-  <nav class="flex flex-col">
-    <a data-nav href="/" class="button secondary squarify">
-      <span class="icon">&#x1F3E0;</span>
-      <!-- Unicode for a house, similar to a home icon -->
-      <span class="text">Home</span>
-    </a>
-    <a data-nav href="/button" class="button secondary squarify">
-      <span class="icon">&#x1F518;</span>
-      <!-- Unicode for a pencil, similar to an edit or form icon -->
-      <span class="text">Button</span>
-    </a>
-    <a data-nav href="/form" class="button secondary squarify">
-      <span class="icon">&#x270F;</span>
-      <!-- Unicode for a pencil, similar to an edit or form icon -->
-      <span class="text">Form</span>
-    </a>
-    <a data-nav href="/maps" class="button secondary squarify">
-      <span class="icon">&#x1F5FA;</span>
-      <!-- Unicode for a pencil, similar to an edit or form icon -->
-      <span class="text">Maps</span>
-    </a>
-  </nav>
-  <main data-component="router" class="p-md" use-hash>
-    <!--components in /pages that will be fetched by router when user clicks on a data-nav -->
-  </main>
-</div>
-<footer class="flex flex-col align-center gap-md">
-  <span>Copyright Nikos Katsikanis LTD</span>
-  <div data-component="theme-switcher"></div>
-</footer>
-</body>
+    <script src="./store.js" defer type="module"></script>
+    <script src="./componentLoader.js" defer type="module"></script>
+  </head>
+  <body class="flex flex-col">
+    <div class="flex">
+      <nav class="flex flex-col">
+        <a data-nav href="/" class="button secondary squarify">
+          <span class="icon">&#x1F3E0;</span>
+          <!-- Unicode for a house, similar to a home icon -->
+          <span class="text">Home</span>
+        </a>
+        <a data-nav href="/button" class="button secondary squarify">
+          <span class="icon">&#x1F518;</span>
+          <!-- Unicode for a pencil, similar to an edit or form icon -->
+          <span class="text">Button</span>
+        </a>
+        <a data-nav href="/form" class="button secondary squarify">
+          <span class="icon">&#x270F;</span>
+          <!-- Unicode for a pencil, similar to an edit or form icon -->
+          <span class="text">Form</span>
+        </a>
+        <a data-nav href="/maps" class="button secondary squarify">
+          <span class="icon">&#x1F5FA;</span>
+          <!-- Unicode for a pencil, similar to an edit or form icon -->
+          <span class="text">Maps</span>
+        </a>
+      </nav>
+      <main data-component="router" class="p-md" use-hash>
+        <!--components in /pages that will be fetched by router when user clicks on a data-nav -->
+      </main>
+    </div>
+    <footer class="flex flex-col align-center gap-md">
+      <span>Copyright Nikos Katsikanis LTD</span>
+      <div data-component="theme-switcher"></div>
+    </footer>
+  </body>
 </html>
