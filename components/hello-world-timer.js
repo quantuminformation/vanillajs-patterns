@@ -1,3 +1,5 @@
+// stored in components/hello-world-timer.js
+
 export default (hostComponent) => {
   const updateCurrentTime = () => {
     const currentTime = new Date().toLocaleTimeString();

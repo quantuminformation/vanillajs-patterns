@@ -4,24 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "prisma generate",
     "migrate:create": "prisma migrate dev --create-only",
     "migrate:deploy": "prisma migrate deploy",
     "migrate:reset": "prisma migrate reset",
     "build": "concurrently -m 1 -c auto pnpm:build:*",
     "build:prisma": "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "tsx prisma/seed.ts"
-
+    "seed": "prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.0.0",
+    "better-sqlite3": "^8.5.0",
     "concurrently": "^8.2.0",
+    "drizzle-orm": "^0.27.2",
     "prisma": "^5.0.0",
-    "tsx": "^3.12.7",
+    "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }
 }
