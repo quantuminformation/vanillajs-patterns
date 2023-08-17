@@ -1,49 +1,58 @@
-// stored in /routes/time-tracker.js
-
 export default (hostComponent) => {
   // Clear any existing content in the hostComponent
   hostComponent.innerHTML = '';
 
-  // Define the month and year you want to render
-  const month = 7; // July
-  const year = 2023;
+  const currentDate = new Date();
+  const month = currentDate.getMonth();
+  const year = currentDate.getFullYear();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDay = new Date(year, month, 1).getDay();
+  const browserLocale = navigator.language;
 
-  //@language=HTML
-  const indexHTML = `
+  const weekdays = Array.from({ length: 7 }, (_, i) =>
+    new Intl.DateTimeFormat(browserLocale, { weekday: 'short' }).format(new Date(1970, 0, i + 1))
+  );
+
+  // Breaking up the template into multiple variables
+  const styles = `
   <style>
     #calendar-grid {
       display: grid;
-      grid-template-columns: repeat(7, 1fr); /* 7 columns for 7 days in a week */
+      grid-template-columns: repeat(7, 1fr);
       gap: 1rem;
       align-items: center;
     }
     .calendar-heading {
       font-weight: bold;
     }
-    @media screen and (max-width: 600px) {
-      #calendar-grid {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
+  `;
 
-  <h1>${new Intl.DateTimeFormat('en-US', { month: 'long' }).format(new Date(year, month))} ${year}</h1>
+  const header = `<h1>${new Intl.DateTimeFormat(browserLocale, { month: 'long' }).format(
+    currentDate
+  )} ${year}</h1>`;
 
+  const weekdaysHTML = weekdays.map((day) => `<div class="calendar-heading">${day}</div>`).join('');
+
+  const emptyDays = Array(firstDay)
+    .fill()
+    .map(() => '<div></div>')
+    .join('');
+
+  const monthDays = Array(daysInMonth)
+    .fill()
+    .map((_, i) => `<div>${i + 1}</div>`)
+    .join('');
+
+  const calendarGrid = `
   <div id="calendar-grid">
-    <div class="calendar-heading">Sun</div>
-    <div class="calendar-heading">Mon</div>
-    <div class="calendar-heading">Tue</div>
-    <div class="calendar-heading">Wed</div>
-    <div class="calendar-heading">Thu</div>
-    <div class="calendar-heading">Fri</div>
-    <div class="calendar-heading">Sat</div>
-    ${Array(firstDay).fill().map(() => '<div></div>').join('')}
-    ${Array(daysInMonth).fill().map((_, i) => `<div>${i + 1}</div>`).join('')}
+    ${weekdaysHTML}
+    ${emptyDays}
+    ${monthDays}
   </div>
   `;
 
-  // Append the new content to the hostComponent
+  const indexHTML = styles + header + calendarGrid;
+
   hostComponent.innerHTML = indexHTML;
 };
