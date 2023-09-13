@@ -1,10 +1,10 @@
-import { store, STORE_CURRENT_USER_UPDATED } from "../store.js";
+import { store, STORE_CURRENT_USER_UPDATED } from '../store.js';
 
 export default (hostComponent) => {
   const renderUser = () => {
     const user = store.getCurrentUser();
 
-    let template = "<h2>Current User</h2>";
+    let template = '<h2>Current User</h2>';
     if (user) {
       template += `
         <div class="user-info">

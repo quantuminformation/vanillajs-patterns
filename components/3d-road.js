@@ -4,10 +4,18 @@ export default (hostComponent) => {
 
   // Define the positions for the vertices
   const positions = [
-    -1.0, -1.0, -5.0,   // Back left
-    1.0, -1.0, -5.0,   // Back right
-    -1.0, -1.0,  5.0,   // Front left
-    1.0, -1.0,  5.0,   // Front right
+    -1.0,
+    -1.0,
+    -5.0, // Back left
+    1.0,
+    -1.0,
+    -5.0, // Back right
+    -1.0,
+    -1.0,
+    5.0, // Front left
+    1.0,
+    -1.0,
+    5.0, // Front right
   ];
 
   const positionBuffer = gl.createBuffer();
@@ -45,7 +53,7 @@ export default (hostComponent) => {
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   // Compute the projection matrix
-  const fieldOfView = 45 * Math.PI / 180; // in radians
+  const fieldOfView = (45 * Math.PI) / 180; // in radians
   const aspect = canvas.clientWidth / canvas.clientHeight;
   const zNear = 0.1;
   const zFar = 100.0;
@@ -97,9 +105,21 @@ function perspective(fieldOfViewInRadians, aspect, near, far) {
   var f = Math.tan(Math.PI * 0.5 - 0.5 * fieldOfViewInRadians);
   var rangeInv = 1.0 / (near - far);
   return [
-    f / aspect, 0, 0, 0,
-    0, f, 0, 0,
-    0, 0, (near + far) * rangeInv, -1,
-    0, 0, near * far * rangeInv * 2, 0
+    f / aspect,
+    0,
+    0,
+    0,
+    0,
+    f,
+    0,
+    0,
+    0,
+    0,
+    (near + far) * rangeInv,
+    -1,
+    0,
+    0,
+    near * far * rangeInv * 2,
+    0,
   ];
 }

@@ -8,7 +8,7 @@ export default (hostComponent) => {
   const resizeCanvas = () => {
     canvas.width = hostComponent.clientWidth;
     canvas.height = hostComponent.clientHeight;
-  }
+  };
 
   // Initially resize the canvas
   resizeCanvas();
