@@ -1,4 +1,4 @@
-// Stored in /components/router.js
+// Stored in components/router.js
 
 import { importComponents, runComponents } from '../componentLoader.js';
 import config from '../config.js';
@@ -59,7 +59,7 @@ export default async (hostComponent) => {
   // Listen for hashchange events
   if (useHash) {
     addEventListener('hashchange', async () => {
-      const url = location.hash.substring(1);  // Get the URL from the hash, remove the leading '#'
+      const url = location.hash.substring(1); // Get the URL from the hash, remove the leading '#'
       await loadRoute(url);
     });
     // Load the initial route from the hash

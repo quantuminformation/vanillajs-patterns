@@ -1,4 +1,6 @@
 // Stored in /componentLoader.js
+// looks for components like this: <div data-component="user-form"></div>
+// and executes the default export of the corresponding file
 
 let componentRegistry = new Map();
 

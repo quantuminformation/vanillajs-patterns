@@ -1,30 +1,40 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "vanillajs-patterns-backed",
   "scripts": {
-    "migrate:create": "prisma migrate dev --create-only",
-    "migrate:deploy": "prisma migrate deploy",
-    "migrate:reset": "prisma migrate reset",
-    "build": "concurrently -m 1 -c auto pnpm:build:*",
-    "build:prisma": "prisma generate",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "prisma db seed"
+    "db:migrate:create": "drizzle-kit generate:sqlite --config drizzle.config.ts",
+    "db:migrate": "bun ./db/migrate.ts",
+    "db:seed": "bun ./src/lib/db/seed.ts",
+    "db:delete": "rm sqlite.db",
+    "db:reset": "concurrently -m 1 -c auto bun:db:delete bun:db:migrate bun:db:seed",
+    "lint": "eslint \"**/*.{ts,tsx}\" && tsc -p tsconfig.json --noEmit --skipLibCheck --pretty",
+    "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "start": "",
+    "debug": "bun --inspect-brk db/seed.ts",
+    "debug2": "bun --inspect-brk ./db/migrate.ts"
   },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "type": "module",
   "dependencies": {
-    "@prisma/client": "^5.0.0",
-    "better-sqlite3": "^8.5.0",
-    "concurrently": "^8.2.0",
-    "drizzle-orm": "^0.27.2",
-    "prisma": "^5.0.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "@trpc/client": "^10.37.1",
+    "@trpc/server": "^10.37.1",
+    "bcryptjs": "^2.4.3",
+    "drizzle-orm": "^0.28.6"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.3",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "autoprefixer": "^10.4.15",
+    "better-sqlite3": "^8.6.0",
+    "bun-types": "^1.0.1",
+    "concurrently": "^8.2.1",
+    "cross-env": "^7.0.3",
+    "drizzle-kit": "^0.19.13",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jsdom": "^22.1.0",
+    "typescript": "^5.2.2",
   }
 }

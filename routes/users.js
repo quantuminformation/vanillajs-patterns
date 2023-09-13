@@ -1,4 +1,4 @@
-// stored in components/user-list.js
+// routes/users.js
 
 export default (hostComponent) => {
   const updateUsers = async () => {
@@ -16,6 +16,34 @@ export default (hostComponent) => {
       hostComponent.appendChild(userElement);
     }
   };
+
+  const createUser = async (name) => {
+    // Post user data to your API
+    await fetch('http://localhost:8000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name }),
+    });
+
+    // Update the user list after a user has been created
+    updateUsers();
+  };
+
+  // Add a form to the host component
+  const formElement = document.createElement('form');
+  formElement.innerHTML = `
+    <input type="text" id="name" name="name" placeholder="Enter user name" required>
+    <input type="submit" value="Submit">
+  `;
+  formElement.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const name = formElement.elements.name.value;
+    await createUser(name);
+    formElement.elements.name.value = '';
+  });
+  hostComponent.appendChild(formElement);
 
   // Update the user list immediately
   updateUsers();
