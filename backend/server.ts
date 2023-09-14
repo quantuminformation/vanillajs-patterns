@@ -1,7 +1,13 @@
+import { db } from './db';
 import { user } from 'db/schema';
-import { db, schema } from './db';
 
-const fo = await db.select().from(user);
 debugger;
-console.log(fo);
-//console.log(`Listening on port ${server.port}...`, fo);
+const server = Bun.serve({
+  port: 8080,
+  async fetch(req) {
+    const result = await db.select().from(user);
+    return new Response(JSON.stringify(result));
+  },
+});
+
+console.log(`Listening on port ${server.port}...`);

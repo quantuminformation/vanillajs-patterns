@@ -7,7 +7,7 @@
     "serve": "^14.2.0"
   },
   "scripts": {
-    "start": "serve -s . -l 8080",
+    "start": "serve -s . -l 3000",
     "prettier": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,html}\""
   },
   "repository": {
