@@ -1,10 +1,15 @@
 // routes/users.js
 
 export default (hostComponent) => {
-  const updateUsers = async () => {
+  const showLoading = () => {
+    hostComponent.textContent = 'Loading...';
+  };
+
+  const updateUsers = async (endpoint) => {
+    showLoading();
+
     try {
-      // Note the change in the port from 8000 to 8080 to match your backend setup
-      const response = await fetch('http://localhost:8080/users');
+      const response = await fetch(endpoint);
       if (!response.ok) throw new Error("Couldn't fetch users");
 
       const users = await response.json();
@@ -22,6 +27,11 @@ export default (hostComponent) => {
     }
   };
 
+  const updateUsersSlow = async () => {
+    updateUsers('http://localhost:8080/usersslow');
+  };
+
   // Fetch and display the user list immediately
-  updateUsers();
+  // updateUsers('http://localhost:8080/users');  // For regular speed
+  updateUsersSlow(); // For slower loading simulation
 };
