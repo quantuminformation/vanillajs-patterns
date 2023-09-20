@@ -28,11 +28,10 @@ Not really. What we are doing is simplifying and demystifying. We're reducing th
 
 Nothing is "wrong" per se with using a CSS preprocessor like Sass, but with the evolving capabilities of CSS, it's becoming less necessary. Features like native CSS variables and nesting (yes, even nested media queries) mean you can do more with vanilla CSS than ever before. Like with JavaScript, sticking with vanilla CSS avoids the need for an extra layer of tooling and learning.
 
-## Getting Started
 
-To get this project running locally, clone the repository and run `npm install` followed by `npm start`. The `npm` commands are used here primarily to start a local server using the `server` package. If you already have a server setup you prefer, feel free to use that instead.
 
 You can also run without a server by enabling `use-hash` in the `router` component, which uses hash-based routing. This method is used in our GitHub Pages live demo: [Vanilla.js Patterns Live Demo](https://quantuminformation.github.io/vanillajs-patterns/).
 
-# Backend
-wip, but will be in TypeScript Drizzle and bun!
+# Optional Backend
+Optional backend that the /users route points to.
+Setup instructions [here](backend/README.md).

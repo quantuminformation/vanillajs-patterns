@@ -5,6 +5,6 @@ export { eq, lt, gte, ne, sql } from 'drizzle-orm';
 import * as schema from './schema';
 
 const sqlite = new Database('sqlite.db');
-export const db = drizzle(sqlite);
+export const db = drizzle(sqlite, { schema });
 
 export { schema };

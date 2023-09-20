@@ -3,14 +3,14 @@
   "scripts": {
     "db:migrate:create": "drizzle-kit generate:sqlite --config drizzle.config.ts",
     "db:migrate": "bun ./db/migrate.ts",
-    "db:seed": "bun ./src/lib/db/seed.ts",
+    "db:seed": "bun ./db/seed.ts",
     "db:delete": "rm sqlite.db",
     "db:reset": "concurrently -m 1 -c auto bun:db:delete bun:db:migrate bun:db:seed",
     "lint": "eslint \"**/*.{ts,tsx}\" && tsc -p tsconfig.json --noEmit --skipLibCheck --pretty",
     "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
     "test": "bun test",
     "test:watch": "bun test --watch",
-    "start": "",
+    "start": "bun server.ts",
     "debug": "bun --inspect-brk db/seed.ts",
     "debug2": "bun --inspect-brk ./db/migrate.ts"
   },
