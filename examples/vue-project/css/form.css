@@ -1,0 +1,31 @@
+/* Stored in /css/form.css */
+
+input {
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--default-text);
+  color: var(--default-text);
+  background-color: var(--form-control-bg);
+  width: 100%;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+
+  @media screen and (min-width: 600px) {
+    grid-template-columns: max-content 1fr;
+  }
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (min-width: 600px) {
+    width: 400px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,57 @@
+/* Stored in /css/button.css */
+
+button,
+.button {
+  padding: var(--p-sm) var(--p-md);
+  border: none;
+  border-radius: var(--rounded-full);
+  background-color: var(--primary-color);
+  color: var(--default-text-inv);
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    background-color: var(--primary-hover-color);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.secondary {
+    background-color: var(--secondary-color);
+    color: var(--default-text);
+    &:hover {
+      background-color: var(--secondary-hover-color);
+    }
+  }
+
+  &.outline {
+    background-color: var(--bg-color);
+    color: var(--default-text);
+    border: 1px solid var(--default-text);
+    &:hover {
+      background-color: var(--secondary-color);
+    }
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: var(--p-xs) var(--p-sm);
+  font-size: 0.75rem; /* make the text smaller */
+  color: white;
+  background-color: var(--primary-color);
+  border-radius: var(--rounded-full);
+  transition: all 0.2s;
+  cursor: default; /* no hand cursor on hover */
+}
+
+.badge.secondary {
+  background-color: var(--secondary-color);
+  color: var(--default-text);
+}
+
+.badge.outline {
+  background-color: var(--bg-color);
+  color: var(--default-text);
+  border: 1px solid var(--default-text);
+}
