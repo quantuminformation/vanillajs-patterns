@@ -53,7 +53,7 @@
 }
 </style>
 <script setup>
-import { importComponents, runComponents } from '../../componentLoader.js'
+import { importComponents, runComponents } from '../../../../componentLoader.js'
 import { onMounted } from 'vue'
 // Wrap the top-level async operation in an immediately-invoked function expression
 const getAllComponents = () => {
