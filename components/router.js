@@ -40,15 +40,20 @@ export default async (hostComponent) => {
     link.addEventListener('click', async (event) => {
       event.preventDefault();
       const url = event.currentTarget.getAttribute('href');
+
       if (useHash) {
-        location.hash = `#${url}`;
+        // Ensure there's a trailing slash in the pathname
+        const baseURL = window.location.pathname.endsWith('/')
+          ? window.location.origin + window.location.pathname
+          : window.location.origin + window.location.pathname + '/';
+        // Construct the hash-based URL
+        location.href = `${baseURL}#${url}`;
       } else {
         history.pushState(null, null, url);
         await loadRoute(url);
       }
     });
   });
-
   // Listen for popstate events
   addEventListener('popstate', async () => {
     if (!useHash) {
