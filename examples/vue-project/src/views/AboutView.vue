@@ -53,7 +53,7 @@
 }
 </style>
 <script setup>
-import { importComponents, runComponents } from '../../componentLoader.js'
+import { importComponents, runComponents } from '../../js/    componentLoader.js'
 //import { importComponents, runComponents } from '../../../../componentLoader.js'
 import { onMounted } from 'vue'
 const getAllComponents = () => {

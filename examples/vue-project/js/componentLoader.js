@@ -22,7 +22,7 @@ export const importComponents = async (components) => {
     const componentPath = `./components/${componentName}.js`;
     console.log(`Importing component ${componentName} from ${componentPath}`);
     try {
-      const module = await import(componentPath);
+      const module = await import(componentPath); // I love this syntax!
       importedComponents.set(componentName, module);
       console.log(`Successfully imported component ${componentName}`);
     } catch (err) {
