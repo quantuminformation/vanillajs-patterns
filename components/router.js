@@ -15,7 +15,7 @@ import config from '../config.js';
  * @param {HTMLElement} hostComponent - The main component on which the router operates.
  */
 export default async (hostComponent) => {
-  const useHash = hostComponent.hasAttribute('use-hash');
+  const useHash = 'useHash' in hostComponent.dataset;
 
   /**
    * @constant
