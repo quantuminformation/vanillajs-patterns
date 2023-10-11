@@ -32,7 +32,7 @@
           <span class="text"> Time Tracker </span>
         </a>
       </nav>
-      <main data-component="router" class="p-md" use-hash>
+      <main data-component="router" class="p-md" data-use-hash>
         <!--components in /pages that will be fetched by router when user clicks on a data-nav -->
       </main>
     </div>
