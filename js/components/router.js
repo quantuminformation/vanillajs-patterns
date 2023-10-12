@@ -1,7 +1,7 @@
 /**
  * Router module for handling client-side routing.
  * @module components/router
- * @version 0.1.0
+ * @version 0.1.1
  */
 
 import { importComponents, runComponents } from '../componentLoader.js';
@@ -54,6 +54,7 @@ export default async (hostComponent) => {
   document.querySelectorAll('a[data-nav]').forEach((link) => {
     link.addEventListener('click', async (event) => {
       event.preventDefault();
+      event.stopImmediatePropagation(); // stop other frameworks doing stuff with this <a> click event, ie vue-router was refershing the page I think when this wasn't there
       const url = event.currentTarget.getAttribute('href');
 
       if (useHash) {

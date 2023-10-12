@@ -4,8 +4,8 @@
  * @version 0.1.0
  */
 
-import { importComponents, runComponents } from '../componentLoader.js';
-import config from '../config.js';
+import { importComponents, runComponents } from '../componentLoader.js'
+import config from '../config.js'
 
 /**
  * Main router function that initializes the routing based on hostComponent's attributes.
@@ -15,7 +15,7 @@ import config from '../config.js';
  * @param {HTMLElement} hostComponent - The main component on which the router operates.
  */
 export default async (hostComponent) => {
-  const useHash = 'useHash' in hostComponent.dataset;
+  const useHash = 'useHash' in hostComponent.dataset
 
   /**
    * @constant
@@ -23,8 +23,8 @@ export default async (hostComponent) => {
    * This object defines the paths to your route files.
    */
   const routePathsOverrides = {
-    '/form': `${config.BASE_URL}/routes/form.js`, // example of overriding the path
-  };
+    '/form': `${config.BASE_URL}/routes/form.js` // example of overriding the path
+  }
 
   /**
    * Loads a given route.
@@ -35,57 +35,59 @@ export default async (hostComponent) => {
    */
   const loadRoute = async (url) => {
     try {
-      let routePath = routePathsOverrides[url];
+      let routePath = routePathsOverrides[url]
       if (!routePath) {
-        routePath = url === '/' ? `${config.BASE_URL}/routes/index.js` : `${config.BASE_URL}/routes${url}.js`;
+        routePath =
+          url === '/' ? `${config.BASE_URL}/routes/index.js` : `${config.BASE_URL}/routes${url}.js`
       }
 
-      const route = await import(/* @vite-ignore */ routePath);
-      route.default(hostComponent);
+      const route = await import(/* @vite-ignore */ routePath)
+      route.default(hostComponent)
 
-      const components = hostComponent.querySelectorAll('[data-component]');
-      await importComponents(components);
-      runComponents(components);
+      const components = hostComponent.querySelectorAll('[data-component]')
+      await importComponents(components)
+      runComponents(components)
     } catch (err) {
-      console.error(`Failed to load route: ${url}`, err);
+      console.error(`Failed to load route: ${url}`, err)
     }
-  };
+  }
 
   document.querySelectorAll('a[data-nav]').forEach((link) => {
     link.addEventListener('click', async (event) => {
-      event.preventDefault();
-      const url = event.currentTarget.getAttribute('href');
+      event.preventDefault()
+      event.stopImmediatePropagation()
+      const url = event.currentTarget.getAttribute('href')
 
       if (useHash) {
         const baseURL = window.location.pathname.endsWith('/')
           ? window.location.origin + window.location.pathname
-          : window.location.origin + window.location.pathname + '/';
-        location.href = `${baseURL}#${url}`;
+          : window.location.origin + window.location.pathname + '/'
+        location.href = `${baseURL}#${url}`
       } else {
-        history.pushState(null, null, url);
-        await loadRoute(url);
+        history.pushState(null, null, url)
+        await loadRoute(url)
       }
-    });
-  });
+    })
+  })
 
   addEventListener('popstate', async () => {
     if (!useHash) {
-      await loadRoute(location.pathname);
+      await loadRoute(location.pathname)
     }
-  });
+  })
 
   if (useHash) {
     addEventListener('hashchange', async () => {
-      const url = location.hash.substring(1); // Get the URL from the hash, remove the leading '#'
-      await loadRoute(url);
-    });
+      const url = location.hash.substring(1) // Get the URL from the hash, remove the leading '#'
+      await loadRoute(url)
+    })
 
     if (location.hash) {
-      await loadRoute(location.hash.substring(1));
+      await loadRoute(location.hash.substring(1))
     } else {
-      await loadRoute('/');
+      await loadRoute('/')
     }
   } else {
-    await loadRoute(location.pathname);
+    await loadRoute(location.pathname)
   }
-};
+}
