@@ -37,7 +37,10 @@ export default async (hostComponent) => {
     try {
       let routePath = routePathsOverrides[url];
       if (!routePath) {
-        routePath = url === '/' ? `${config.BASE_URL}/routes/index.js` : `${config.BASE_URL}/routes${url}.js`;
+        routePath =
+          url === '/' || url === ''
+            ? `${config.BASE_URL}/routes/index.js`
+            : `${config.BASE_URL}/routes${url}.js`;
       }
 
       const route = await import(/* @vite-ignore */ routePath);
@@ -54,7 +57,6 @@ export default async (hostComponent) => {
   document.querySelectorAll('a[data-nav]').forEach((link) => {
     link.addEventListener('click', async (event) => {
       event.preventDefault();
-      event.stopImmediatePropagation(); // stop other frameworks doing stuff with this <a> click event, ie vue-router was refershing the page I think when this wasn't there
       const url = event.currentTarget.getAttribute('href');
 
       if (useHash) {

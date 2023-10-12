@@ -1,7 +1,9 @@
 <template>
-  <div class="flex">
-    <div data-component="hello-world-timer"></div>
-    <div data-component="number-changer"></div>
+  <div class="flex flex-col">
+    <div class="flex">
+      <div data-component="number-changer"></div>
+      <div data-component="number-changer"></div>
+    </div>
   </div>
 </template>
 
