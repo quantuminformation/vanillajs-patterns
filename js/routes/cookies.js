@@ -1,14 +1,20 @@
-// Stored in /js/routes/cookies.js
+// /js/routes/cookies.js
 
 export default (hostComponent) => {
-  // Clear any existing content in the hostComponent
-  hostComponent.innerHTML = '';
+  // If user has already set preferences, don't show the modal again.
+  if (
+    localStorage.getItem('analytics-cookies') !== null &&
+    localStorage.getItem('personalization-cookies') !== null &&
+    localStorage.getItem('advertisement-cookies') !== null
+  ) {
+    return;
+  }
 
   const analyticsPreference = localStorage.getItem('analytics-cookies') === 'true';
   const personalizationPreference = localStorage.getItem('personalization-cookies') === 'true';
   const advertisementPreference = localStorage.getItem('advertisement-cookies') === 'true';
 
-  // Cookie Modal Styles & HTML
+  // CSS for the modal
   const cookieModalStyles = `
 <style>
     #cookie-modal-background {
@@ -22,6 +28,11 @@ export default (hostComponent) => {
         justify-content: center;
         align-items: center;
         z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+    #cookie-modal-background.show {
+        opacity: 1;
     }
     #cookie-modal {
         padding: 1rem;
@@ -81,60 +92,84 @@ export default (hostComponent) => {
 </style>
 `;
 
-  // Insert this style string in the component logic where the styles are concatenated.
-
+  // HTML for the modal
   const cookieModalHTML = `
-    <div id="cookie-modal-background">
-        <div id="cookie-modal">
-            <p>We use cookies to enhance your experience. Choose the cookies you allow:</p>
-            <div class="preference">
-                <span>Analytics</span>
-                <label class="switch">
-                    <input type="checkbox" id="analytics-cookies" ${analyticsPreference ? 'checked' : ''}>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="preference">
-                <span>Personalization</span>
-                <label class="switch">
-                    <input type="checkbox" id="personalization-cookies" ${
-                      personalizationPreference ? 'checked' : ''
-                    }>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="preference">
-                <span>Advertisement</span>
-                <label class="switch">
-                    <input type="checkbox" id="advertisement-cookies" ${
-                      advertisementPreference ? 'checked' : ''
-                    }>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <button id="save-preferences">Save Preferences</button>
+<div id="cookie-modal-background">
+    <div id="cookie-modal" role="dialog" aria-labelledby="cookie-modal-label">
+        <p id="cookie-modal-label">We use cookies to enhance your experience. Choose the cookies you allow:</p>
+        <div class="preference">
+            <span>Analytics</span>
+            <label class="switch">
+                <input type="checkbox" id="analytics-cookies" ${analyticsPreference ? 'checked' : ''}>
+                <span class="slider"></span>
+            </label>
         </div>
+        <div class="preference">
+            <span>Personalization</span>
+            <label class="switch">
+                <input type="checkbox" id="personalization-cookies" ${
+                  personalizationPreference ? 'checked' : ''
+                }>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="preference">
+            <span>Advertisement</span>
+            <label class="switch">
+                <input type="checkbox" id="advertisement-cookies" ${advertisementPreference ? 'checked' : ''}>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <button id="save-preferences">Save Preferences</button>
     </div>
-    `;
+</div>
+`;
 
-  hostComponent.innerHTML += cookieModalStyles + cookieModalHTML;
-  handleCookieChoice(hostComponent);
+  // Append styles and HTML to the host component
+  hostComponent.innerHTML = cookieModalStyles + cookieModalHTML;
 
-  function handleCookieChoice(hostComponent) {
-    const modalBackground = hostComponent.querySelector('#cookie-modal-background');
+  // Reference to the modal background for event listeners
+  const modalBackground = hostComponent.querySelector('#cookie-modal-background');
 
-    hostComponent.querySelector('#save-preferences').addEventListener('click', () => {
-      localStorage.setItem('analytics-cookies', hostComponent.querySelector('#analytics-cookies').checked);
-      localStorage.setItem(
-        'personalization-cookies',
-        hostComponent.querySelector('#personalization-cookies').checked
-      );
-      localStorage.setItem(
-        'advertisement-cookies',
-        hostComponent.querySelector('#advertisement-cookies').checked
-      );
+  // Fade in animation
+  setTimeout(() => {
+    modalBackground.classList.add('show');
+  }, 50);
 
+  // Close modal when clicking outside of it
+  modalBackground.addEventListener('click', (event) => {
+    if (event.target === modalBackground) {
+      fadeOutAndRemove();
+    }
+  });
+
+  // Close modal when pressing 'Escape'
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      fadeOutAndRemove();
+    }
+  });
+
+  // Handle saving preferences
+  hostComponent.querySelector('#save-preferences').addEventListener('click', () => {
+    localStorage.setItem('analytics-cookies', hostComponent.querySelector('#analytics-cookies').checked);
+    localStorage.setItem(
+      'personalization-cookies',
+      hostComponent.querySelector('#personalization-cookies').checked
+    );
+    localStorage.setItem(
+      'advertisement-cookies',
+      hostComponent.querySelector('#advertisement-cookies').checked
+    );
+
+    fadeOutAndRemove();
+  });
+
+  // Fade out and remove the modal
+  function fadeOutAndRemove() {
+    modalBackground.classList.remove('show');
+    setTimeout(() => {
       modalBackground.remove();
-    });
+    }, 300);
   }
 };
