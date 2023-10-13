@@ -17,7 +17,7 @@ export default (hostComponent) => {
   // CSS for the modal
   const cookieModalStyles = `
 <style>
-    #cookie-modal-background {
+    #nikos-modal-background {
         position: fixed;
         top: 0;
         left: 0;
@@ -31,10 +31,10 @@ export default (hostComponent) => {
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
     }
-    #cookie-modal-background.show {
+    #nikos-modal-background.show {
         opacity: 1;
     }
-    #cookie-modal {
+    #nikos-modal {
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -94,9 +94,9 @@ export default (hostComponent) => {
 
   // HTML for the modal
   const cookieModalHTML = `
-<div id="cookie-modal-background">
-    <div id="cookie-modal" role="dialog" aria-labelledby="cookie-modal-label">
-        <p id="cookie-modal-label">We use cookies to enhance your experience. Choose the cookies you allow:</p>
+<div id="nikos-modal-background">
+    <div id="nikos-modal" role="dialog" aria-labelledby="nikos-modal-label">
+        <p id="nikos-modal-label">We use cookies to enhance your experience. Choose the cookies you allow:</p>
         <div class="preference">
             <span>Analytics</span>
             <label class="switch">
@@ -129,7 +129,7 @@ export default (hostComponent) => {
   hostComponent.innerHTML = cookieModalStyles + cookieModalHTML;
 
   // Reference to the modal background for event listeners
-  const modalBackground = hostComponent.querySelector('#cookie-modal-background');
+  const modalBackground = hostComponent.querySelector('#nikos-modal-background');
 
   // Fade in animation
   setTimeout(() => {
