@@ -14,7 +14,7 @@ export default (hostComponent) => {
   const personalizationPreference = localStorage.getItem('personalization-cookies') === 'true';
   const advertisementPreference = localStorage.getItem('advertisement-cookies') === 'true';
 
-  // CSS for the modal
+  // CSS for the modal (Instagram Style)
   const cookieModalStyles = `
 <style>
     #nikos-modal-background {
@@ -35,59 +35,36 @@ export default (hostComponent) => {
         opacity: 1;
     }
     #nikos-modal {
-        padding: 1rem;
+        padding: 1rem 2rem;
+        width: 90%; 
+        max-width: 400px;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         border-radius: 10px;
-        background-color: var(--bg-color);
-        border: 1px solid var(--border-color);
+        background-color: white; 
+        border: none;
+    }
+    #nikos-modal-label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 1rem;
     }
     .preference {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 250px;
+        width: 100%;
         margin-bottom: 1rem;
     }
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-    }
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-    .slider {
-        position: absolute;
+    button#save-preferences {
+        background-color: #3897f0; 
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        align-self: center; 
         cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        transition: 0.4s;
-        border-radius: 34px;
-    }
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        border-radius: 50%;
-        transition: 0.4s;
-    }
-    input:checked + .slider {
-        background-color: #2196F3;
-    }
-    input:checked + .slider:before {
-        transform: translateX(26px);
     }
 </style>
 `;
@@ -99,26 +76,15 @@ export default (hostComponent) => {
         <p id="nikos-modal-label">We use cookies to enhance your experience. Choose the cookies you allow:</p>
         <div class="preference">
             <span>Analytics</span>
-            <label class="switch">
-                <input type="checkbox" id="analytics-cookies" ${analyticsPreference ? 'checked' : ''}>
-                <span class="slider"></span>
-            </label>
+            <input type="checkbox" id="analytics-cookies" ${analyticsPreference ? 'checked' : ''}>
         </div>
         <div class="preference">
             <span>Personalization</span>
-            <label class="switch">
-                <input type="checkbox" id="personalization-cookies" ${
-                  personalizationPreference ? 'checked' : ''
-                }>
-                <span class="slider"></span>
-            </label>
+            <input type="checkbox" id="personalization-cookies" ${personalizationPreference ? 'checked' : ''}>
         </div>
         <div class="preference">
             <span>Advertisement</span>
-            <label class="switch">
-                <input type="checkbox" id="advertisement-cookies" ${advertisementPreference ? 'checked' : ''}>
-                <span class="slider"></span>
-            </label>
+            <input type="checkbox" id="advertisement-cookies" ${advertisementPreference ? 'checked' : ''}>
         </div>
         <button id="save-preferences">Save Preferences</button>
     </div>

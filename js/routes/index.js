@@ -8,6 +8,7 @@ export default (hostComponent) => {
   const indexHTML = `
     <h1>Welcome to the Homepage route!</h1>
     <p>This is some content for the homepage.</p>
+    <p class="minor">This is minor text.</p>
   `;
 
   // Append the new content to the hostComponent

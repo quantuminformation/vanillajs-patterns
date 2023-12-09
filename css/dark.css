@@ -17,6 +17,7 @@
   --border-color: var(--default-text);
 
   --default-text: hsl(var(--base-hue), var(--base-saturation), 100%);
+  --minor-text: #aaa; /*accompanies normal font but provides a contrast*/
   --default-text-inv: hsl(var(--base-hue), var(--base-saturation), 0%);
 }
 
