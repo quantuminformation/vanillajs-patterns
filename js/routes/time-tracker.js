@@ -1,58 +1,75 @@
+// stored in /js/routes/time-tracker.js
+
 export default (hostComponent) => {
-  // Clear any existing content in the hostComponent
-  hostComponent.innerHTML = '';
+  hostComponent.innerHTML = ''; // Clear any existing content
 
   const currentDate = new Date();
+  const currentDay = currentDate.getDate();
   const month = currentDate.getMonth();
   const year = currentDate.getFullYear();
+
+  // Get the first day of the month
+  const firstDayOfMonth = new Date(year, month, 1).getDay();
+
+  // Calculate the number of days in the month
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const firstDay = new Date(year, month, 1).getDay();
+
+  // Get browser's locale for formatting
   const browserLocale = navigator.language;
 
-  const weekdays = Array.from({ length: 7 }, (_, i) =>
-    new Intl.DateTimeFormat(browserLocale, { weekday: 'short' }).format(new Date(1970, 0, i + 1))
+  // Generate weekdays based on the locale, starting with Sunday
+  const weekdays = [...Array(7).keys()].map((i) =>
+    new Intl.DateTimeFormat(browserLocale, { weekday: 'short' }).format(new Date(1970, 0, i + 4))
   );
 
-  // Breaking up the template into multiple variables
+  // Styles
   const styles = `
   <style>
     #calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 1rem;
-      align-items: center;
+      gap: 10px;
+      text-align: center;
     }
     .calendar-heading {
       font-weight: bold;
+      padding-bottom: 5px;
+    }
+    .day-cell {
+      padding: 5px;
+      transition: background-color 0.3s;
+    }
+    .day-cell.today {
+      border: 2px solid #ff0000; /* Highlight today's date */
     }
   </style>
   `;
 
+  // Header
   const header = `<h1>${new Intl.DateTimeFormat(browserLocale, { month: 'long' }).format(
     currentDate
   )} ${year}</h1>`;
 
-  const weekdaysHTML = weekdays.map((day) => `<div class="calendar-heading">${day}</div>`).join('');
+  // Weekday headers
+  const weekdaysHeader = weekdays.map((day) => `<div class="calendar-heading">${day}</div>`).join('');
 
-  const emptyDays = Array(firstDay)
-    .fill()
-    .map(() => '<div></div>')
+  // Empty cells before the first day of the month
+  const emptyCells = Array.from({ length: firstDayOfMonth })
+    .map(() => '<div class="day-cell"></div>')
     .join('');
 
-  const monthDays = Array(daysInMonth)
-    .fill()
-    .map((_, i) => `<div>${i + 1}</div>`)
+  // Day cells for the month
+  const daysCells = Array.from({ length: daysInMonth })
+    .map((_, i) => {
+      const day = i + 1;
+      const isToday = day === currentDay ? 'today' : '';
+      return `<div class="day-cell ${isToday}">${day}</div>`;
+    })
     .join('');
 
-  const calendarGrid = `
-  <div id="calendar-grid">
-    ${weekdaysHTML}
-    ${emptyDays}
-    ${monthDays}
-  </div>
-  `;
+  // Full grid
+  const calendarGrid = `<div id="calendar-grid">${weekdaysHeader}${emptyCells}${daysCells}</div>`;
 
-  const indexHTML = styles + header + calendarGrid;
-
-  hostComponent.innerHTML = indexHTML;
+  // Combine all parts and set as innerHTML of the host component
+  hostComponent.innerHTML = `${styles}${header}${calendarGrid}`;
 };
