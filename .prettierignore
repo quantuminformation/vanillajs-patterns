@@ -1,2 +1,4 @@
 **/node_modules
 *.d.ts
+backend/drizzle
+examples
