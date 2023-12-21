@@ -1,6 +1,11 @@
 // stored in /js/routes/time-tracker.js
 
 export default (hostComponent) => {
+  // Check if the hostComponent has an ID, if not, assign a unique one
+  if (!hostComponent.id) {
+    hostComponent.id = `calendar-${Math.random().toString(36).substr(2, 9)}`;
+  }
+
   let currentDate = new Date();
 
   const updateCalendar = (hostComponent, currentDate) => {
@@ -26,11 +31,25 @@ export default (hostComponent) => {
     // Styles
     const styles = `
     <style>
+      #${hostComponent.id} {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /* Full viewport height */
+      }
+      .calendar-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
       #calendar-grid {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 10px;
         text-align: center;
+        flex-grow: 1; /* Allows the grid to take up remaining space */
+        overflow-y: auto; /* Adds scroll if content is taller than the space */
+        padding: 10px;
+        box-sizing: border-box;
       }
       .calendar-heading {
         font-weight: bold;
