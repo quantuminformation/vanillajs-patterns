@@ -1,4 +1,4 @@
-// stored in /js/routes/time-tracker.js
+// stored in /js/routes/calendar.js
 
 export default (hostComponent) => {
   // Check if the hostComponent has an ID, if not, assign a unique one
