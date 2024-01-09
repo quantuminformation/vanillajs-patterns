@@ -37,3 +37,9 @@ don't style specific components in here
 .squarify {
   border-radius: 0.25rem !important;
 }
+
+.absolute {
+  position: absolute;
+}
+
+
