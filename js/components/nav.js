@@ -15,8 +15,45 @@ export default (hostComponent) => {
     if (hostComponent.dataset.headerBar === 'true') {
       hostComponent.style.display = 'none';
     }
+
+    // CSS styles for the navigation component
+
+    // language=CSS
+    const navStyles = `
+      nav {
+  animation: 0.5s ease-in-out 0s 1 slideInFromLeft;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 10px 20px;
+  background-color: var(--sidenav-color);
+  min-width: 140px;
+  flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+    & .text {
+      display: none;
+    }
+    min-width: auto;
+  }
+  & button {
+    width: 100%;
+  }
+  &.header-bar-mode {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    & a {
+      color: var(--default-text);
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}`;
     // Update the count display and button markup together
     hostComponent.innerHTML = `
+        <style>${navStyles}</style>
         <a data-nav href="/" >
           <span class="icon">&#x1F3E0;</span>
           <!-- Unicode for a house, similar to a home icon -->
