@@ -32,7 +32,15 @@ button,
       background-color: var(--secondary-color);
     }
   }
+  &.destructive {
+    background-color: var(--destructive-color);
+    color: var(--default-text);
+    &:hover {
+      background-color: var(--destructive-color-hover);
+    }
+  }
 }
+
 
 .badge {
   display: inline-block;
@@ -54,4 +62,8 @@ button,
   background-color: var(--bg-color);
   color: var(--default-text);
   border: 1px solid var(--default-text);
+}
+.badge.destructive {
+  background-color: var(--destructive-color);
+  color: var(--default-text);
 }

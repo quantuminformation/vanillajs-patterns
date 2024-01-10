@@ -20,10 +20,8 @@ export default (hostComponent) => {
     }
   </style>
 
-  <form>
-    <h1>Buttons</h1>
+    <h1>Buttons </h1>
 
-    <div id="form-grid">
       <p>Primary (changes with theme)</p>
       <div>
         <button>Text</button>
@@ -52,9 +50,26 @@ export default (hostComponent) => {
           <span class="icon">&#x270F;</span>
           <span class="text">Text + Icon</span>
         </button>
+        
+            <p>Destructive</p>
+      <div>
+        <button class="destructive">Text</button>
+        <button class="destructive">
+          <span class="icon">&#x270F;</span>
+          <span class="text">Text + Icon</span>
+        </button>
+        
+        
+        
       </div>
-    </div>
-  </form>
+          <h1>Badges </h1>
+          <div class="flex align-center gap-md">Some Text<span class="badge primary">test</span><span class="badge secondary">test</span>
+          <span class="badge outline">test</span>
+          <span class="badge destructive">test</span>
+          
+          </div>
+          
+
   `;
 
   // Append the new content to the hostComponent
