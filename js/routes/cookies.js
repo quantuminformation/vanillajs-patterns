@@ -42,8 +42,8 @@ export default (hostComponent) => {
         flex-direction: column;
         align-items: flex-start;
         border-radius: 10px;
-        background-color: white; 
-        border: none;
+        background-color: var(--bg-color);
+        border: 1px solid var(--border-color);
     }
     #nikos-modal-label {
         font-size: 18px;
@@ -57,15 +57,7 @@ export default (hostComponent) => {
         width: 100%;
         margin-bottom: 1rem;
     }
-    button#save-preferences {
-        background-color: #3897f0; 
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 20px;
-        align-self: center; 
-        cursor: pointer;
-    }
+ 
 </style>
 `;
 
