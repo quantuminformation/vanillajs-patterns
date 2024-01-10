@@ -51,6 +51,9 @@ nav {
   & button {
     width: 100%;
   }
+  &.header-bar-mode {
+    flex-direction: row;
+  }
 }
 
 footer {
