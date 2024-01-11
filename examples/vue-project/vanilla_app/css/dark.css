@@ -12,7 +12,7 @@
 
   --secondary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 20%));
   --secondary-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 30%));
-  --sidenav-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 5%));
+  --nav-background-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 5%));
 
   --default-text: hsl(var(--base-hue), var(--base-saturation), 100%);
   --default-text-inv: hsl(var(--base-hue), var(--base-saturation), 0%);

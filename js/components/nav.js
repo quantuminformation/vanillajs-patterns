@@ -32,7 +32,7 @@ export default (hostComponent) => {
   flex-direction: column;
   gap: 1rem;
   padding: 10px 20px;
-  background-color: var(--sidenav-color);
+  background-color: var(--nav-background-color);
   min-width: 140px;
   flex-wrap: wrap;
 
@@ -42,30 +42,30 @@ export default (hostComponent) => {
   }
   &.header-bar-mode {
     flex-direction: row;
-    align-items: center;
     justify-content: center;
     background-color: transparent;
     & a {
       color: var(--default-text);
-      justify-content: center;
-      align-items: center;
     }
-    
-  }
-          
-         
-        
-          ${
-            burgerPx
-              ? `
+
+    ${
+      burgerPx
+        ? `
         @media (max-width: ${burgerPx}px) {
-          &.header-bar-mode {
+    align-items: center;
 
         flex-direction: column;
+        position: absolute;
+        background-color: var(--nav-background-color);
         
-        }
-        }`
-              : `
+          top: 0;
+          right: 0;
+/*
+          border: 1px solid var(--minor-text);
+*/
+          border-radius: 1rem;
+        `
+        : `
           @media (max-width: 600px) {
     & .text {
       display: none;
@@ -73,7 +73,17 @@ export default (hostComponent) => {
     min-width: auto;
   }
         `
-          }
+    }
+    
+    
+    
+    
+    
+  }
+          
+         
+        
+          
 }`;
     // Update the count display and button markup together
     hostComponent.innerHTML = `
