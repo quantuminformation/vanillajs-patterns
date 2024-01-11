@@ -13,7 +13,7 @@ export const store = (() => {
       document.dispatchEvent(
         new CustomEvent(STORE_COUNT_UPDATED, {
           detail: state.sharedCount,
-        })
+        }),
       );
     },
     getCurrentUser: () => state.currentUser,
@@ -24,7 +24,7 @@ export const store = (() => {
       document.dispatchEvent(
         new CustomEvent(STORE_CURRENT_USER_UPDATED, {
           detail: state.sharedCount,
-        })
+        }),
       );
     },
   };

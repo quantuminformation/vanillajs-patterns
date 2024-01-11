@@ -25,7 +25,7 @@ export default (hostComponent) => {
 
     // Generate weekdays based on the locale, starting with Sunday
     const weekdays = [...Array(7).keys()].map((i) =>
-      new Intl.DateTimeFormat(browserLocale, { weekday: 'short' }).format(new Date(1970, 0, i + 4))
+      new Intl.DateTimeFormat(browserLocale, { weekday: 'short' }).format(new Date(1970, 0, i + 4)),
     );
 
     // Styles
@@ -75,7 +75,7 @@ export default (hostComponent) => {
       <div class="calendar-nav">
         <button id="prev-month">&lt; Prev</button>
         <strong>${new Intl.DateTimeFormat(browserLocale, { month: 'long' }).format(
-          currentDate
+          currentDate,
         )} ${year}</strong>
         <button id="next-month">Next &gt;</button>
       </div>

@@ -8,7 +8,7 @@ export default (hostComponent) => {
     <button class="secondary squarify" data-theme="${theme}">
       ${theme.charAt(0).toUpperCase() + theme.slice(1)}
     </button>
-  `
+  `,
     )
     .join('');
 

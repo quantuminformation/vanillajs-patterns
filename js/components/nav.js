@@ -13,20 +13,14 @@
 export default (hostComponent) => {
   const render = (isHeaderBarMode = false) => {
     // dont display the nav if we are in header bar mode and modify the parent flex direction
-    let { burgerPx,headerBar} = hostComponent.dataset
-    if(!headerBar && burgerPx) {
-throw new Error("you do not need burgerPx when headerBar isn't true" )
+    let { burgerPx, headerBar } = hostComponent.dataset;
+    if (!headerBar && burgerPx) {
+      throw new Error("you do not need burgerPx when headerBar isn't true");
     }
 
     if (headerBar === 'true') {
       hostComponent.style.display = 'none';
     }
-
-
-
-
-
-
 
     // CSS styles for the navigation component
 
@@ -58,19 +52,28 @@ throw new Error("you do not need burgerPx when headerBar isn't true" )
     }
     
   }
-        ${burgerPx? `@media (max-width: ${burgerPx}px) {
+          
+         
+        
+          ${
+            burgerPx
+              ? `
+        @media (max-width: ${burgerPx}px) {
           &.header-bar-mode {
 
         flex-direction: column;
+        
         }
-        }`:`
+        }`
+              : `
           @media (max-width: 600px) {
     & .text {
       display: none;
     }
     min-width: auto;
   }
-        `}
+        `
+          }
 }`;
     // Update the count display and button markup together
     hostComponent.innerHTML = `

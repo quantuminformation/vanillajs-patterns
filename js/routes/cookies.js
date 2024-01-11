@@ -113,11 +113,11 @@ export default (hostComponent) => {
     localStorage.setItem('analytics-cookies', hostComponent.querySelector('#analytics-cookies').checked);
     localStorage.setItem(
       'personalization-cookies',
-      hostComponent.querySelector('#personalization-cookies').checked
+      hostComponent.querySelector('#personalization-cookies').checked,
     );
     localStorage.setItem(
       'advertisement-cookies',
-      hostComponent.querySelector('#advertisement-cookies').checked
+      hostComponent.querySelector('#advertisement-cookies').checked,
     );
 
     fadeOutAndRemove();

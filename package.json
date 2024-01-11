@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "prettier": "^2.7.1",
-    "serve": "^14.2.0"
+    "prettier": "latest",
+    "serve": "latest"
   },
   "scripts": {
     "start": "serve -s . -l 3000",

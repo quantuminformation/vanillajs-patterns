@@ -6,7 +6,7 @@
 export const sortableTable = (hostComponent) => {
   const tableHeaders = hostComponent.querySelectorAll(
     //'th[data-sortable="true"]'
-    'th'
+    'th',
   );
   tableHeaders.forEach((header) => {
     const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
