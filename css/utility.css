@@ -1,4 +1,4 @@
-/* use tailwind naming
+/* use tailwind naming for some of the most useful classes
 
 Use purely for laying out components with things I use almost always
 don't style specific components in here
@@ -42,4 +42,6 @@ don't style specific components in here
   position: absolute;
 }
 
-
+.-z-10 {
+  z-index: -10;
+}

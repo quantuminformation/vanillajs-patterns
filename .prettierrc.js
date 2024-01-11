@@ -4,4 +4,5 @@ module.exports = {
   tabWidth: 2,
   singleQuote: true,
   bracketSameLine: true,
+  plugins: ["prettier-plugin-embed"]
 };

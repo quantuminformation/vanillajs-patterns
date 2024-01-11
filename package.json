@@ -1,5 +1,5 @@
 {
-  "name": "vanillajs-patterns",
+  "name": "vanillajs-patterns ",
   "version": "1.0.0",
   "description": "",
   "dependencies": {
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/quantuminformation/javascript-frameworks-forbidden/issues"
   },
-  "homepage": "https://github.com/quantuminformation/javascript-frameworks-forbidden#readme"
+  "homepage": "https://github.com/quantuminformation/javascript-frameworks-forbidden#readme",
+  "devDependencies": {
+    "prettier-plugin-embed": "^0.4.4"
+  }
 }
