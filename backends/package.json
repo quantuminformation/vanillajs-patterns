@@ -19,7 +19,8 @@
     "@trpc/client": "^10.37.1",
     "@trpc/server": "^10.37.1",
     "bcryptjs": "^2.4.3",
-    "drizzle-orm": "^0.28.6"
+    "drizzle-orm": "^0.28.6",
+    "nf": "^0.0.3"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.3",

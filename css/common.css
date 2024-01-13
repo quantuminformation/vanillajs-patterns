@@ -29,6 +29,14 @@ body {
     transform: translateX(0);
   }
 }
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 [data-component='router'] {
   flex-grow: 1;
   flex-basis: 200px;

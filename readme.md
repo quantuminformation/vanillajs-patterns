@@ -1,6 +1,13 @@
 # Vanilla.js Patterns
+Watch [these videos](https://www.youtube.com/watch?v=HC8eo4lVoEo&list=PLualcIC6WNK2GOKf8S7x7O0T1xBu8_0hF) for a full background and latest info
 
 This project presents a potent approach to web development using the fundamental building blocks of the web - Vanilla JavaScript and CSS. By doing so, we eliminate the overhead of heavy frameworks or libraries. Here's why we believe in this approach:
+
+## Running
+`pnpm i`
+
+`pnpm start`
+
 
 ## Why choose Vanilla JavaScript over frameworks and libraries like React, Vue, etc?
 
@@ -34,4 +41,4 @@ You can also run without a server by enabling `use-hash` in the `router` compone
 
 # Optional Backend
 Optional backend that the /users route points to.
-Setup instructions [here](backend/README.md).
+Setup instructions [here](backends/README.md).
