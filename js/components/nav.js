@@ -21,70 +21,55 @@ export default (hostComponent) => {
 
     // CSS styles for the navigation component
     const navStyles = `
-      nav {
-        ${
-          burgerPx
-            ? 'animation: 0.5s ease-in-out 0s 1 slideInFromTop;'
-            : 'animation: 0.5s ease-in-out 0s 1 slideInFromLeft;'
-        }
-          
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 10px 20px;
-        background-color: var(--nav-background-color);
-        min-width: 140px;
-        flex-wrap: wrap;
+  nav {
+    animation: 0.5s ease-in-out 0s 1 slideInFromTop;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 10px 20px;
+    background-color: var(--nav-background-color);
+    min-width: 140px;
+    flex-wrap: wrap;
+  }
 
-        ${
-          !headerBar
-            ? `
-            @media (max-width: 600px) {
-              & .text {
-                display: none;
-              }
-              min-width: auto;
-            }
-          `
-            : ''
-        }
-        
-        & button {
-          width: 100%;
-        }
+  nav.header-bar-mode {
+    flex-direction: row;
+    justify-content: center;
+    background-color: transparent;
+  }
 
-        &.header-bar-mode {
-          flex-direction: row;
-          justify-content: center;
-          background-color: transparent;
+  nav.header-bar-mode a {
+    color: var(--default-text);
+  }
 
-          & a {
-            color: var(--default-text);
-          }
+  .burger-button {
+    width: 100%;
+  }
 
-          ${
-            burgerPx
-              ? `
-              @media (max-width: ${burgerPx}px) {
-                display: none;
-                align-items: center;
-                flex-direction: column;
-                position: absolute;
-                background-color: var(--nav-background-color);
-                top: 40px;
-                left: 0;
-                border-radius: 1rem;
-                
-                &.burger-open {
-                  display: flex;
-                }
-              }
-            `
-              : ''
-          }
-        }
-      }
-    `;
+  /* Media queries outside the nested structure */
+  @media (max-width: ${burgerPx}px) {
+    nav {
+      display: none;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+      background-color: var(--nav-background-color);
+      top: 40px;
+      left: 0;
+      border-radius: 1rem;
+    }
+
+    nav.burger-open {
+      display: flex;
+    }
+  }
+
+  @media (min-width: ${burgerPx}px) {
+    .burger-button {
+      display: none !important; /* Hide burger button above mobile screen sizes */
+    }
+  }
+`;
 
     // Add header bar class if applicable
     if (headerBar === 'true') {
