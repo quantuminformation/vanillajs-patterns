@@ -16,50 +16,54 @@ export default (hostComponent) => {
         a {
           color: var(--default-text);
         }
-      }
-
-      /* Header-bar-mode specific styles */
-      nav.header-bar-mode {
-        flex-direction: row;
-        justify-content: center;
-        background-color: transparent;
-
         
-
-        @media (max-width: ${burgerPx}px) {
-          flex-direction: column;
-          a {
-            width: 100%; /* Take full width in header bar mode on smaller screens */
+        
+        &.header-bar-mode {
+          flex-direction: row;
+          justify-content: center;
+          background-color: transparent;
+          
+          width: 100%;
+          
+          @media (max-width: ${burgerPx}px) {
+            flex-direction: column;
+            a {
+              width: 100%; /* Take full width in header bar mode on smaller screens */
+            }
+            
+              display: none;
+          align-items: center;
+          position: absolute;
+          background-color: var(--nav-background-color);
+          top: 40px;
+          border-radius: 1rem;
+            
           }
-        }
-      }
-
-      /* Burger button styles */
+         }
+           /* Burger button styles */
       .burger-button {
         width: 100%;
       }
+      }
 
-      /* Media queries for non-header-bar-mode */
+    
+
+   
+
+      /* Non-header-bar-mode specific styles */
       nav:not(.header-bar-mode) {
         @media (max-width: 400px) {
           .text {
             display: none;
           }
         }
+      }
 
-        @media (max-width: ${burgerPx}px) {
-          display: none;
-          align-items: center;
-          flex-direction: column !important;
-          position: absolute;
-          background-color: var(--nav-background-color);
-          top: 40px;
-          left: 0;
-          border-radius: 1rem;
-
-          &.burger-open {
-            display: flex !important;
-          }
+      /* Burger mode styles for header-bar-mode */
+      @media (max-width: ${burgerPx}px) {
+     
+        nav.header-bar-mode.burger-open {
+          display: flex !important;
         }
       }
 
