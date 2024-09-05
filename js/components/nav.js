@@ -1,75 +1,63 @@
-// stored in /components/nav.js
-
-/**
- * IMPORTANT: This component assumes a single parent wrapper alongside a main sibling for content
- * so that it can change the flex direction of the parent.
- *
- * @param {HTMLElement} hostComponent
- *
- * @example
- * In sidebar mode:
- * <nav data-component="nav" data-header-bar="true"></nav>
- */
-
 export default (hostComponent) => {
-  const render = (isHeaderBarMode = false) => {
-    // Validate that burgerPx is only used with headerBar
+  const render = () => {
     const { burgerPx, headerBar } = hostComponent.dataset;
-    if (!headerBar && burgerPx) {
-      throw new Error('burgerPx should only be used when headerBar is true');
-    }
 
-    // CSS styles for the navigation component
     const navStyles = `
-  nav {
-    animation: 0.5s ease-in-out 0s 1 slideInFromTop;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 10px 20px;
-    background-color: var(--nav-background-color);
-    min-width: 140px;
-    flex-wrap: wrap;
-  }
+      nav {
+        animation: 0.5s ease-in-out 0s 1 slideInFromTop;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 10px 20px;
+        background-color: var(--nav-background-color);
+        min-width: 140px;
+        flex-wrap: wrap;
+      }
 
-  nav.header-bar-mode {
-    flex-direction: row;
-    justify-content: center;
-    background-color: transparent;
-  }
+      nav.header-bar-mode {
+        flex-direction: row;
+        justify-content: center;
+        background-color: transparent;
+      }
 
-  nav.header-bar-mode a {
-    color: var(--default-text);
-  }
+      nav.header-bar-mode a {
+        color: var(--default-text);
+      }
 
-  .burger-button {
-    width: 100%;
-  }
+      .burger-button {
+        width: 100%;
+      }
 
-  /* Media queries outside the nested structure */
-  @media (max-width: ${burgerPx}px) {
-    nav {
-      display: none;
-      align-items: center;
-      flex-direction: column;
-      position: absolute;
-      background-color: var(--nav-background-color);
-      top: 40px;
-      left: 0;
-      border-radius: 1rem;
-    }
+      /* Hide text in nav links when screen width is less than 400px */
+      @media (max-width: 400px) {
+        nav:not(.header-bar-mode) .text {
+          display: none;
+        }
+        
 
-    nav.burger-open {
-      display: flex;
-    }
-  }
+        nav {
+          display: none;
+          align-items: center;
+          flex-direction: column !important;
+          position: absolute;
+          background-color: var(--nav-background-color);
+          top: 40px;
+          left: 0;
+          border-radius: 1rem;
+        }
 
-  @media (min-width: ${burgerPx}px) {
-    .burger-button {
-      display: none !important; /* Hide burger button above mobile screen sizes */
-    }
-  }
-`;
+        nav.burger-open {
+          display: flex !important;
+        }
+      }
+
+      /* Hide burger button when screen width is greater than 400px */
+      @media (min-width: 400px) {
+        .burger-button {
+          display: none !important;
+        }
+      }
+    `;
 
     // Add header bar class if applicable
     if (headerBar === 'true') {
