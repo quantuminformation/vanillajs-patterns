@@ -4,6 +4,7 @@ export default (hostComponent) => {
 
     const navStyles = `
       nav {
+        /* Common navigation styles */
         animation: 0.5s ease-in-out 0s 1 slideInFromTop;
         display: flex;
         flex-direction: column;
@@ -12,30 +13,41 @@ export default (hostComponent) => {
         background-color: var(--nav-background-color);
         min-width: 140px;
         flex-wrap: wrap;
+        a {
+          color: var(--default-text);
+        }
       }
 
+      /* Header-bar-mode specific styles */
       nav.header-bar-mode {
         flex-direction: row;
         justify-content: center;
         background-color: transparent;
+
+        
+
+        @media (max-width: ${burgerPx}px) {
+          flex-direction: column;
+          a {
+            width: 100%; /* Take full width in header bar mode on smaller screens */
+          }
+        }
       }
 
-      nav.header-bar-mode a {
-        color: var(--default-text);
-      }
-
+      /* Burger button styles */
       .burger-button {
         width: 100%;
       }
 
-      /* Hide text in nav links when screen width is less than 400px */
-      @media (max-width: 400px) {
-        nav:not(.header-bar-mode) .text {
-          display: none;
+      /* Media queries for non-header-bar-mode */
+      nav:not(.header-bar-mode) {
+        @media (max-width: 400px) {
+          .text {
+            display: none;
+          }
         }
-        
 
-        nav {
+        @media (max-width: ${burgerPx}px) {
           display: none;
           align-items: center;
           flex-direction: column !important;
@@ -44,22 +56,22 @@ export default (hostComponent) => {
           top: 40px;
           left: 0;
           border-radius: 1rem;
-        }
 
-        nav.burger-open {
-          display: flex !important;
+          &.burger-open {
+            display: flex !important;
+          }
         }
       }
 
-      /* Hide burger button when screen width is greater than 400px */
-      @media (min-width: 400px) {
+      /* Hide burger button for larger screens */
+      @media (min-width: ${burgerPx}px) {
         .burger-button {
           display: none !important;
         }
       }
     `;
 
-    // Add header bar class if applicable
+    // Add header-bar-mode class if applicable
     if (headerBar === 'true') {
       hostComponent.classList.add('header-bar-mode');
       hostComponent.parentElement.style.flexDirection = 'column';
