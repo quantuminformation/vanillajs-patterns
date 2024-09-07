@@ -7,11 +7,10 @@ let componentRegistry = new Map();
 export const importComponents = async (components) => {
   const importedComponents = new Map();
 
-  // Only consider components that have not been imported yet
   const componentsToImport = Array.from(components).filter((component) => {
     const componentName = component.getAttribute('data-component');
     if (componentRegistry.has(componentName)) {
-      console.log(`Component ${componentName} is already imported, so it's ignored`);
+      console.log(`Component ${componentName} is already imported.`);
       return false;
     }
     return true;
@@ -22,7 +21,7 @@ export const importComponents = async (components) => {
     const componentPath = `./components/${componentName}.js`;
     console.log(`Importing component ${componentName} from ${componentPath}`);
     try {
-      const module = await import(componentPath); // I love this syntax!
+      const module = await import(componentPath);
       importedComponents.set(componentName, module);
       console.log(`Successfully imported component ${componentName}`);
     } catch (err) {
@@ -34,21 +33,34 @@ export const importComponents = async (components) => {
 
   // Merge imported components into componentRegistry
   componentRegistry = new Map([...componentRegistry, ...importedComponents]);
-
   return importedComponents;
 };
 
-export const runComponents = (components) => {
-  components.forEach((component) => {
+export const runComponents = async (components) => {
+  for (const component of components) {
     const componentName = component.getAttribute('data-component');
     console.log(`Running component ${componentName}`);
     const module = componentRegistry.get(componentName);
-    if (module && typeof module.default === 'function') {
-      module.default(component);
+
+    // Import the component if it hasn't been imported yet
+    if (!module) {
+      await importComponents([component]);
+    }
+
+    const loadedModule = componentRegistry.get(componentName);
+    if (loadedModule && typeof loadedModule.default === 'function') {
+      loadedModule.default(component);
+
+      // After running the current component, check for new nested components
+      const nestedComponents = component.querySelectorAll('[data-component]');
+      if (nestedComponents.length > 0) {
+        console.log(`Running nested components inside ${componentName}`);
+        await runComponents(nestedComponents);
+      }
     } else {
       console.error(`Component ${componentName} does not have a default export that is a function.`);
     }
-  });
+  }
 };
 
 const getAllComponents = () => {
@@ -60,5 +72,5 @@ const getAllComponents = () => {
 (async () => {
   const components = getAllComponents();
   await importComponents(components);
-  runComponents(components);
+  await runComponents(components);
 })();

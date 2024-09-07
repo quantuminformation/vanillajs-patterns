@@ -1,3 +1,14 @@
+/**
+ * IMPORTANT: This component assumes a single parent wrapper alongside a main sibling for content
+ * so that it can change the flex direction of the parent.
+ *
+ * @param {HTMLElement} hostComponent
+ *
+ * @example
+ * In sidebar mode:
+ * <nav data-component="nav" data-header-bar="true"></nav>
+ */
+
 export default (hostComponent) => {
   const render = () => {
     const { burgerPx, headerBar } = hostComponent.dataset;
@@ -8,15 +19,23 @@ export default (hostComponent) => {
         animation: 0.5s ease-in-out 0s 1 slideInFromTop;
         display: flex;
         flex-direction: column;
+        
         gap: 1rem;
         padding: 10px 20px;
         background-color: var(--nav-background-color);
+/*
         min-width: 140px;
+*/
         flex-wrap: wrap;
         a {
           color: var(--default-text);
+            display: flex;
+                    gap: 1rem;
+
+        align-items:center;
+
+
         }
-        
         
         &.header-bar-mode {
           flex-direction: row;
@@ -30,43 +49,41 @@ export default (hostComponent) => {
             a {
               width: 100%; /* Take full width in header bar mode on smaller screens */
             }
-            
-              display: none;
-          align-items: center;
-          position: absolute;
-          background-color: var(--nav-background-color);
-          top: 40px;
-          border-radius: 1rem;
-            
+            display: none;
+            align-items: center;
+            position: absolute;
+            background-color: var(--nav-background-color);
+            top: 40px;
+            border-radius: 1rem;
           }
-         }
-           /* Burger button styles */
-      .burger-button {
-        width: 100%;
+        }
+        /* Burger button styles */
+        .burger-button {
+          width: 100%;
+        }
       }
-      }
-
-    
-
-   
-
+      
       /* Non-header-bar-mode specific styles */
       nav:not(.header-bar-mode) {
-        @media (max-width: 400px) {
+        @media (max-width: 399px) {
           .text {
             display: none;
           }
         }
+          @media (min-width: 400px) {
+          .icon  {
+            display: none;
+          }
+        }
       }
-
+      
       /* Burger mode styles for header-bar-mode */
       @media (max-width: ${burgerPx}px) {
-     
         nav.header-bar-mode.burger-open {
           display: flex !important;
         }
       }
-
+      
       /* Hide burger button for larger screens */
       @media (min-width: ${burgerPx}px) {
         .burger-button {
@@ -120,6 +137,8 @@ export default (hostComponent) => {
         <span class="icon">🪄</span>
         <span class="text">WebRTC</span>
       </a>
+     <div data-component="toggle-switch" data-label="Enable Mode"></div>
+
     `;
 
     // Add button styles
