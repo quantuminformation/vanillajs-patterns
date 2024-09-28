@@ -45,3 +45,7 @@ don't style specific components in here
 .-z-10 {
   z-index: -10;
 }
+
+.border-none {
+  border: none !important;
+}

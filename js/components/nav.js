@@ -1,3 +1,5 @@
+// js/components/nav.js
+
 /**
  * IMPORTANT: This component assumes a single parent wrapper alongside a main sibling for content
  * so that it can change the flex direction of the parent.
@@ -20,6 +22,8 @@ export default (hostComponent) => {
         animation: 0.5s ease-in-out 0s 1 slideInFromTop;
 */
         display: flex;
+                flex-wrap: wrap;
+
         flex-direction: column;
         gap: 1rem;
         padding: 10px 20px;
@@ -97,7 +101,9 @@ export default (hostComponent) => {
       hostComponent.classList.add('header-bar-mode');
       hostComponent.parentElement.style.flexDirection = 'column';
     }
-
+    const toggleNavVisibility = () => {
+      hostComponent.classList.toggle('burger-open');
+    };
     // Render the navigation items
     hostComponent.innerHTML = `
       <style>${navStyles}</style>
@@ -141,7 +147,7 @@ export default (hostComponent) => {
       hostComponent.parentElement.insertAdjacentHTML(
           'afterbegin',
           `
-          <button class="burger-button squarify outline">
+          <button class="burger-button squarify outline border-none">
             <svg class="icon" viewBox="0 0 100 80" width="20" height="20" fill="currentColor">
               <rect width="100" height="20"></rect>
               <rect y="30" width="100" height="20"></rect>
@@ -154,6 +160,13 @@ export default (hostComponent) => {
       // Toggle burger menu visibility
       hostComponent.parentElement.querySelector('.burger-button').addEventListener('click', () => {
         hostComponent.classList.toggle('burger-open');
+      });
+      // Event delegation for collapsing nav on any click inside it
+      hostComponent.addEventListener('click', (event) => {
+        // Close the menu if anything inside the nav is clicked and it is in burger mode
+        if (hostComponent.classList.contains('burger-open')) {
+          toggleNavVisibility();
+        }
       });
     }
   };
