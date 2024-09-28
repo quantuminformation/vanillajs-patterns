@@ -74,7 +74,9 @@ export default (hostComponent) => {
 <p>Special Cases</p>
 
 <div>
-  <div data-component="copy"></div>
+  <div data-component="copy" data-text-to-copy="someEmail@example.com" 
+  data-initial-text="Copy Email" data-success-text="Copied!"></div>
+  </div>
 
 </div>
   <h1>Badges</h1>
