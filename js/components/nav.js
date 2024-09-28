@@ -16,39 +16,35 @@ export default (hostComponent) => {
     const navStyles = `
       nav {
         /* Common navigation styles */
+/*
         animation: 0.5s ease-in-out 0s 1 slideInFromTop;
+*/
         display: flex;
         flex-direction: column;
-        
         gap: 1rem;
         padding: 10px 20px;
         background-color: var(--nav-background-color);
-/*
-        min-width: 140px;
-*/
-        flex-wrap: wrap;
+
         a {
           color: var(--default-text);
-            display: flex;
-                    gap: 1rem;
-
-        align-items:center;
-
-
+          display: flex;
+          gap: 1rem;
+          align-items: center;
         }
         
         &.header-bar-mode {
           flex-direction: row;
           justify-content: center;
           background-color: transparent;
-          
           width: 100%;
-          
+
           @media (max-width: ${burgerPx}px) {
             flex-direction: column;
+
             a {
               width: 100%; /* Take full width in header bar mode on smaller screens */
             }
+
             display: none;
             align-items: center;
             position: absolute;
@@ -57,12 +53,15 @@ export default (hostComponent) => {
             border-radius: 1rem;
           }
         }
-        /* Burger button styles */
-        .burger-button {
-          width: 100%;
-        }
+
+    
       }
-      
+          /* Burger button styles */
+        .burger-button {
+         position: absolute;
+         right :0
+        }
+
       /* Non-header-bar-mode specific styles */
       nav:not(.header-bar-mode) {
         @media (max-width: 399px) {
@@ -70,20 +69,21 @@ export default (hostComponent) => {
             display: none;
           }
         }
-          @media (min-width: 400px) {
-          .icon  {
+
+        @media (min-width: 400px) {
+          .icon {
             display: none;
           }
         }
       }
-      
+
       /* Burger mode styles for header-bar-mode */
       @media (max-width: ${burgerPx}px) {
         nav.header-bar-mode.burger-open {
           display: flex !important;
         }
       }
-      
+
       /* Hide burger button for larger screens */
       @media (min-width: ${burgerPx}px) {
         .burger-button {
@@ -117,10 +117,6 @@ export default (hostComponent) => {
         <span class="icon">&#x1F5FA;</span>
         <span class="text">Maps</span>
       </a>
-      <a data-nav href="/users" title="DB retrieval example">
-        <span class="icon">👥</span>
-        <span class="text">DB users</span>
-      </a>
       <a data-nav href="/calendar" title="Calendar Example">
         <span class="icon">📆</span>
         <span class="text">Calendar</span>
@@ -133,12 +129,6 @@ export default (hostComponent) => {
         <span class="icon">🍪</span>
         <span class="text">Cookie popup</span>
       </a>
-      <a data-nav href="/webrtc-communicator" title="Demo of WebRTC locally with local signalling server">
-        <span class="icon">🪄</span>
-        <span class="text">WebRTC</span>
-      </a>
-     <div data-component="toggle-switch" data-label="Enable Mode"></div>
-
     `;
 
     // Add button styles
@@ -149,8 +139,8 @@ export default (hostComponent) => {
     // Add burger button for header bar mode
     if (headerBar === 'true' && burgerPx) {
       hostComponent.parentElement.insertAdjacentHTML(
-        'afterbegin',
-        `
+          'afterbegin',
+          `
           <button class="burger-button squarify outline">
             <svg class="icon" viewBox="0 0 100 80" width="20" height="20" fill="currentColor">
               <rect width="100" height="20"></rect>
@@ -158,7 +148,7 @@ export default (hostComponent) => {
               <rect y="60" width="100" height="20"></rect>
             </svg>
           </button>
-        `,
+        `
       );
 
       // Toggle burger menu visibility
