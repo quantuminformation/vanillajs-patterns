@@ -1,4 +1,4 @@
-name: Run Tests and Lint
+name: Build, Test, and Deploy
 
 on:
   push:
@@ -18,14 +18,19 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20' # Use Node.js 18.x version (or specify your Node version)
           cache: 'pnpm'
 
+      # Install pnpm globally
       - name: Install pnpm
         run: npm install -g pnpm
 
+      # Install project dependencies using pnpm
       - name: Install dependencies
         run: pnpm install
 
+      # Run tests
       - name: Run tests
         run: pnpm test
+
+      # Optionally, add a build or deployment step here if required
