@@ -12,8 +12,10 @@
   --secondary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 20%));
   --secondary-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 30%));
   --nav-background-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 5%));
-  --destructive-color: hsl(0, 100%, 70%);
   --destructive-color-hover: hsl(0, 100%, 60%);
+  --destructive-color: hsl(0, 100%, 70%);
+  --success-color: hsl(120, 100%, 70%);
+  --success-color-hover: hsl(120, 100%, 40%);
   --border-color: var(--default-text);
 
   --default-text: hsl(var(--base-hue), var(--base-saturation), 0%);

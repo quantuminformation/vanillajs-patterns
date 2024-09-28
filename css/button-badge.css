@@ -1,5 +1,3 @@
-/* Stored in /css/button.css */
-
 button,
 .button {
   padding: var(--p-sm) var(--p-md);
@@ -8,10 +6,16 @@ button,
   background-color: var(--primary-color);
   color: var(--default-text-inv);
   cursor: pointer;
+  gap: 0.3rem;
   transition: all 0.2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
   &:hover {
     background-color: var(--primary-hover-color);
   }
+
   &:active {
     transform: scale(0.95);
   }
@@ -32,12 +36,27 @@ button,
       background-color: var(--minor-text);
     }
   }
+
   &.destructive {
     background-color: var(--destructive-color);
     color: var(--default-text);
     &:hover {
       background-color: var(--destructive-color-hover);
     }
+  }
+
+  &.success {
+    background-color: var(--success-color);
+    color: var(--default-text);
+    &:hover {
+      background-color: var(--success-color-hover);
+    }
+  }
+
+  /* Small button styling */
+  &.small-button {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
   }
 }
 
@@ -50,6 +69,11 @@ button,
   border-radius: var(--rounded-full);
   transition: all 0.2s;
   cursor: default; /* no hand cursor on hover */
+  color: var(--default-text);
+
+  &.success {
+    background-color: var(--success-color);
+  }
 }
 
 .badge.secondary {
@@ -65,4 +89,12 @@ button,
 .badge.destructive {
   background-color: var(--destructive-color);
   color: var(--default-text);
+}
+
+/* common */
+button,
+badge {
+  & svg {
+    width: 1rem;
+  }
 }

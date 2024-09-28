@@ -16,6 +16,8 @@
   --nav-background-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 5%));
   --destructive-color: hsl(0, 100%, 40%);
   --destructive-color-hover: hsl(0, 100%, 50%);
+  --success-color: hsl(120, 100%, 30%);
+  --success-color-hover: hsl(120, 100%, 40%);
   --border-color: var(--default-text);
 
   --default-text: hsl(var(--base-hue), var(--base-saturation), 100%);

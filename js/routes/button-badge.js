@@ -22,8 +22,6 @@ export default (hostComponent) => {
 
   <h1>Buttons</h1>
   
-  <div data-component="copy"></div>
-
   <p>Primary (changes with theme)</p>
   <div>
     <button>Text</button>
@@ -64,7 +62,21 @@ export default (hostComponent) => {
       <span class="text">Text + Icon</span>
     </button>
   </div>
+  
+    <p>Success</p>
+  <div>
+    <button class="success">Text</button>
+    <button class="success">
+      <span class="icon">&#x270F;</span>
+      <span class="text">Text + Icon</span>
+    </button>
+  </div>
+<p>Special Cases</p>
 
+<div>
+  <div data-component="copy"></div>
+
+</div>
   <h1>Badges</h1>
   <div class="flex align-center gap-md">
     Some Text
@@ -72,6 +84,7 @@ export default (hostComponent) => {
     <span class="badge secondary">test</span>
     <span class="badge outline">test</span>
     <span class="badge destructive">test</span>
+    <span class="badge success">test</span>
   </div>
   `;
 

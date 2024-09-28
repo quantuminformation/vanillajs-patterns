@@ -1,4 +1,4 @@
-// js/copy.js
+// js/components/copy.js
 
 export default (hostComponent) => {
   let editMode = false;
@@ -11,41 +11,8 @@ export default (hostComponent) => {
   const renderButton = () => {
     hostComponent.innerHTML = `
 
-<style>
- .copy-btn {
-        margin-top: 0.5rem;
-        padding: 0.25rem 0.75rem;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        font-size: 0.875rem;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: background-color 0.3s ease;
-      }
 
-      .copy-btn:hover {
-        background-color: #444;
-      }
-
-      .copy-btn svg {
-        width: 1rem;
-        height: 1rem;
-      }
-
-      .copy-btn.copied {
-        background-color: #2ecc71; /* Success color */
-      }
-
-      .copy-btn.copied:hover {
-        background-color: #27ae60;
-      }
-</style>
-    
-              <button id="copy-email-btn" class="copy-btn">
+              <button id="copy-email-btn" class="outline small-button">
             <span id="copy-text">Copy Email</span>
             <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path d="M0 0h24v24H0V0z" fill="none"/>
