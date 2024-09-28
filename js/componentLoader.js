@@ -1,4 +1,4 @@
-// Stored in /componentLoader.js
+// js/componentLoader.js
 // looks for components like this: <div data-component="user-form"></div>
 // and executes the default export of the corresponding file
 

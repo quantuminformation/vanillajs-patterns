@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "serve -s . -l 3000",
+    "test": "vitest",
     "prettier": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,html}\""
   },
   "repository": {
@@ -22,6 +23,8 @@
   },
   "homepage": "https://github.com/quantuminformation/javascript-frameworks-forbidden#readme",
   "devDependencies": {
-    "prettier-plugin-embed": "^0.4.4"
+    "jsdom": "^25.0.1",
+    "prettier-plugin-embed": "^0.4.4",
+    "vitest": "^2.1.1"
   }
 }
