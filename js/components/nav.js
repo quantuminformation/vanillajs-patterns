@@ -18,12 +18,8 @@ export default (hostComponent) => {
     const navStyles = `
       nav {
         /* Common navigation styles */
-/*
-        animation: 0.5s ease-in-out 0s 1 slideInFromTop;
-*/
         display: flex;
-                flex-wrap: wrap;
-
+        flex-wrap: wrap;
         flex-direction: column;
         gap: 1rem;
         padding: 10px 20px;
@@ -35,7 +31,7 @@ export default (hostComponent) => {
           gap: 1rem;
           align-items: center;
         }
-        
+
         &.header-bar-mode {
           flex-direction: row;
           justify-content: center;
@@ -49,22 +45,25 @@ export default (hostComponent) => {
               width: 100%; /* Take full width in header bar mode on smaller screens */
             }
 
-            display: none;
             align-items: center;
             position: absolute;
             background-color: var(--nav-background-color);
             top: 40px;
             border-radius: 1rem;
+            display: none;
           }
         }
-
-    
       }
-          /* Burger button styles */
-        .burger-button {
-         position: absolute;
-         right :0
-        }
+
+      /* Burger button styles */
+      .burger-button {
+        position: absolute;
+        right: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 100;
+      }
 
       /* Non-header-bar-mode specific styles */
       nav:not(.header-bar-mode) {
@@ -101,9 +100,12 @@ export default (hostComponent) => {
       hostComponent.classList.add('header-bar-mode');
       hostComponent.parentElement.style.flexDirection = 'column';
     }
+
+    // Function to toggle the burger menu visibility
     const toggleNavVisibility = () => {
       hostComponent.classList.toggle('burger-open');
     };
+
     // Render the navigation items
     hostComponent.innerHTML = `
       <style>${navStyles}</style>
@@ -137,7 +139,7 @@ export default (hostComponent) => {
       </a>
     `;
 
-    // Add button styles
+    // Add button styles to links
     hostComponent.querySelectorAll('a').forEach((navLink) => {
       navLink.classList.add('button', 'secondary', 'squarify');
     });
@@ -157,14 +159,27 @@ export default (hostComponent) => {
         `
       );
 
-      // Toggle burger menu visibility
-      hostComponent.parentElement.querySelector('.burger-button').addEventListener('click', () => {
-        hostComponent.classList.toggle('burger-open');
-      });
-      // Event delegation for collapsing nav on any click inside it
-      hostComponent.addEventListener('click', (event) => {
-        // Close the menu if anything inside the nav is clicked and it is in burger mode
-        if (hostComponent.classList.contains('burger-open')) {
+      const burgerButton = hostComponent.parentElement.querySelector('.burger-button');
+
+      // Single document-wide event listener
+      document.addEventListener('click', (event) => {
+        const isBurgerOpen = hostComponent.classList.contains('burger-open');
+        const clickedBurgerButton = event.target.closest('.burger-button');
+        const clickedNavItem = event.target.closest('a');
+
+        // If the burger button is clicked, toggle the menu visibility
+        if (clickedBurgerButton) {
+          event.stopPropagation(); // Prevent the click from propagating to the document listener
+          toggleNavVisibility();
+        }
+
+        // If the nav item is clicked and the menu is open, close the menu
+        if (isBurgerOpen && clickedNavItem) {
+          toggleNavVisibility();
+        }
+
+        // If clicked outside the nav and burger button, close the menu
+        if (isBurgerOpen && !event.target.closest('nav') && !clickedBurgerButton) {
           toggleNavVisibility();
         }
       });
