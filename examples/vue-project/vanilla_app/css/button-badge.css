@@ -24,7 +24,7 @@ button,
     }
   }
 
-  &.outline {
+  &.wireframe {
     background-color: var(--bg-color);
     color: var(--default-text);
     border: 1px solid var(--default-text);
@@ -50,7 +50,7 @@ button,
   color: var(--default-text);
 }
 
-.badge.outline {
+.badge.wireframe {
   background-color: var(--bg-color);
   color: var(--default-text);
   border: 1px solid var(--default-text);

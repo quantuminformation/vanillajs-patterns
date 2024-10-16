@@ -45,10 +45,10 @@ export default (hostComponent) => {
     <button class="squarify">Squarify</button>
   </div>
 
-  <p>Outline (hover matches secondary)</p>
+  <p>wireframe (hover matches secondary)</p>
   <div>
-    <button class="outline">Text</button>
-    <button class="outline">
+    <button class="wireframe">Text</button>
+    <button class="wireframe">
       <span class="icon">&#x270F;</span>
       <span class="text">Text + Icon</span>
     </button>
@@ -74,7 +74,7 @@ export default (hostComponent) => {
 <p>Special Cases</p>
 
 <div>
-  <button class="outline small-button" data-component="copy" data-text-to-copy="someEmail@example.com" 
+  <button class="wireframe small-button" data-component="copy" data-text-to-copy="someEmail@example.com" 
   data-initial-text="Copy Email" data-success-text="Copied!"></button>
   </div>
 
@@ -84,7 +84,7 @@ export default (hostComponent) => {
     Some Text
     <span class="badge primary">test</span>
     <span class="badge secondary">test</span>
-    <span class="badge outline">test</span>
+    <span class="badge wireframe">test</span>
     <span class="badge destructive">test</span>
     <span class="badge success">test</span>
   </div>

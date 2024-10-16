@@ -7,7 +7,7 @@
   --form-control-bg: #333;
 
   --bg-color: hsl(var(--base-hue), var(--base-saturation), var(--base-lightness));
-  --bg-outline-hover: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 10%));
+  --bg-wireframe-hover: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 10%));
   --primary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 70%));
   --primary-hover-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 80%));
 

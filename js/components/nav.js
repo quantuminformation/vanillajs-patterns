@@ -149,7 +149,7 @@ export default (hostComponent) => {
       hostComponent.parentElement.insertAdjacentHTML(
           'afterbegin',
           `
-          <button class="burger-button squarify outline border-none">
+          <button class="burger-button squarify wireframe border-none">
             <svg class="icon" viewBox="0 0 100 80" width="20" height="20" fill="currentColor">
               <rect width="100" height="20"></rect>
               <rect y="30" width="100" height="20"></rect>
