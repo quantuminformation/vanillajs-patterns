@@ -3,6 +3,9 @@
 // and executes the default export of the corresponding file
 
 let componentRegistry = new Map();
+export const clearComponentRegistry = () => {
+  componentRegistry = new Map();
+};
 
 export const importComponents = async (components) => {
   const importedComponents = new Map();

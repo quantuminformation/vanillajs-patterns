@@ -1,6 +1,7 @@
 <!--- readme.md --->
 # Vanilla.js Patterns
 ![Test Status](https://github.com/quantuminformation/vanillajs-patterns/actions/workflows/test.yml/badge.svg)
+
 Watch [these videos](https://www.youtube.com/watch?v=HC8eo4lVoEo&list=PLualcIC6WNK2GOKf8S7x7O0T1xBu8_0hF) for a full background and latest info
 
 This project presents a potent approach to web development using the fundamental building blocks of the web - Vanilla JavaScript and CSS. By doing so, we eliminate the overhead of heavy frameworks or libraries. Here's why we believe in this approach:
