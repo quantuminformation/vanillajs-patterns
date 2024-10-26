@@ -55,11 +55,19 @@ export default (hostComponent) => {
     </button>
   </div>
   </div>
-<div style="background: linear-gradient(135deg, #0a90e2, #f013fe); padding: 1rem; border-radius: 0.5rem;">
+
+<div style="
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://picsum.photos/800/400?random=1') center/cover;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: #fff;
+">
   <p>Transparent - Dark and light same - designed for <a href="/heros">heros</a> (hover text matches primary)</p>
   <div>
-    <button class="transparent">Text</button>
-    <button class="transparent">
+    <button class="transparent squarify">Text</button>
+    <button class="transparent squarify">
       <span class="icon">&#x270F;</span>
       <span class="text">Text + Icon</span>
     </button>
