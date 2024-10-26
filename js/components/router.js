@@ -13,8 +13,9 @@ import config from '../config.js';
  * @async
  * @function
  * @param {HTMLElement} hostComponent - The main component on which the router operates.
+ * @param {string} [baseUrl=config.BASE_URL] - Base URL for routes.
  */
-export default async (hostComponent) => {
+export default async (hostComponent, baseUrl = config.BASE_URL) => {
   const useHash = 'useHash' in hostComponent.dataset;
 
   /**
@@ -23,7 +24,7 @@ export default async (hostComponent) => {
    * This object defines the paths to your route files.
    */
   const routePathsOverrides = {
-    '/form': `${config.BASE_URL}/routes/form.js`, // example of overriding the path
+    '/form': `${baseUrl}/routes/form.js`, // example of overriding the path
   };
 
   /**
@@ -37,10 +38,7 @@ export default async (hostComponent) => {
     try {
       let routePath = routePathsOverrides[url];
       if (!routePath) {
-        routePath =
-          url === '/' || url === ''
-            ? `${config.BASE_URL}/routes/index.js`
-            : `${config.BASE_URL}/routes${url}.js`;
+        routePath = url === '/' || url === '' ? `${baseUrl}/routes/index.js` : `${baseUrl}/routes${url}.js`;
       }
 
       const route = await import(/* @vite-ignore */ routePath);
@@ -63,7 +61,7 @@ export default async (hostComponent) => {
     const url = link.getAttribute('href');
 
     // Ignore links with file extensions or external links
-    if (/\.\w+$/.test(url) || link.origin !== window.location.origin) return;
+    if (/\.\w+$/.test(url) || !url.startsWith('/')) return;
 
     event.preventDefault();
 
