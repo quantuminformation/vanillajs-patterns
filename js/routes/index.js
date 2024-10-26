@@ -6,7 +6,7 @@ export default (hostComponent) => {
 
   // Create some new HTML content
   const indexHTML = `
-    <h1>Welcome to the Homepage route!</h1>
+    <h1>Homepage</h1>
     <p>This is some content for the homepage.</p>
     <p class="minor">This is minor text.</p>
   `;

@@ -121,6 +121,10 @@ export default (hostComponent) => {
         <span class="icon">&#x270F;</span>
         <span class="text">Form</span>
       </a>
+      <a data-nav href="/heros" title="Heros">
+          <span class="icon">&#x1F9B8;</span> <!-- Superhero icon -->
+          <span class="text">Heros</span>
+      </a>
       <a data-nav href="/maps" title="Map example">
         <span class="icon">&#x1F5FA;</span>
         <span class="text">Maps</span>
