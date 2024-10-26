@@ -10,7 +10,7 @@ export default defineConfig({
     coverage: {
       reporter: ['text-summary'], // Only display the summary report
       provider: 'v8', // Use the v8 provider for coverage
-      exclude: ['node_modules/'],
+      exclude: ['node_modules/','examples/'], // Exclude node_modules and Vue project from coverage
     },
   },
 });
