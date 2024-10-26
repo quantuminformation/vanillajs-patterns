@@ -45,6 +45,7 @@ export default (hostComponent) => {
     <button class="squarify">Squarify</button>
   </div>
 
+<div style="background: linear-gradient(135deg, #0a90e2, #f013fe); padding: 1rem; border-radius: 0.5rem;">
   <p>wireframe (hover matches secondary)</p>
   <div>
     <button class="wireframe">Text</button>
@@ -53,6 +54,19 @@ export default (hostComponent) => {
       <span class="text">Text + Icon</span>
     </button>
   </div>
+  </div>
+<div style="background: linear-gradient(135deg, #0a90e2, #f013fe); padding: 1rem; border-radius: 0.5rem;">
+  <p>Transparent (hover matches primary)</p>
+  <div>
+    <button class="transparent">Text</button>
+    <button class="transparent">
+      <span class="icon">&#x270F;</span>
+      <span class="text">Text + Icon</span>
+    </button>
+  </div>
+</div>
+
+
 
   <p>Destructive</p>
   <div>
