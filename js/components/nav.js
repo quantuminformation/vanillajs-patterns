@@ -67,13 +67,13 @@ export default (hostComponent) => {
 
       /* Non-header-bar-mode specific styles */
       nav:not(.header-bar-mode) {
-        @media (max-width: 399px) {
+        @media (max-width: 499px) {
           .text {
             display: none;
           }
         }
 
-        @media (min-width: 400px) {
+        @media (min-width: 500px) {
           .icon {
             display: none;
           }

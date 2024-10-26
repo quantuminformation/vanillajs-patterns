@@ -36,6 +36,15 @@ button,
       background-color: var(--minor-text);
     }
   }
+  &.transparent {
+    background-color: transparent;
+    color: var(--default-text);
+    border: 1px solid var(--default-text);
+    &:hover {
+      color: var(--primary-color);
+      background-color: var(--default-text);
+    }
+  }
 
   &.destructive {
     background-color: var(--destructive-color);

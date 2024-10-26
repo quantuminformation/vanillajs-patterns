@@ -4,10 +4,11 @@ export default (hostComponent) => {
     <div data-component="fullscreen-hero"
          data-image-url="https://picsum.photos/1600/900"
          data-overlay-color="rgba(0, 0, 0, 0.5)"
-         data-header="Herzlich willkommen"
-         data-text="Mit unserer umfassenden Kenntnis des aktuellen Markts..."
-         data-button-text="Mehr dazu"
-         data-button-link="/kontakt">
+         data-header="This is a fullscreen-hero"
+         data-text="Some text you want to right here"
+         data-button-text="Add your link url here"
+         data-button-link="#"
+         >
     </div>
 
     <div data-component="narrow-hero" 

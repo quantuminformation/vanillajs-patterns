@@ -1,4 +1,4 @@
-// Stored in /components/toggle-switch.js
+// js/components/toggle-switch.js
 
 export default (hostComponent) => {
   const render = () => {

@@ -7,7 +7,7 @@ export default (hostComponent) => {
   <h1>Form</h1>
 <form class="centered">
  <h2>Centered class form</h2>
-
+<span data-component="toggle-switch"></span>
   <div>
     <label for="name">Name</label>
     <input type="text" id="name" name="name">
