@@ -109,35 +109,36 @@ export default (hostComponent) => {
     // Render the navigation items
     hostComponent.innerHTML = `
       <style>${navStyles}</style>
-      <a data-nav href="/" title="Home">
+      <a  href="/" title="Home">
         <span class="icon">&#x1F3E0;</span>
         <span class="text">Home</span>
       </a>
-      <a data-nav href="/button-badge" title="Button + Badges Design System">
+      <a  href="/button-badge" title="Button + Badges Design System">
         <span class="icon">&#x1F518;</span>
         <span class="text">Button + Badges</span>
       </a>
-      <a data-nav href="/form" title="Form Design System">
+      <a  href="/form" title="Form Design System">
         <span class="icon">&#x270F;</span>
         <span class="text">Form</span>
       </a>
-      <a data-nav href="/heros" title="Heros">
+      <a  href="/heros" title="Heros">
           <span class="icon">&#x1F9B8;</span> <!-- Superhero icon -->
           <span class="text">Heros</span>
       </a>
-      <a data-nav href="/maps" title="Map example">
+      
+      <a  href="/maps" title="Map example">
         <span class="icon">&#x1F5FA;</span>
         <span class="text">Maps</span>
       </a>
-      <a data-nav href="/calendar" title="Calendar Example">
+      <a  href="/calendar" title="Calendar Example">
         <span class="icon">📆</span>
         <span class="text">Calendar</span>
       </a>
-      <a data-nav href="/multiple-instances" title="Multiple instances">
+      <a  href="/multiple-instances" title="Multiple instances">
         <span class="icon">🧬</span>
         <span class="text">Multiple instances</span>
       </a>
-      <a data-nav href="/cookies" title="Elementary cookie popup permissions thing">
+      <a  href="/cookies" title="Elementary cookie popup permissions thing">
         <span class="icon">🍪</span>
         <span class="text">Cookie popup</span>
       </a>

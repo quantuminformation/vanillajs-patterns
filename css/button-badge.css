@@ -38,11 +38,11 @@ button,
   }
   &.transparent {
     background-color: transparent;
-    color: var(--default-text);
-    border: 1px solid var(--default-text);
+    color: white;
+    border: 1px solid white;
     &:hover {
       color: var(--primary-color);
-      background-color: var(--default-text);
+      background-color: white;
     }
   }
 

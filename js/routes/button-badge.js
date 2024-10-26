@@ -46,7 +46,7 @@ export default (hostComponent) => {
   </div>
 
 <div style="background: linear-gradient(135deg, #0a90e2, #f013fe); padding: 1rem; border-radius: 0.5rem;">
-  <p>wireframe (hover matches secondary)</p>
+  <p>wireframe (hover background matches minor text)</p>
   <div>
     <button class="wireframe">Text</button>
     <button class="wireframe">
@@ -56,7 +56,7 @@ export default (hostComponent) => {
   </div>
   </div>
 <div style="background: linear-gradient(135deg, #0a90e2, #f013fe); padding: 1rem; border-radius: 0.5rem;">
-  <p>Transparent (hover matches primary)</p>
+  <p>Transparent - Dark and light same - designed for <a href="/heros">heros</a> (hover text matches primary)</p>
   <div>
     <button class="transparent">Text</button>
     <button class="transparent">

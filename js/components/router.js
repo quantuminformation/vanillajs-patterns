@@ -1,7 +1,7 @@
 /**
  * Router module for handling client-side routing.
  * @module components/router
- * @version 0.1.1
+ * @version 0.1.2
  */
 
 import { importComponents, runComponents } from '../componentLoader.js';
@@ -54,29 +54,38 @@ export default async (hostComponent) => {
     }
   };
 
-  document.querySelectorAll('a[data-nav]').forEach((link) => {
-    link.addEventListener('click', async (event) => {
-      event.preventDefault();
-      const url = event.currentTarget.getAttribute('href');
+  // Global click event listener to handle all internal links
+  document.addEventListener('click', async (event) => {
+    const link = event.target.closest('a[href]');
 
-      if (useHash) {
-        const baseURL = window.location.pathname.endsWith('/')
-          ? window.location.origin + window.location.pathname
-          : window.location.origin + window.location.pathname + '/';
-        location.href = `${baseURL}#${url}`;
-      } else {
-        history.pushState(null, null, url);
-        await loadRoute(url);
-      }
-    });
+    if (!link) return; // Ignore clicks outside links
+
+    const url = link.getAttribute('href');
+
+    // Ignore links with file extensions or external links
+    if (/\.\w+$/.test(url) || link.origin !== window.location.origin) return;
+
+    event.preventDefault();
+
+    if (useHash) {
+      const baseURL = window.location.pathname.endsWith('/')
+        ? window.location.origin + window.location.pathname
+        : window.location.origin + window.location.pathname + '/';
+      location.href = `${baseURL}#${url}`;
+    } else {
+      history.pushState(null, null, url);
+      await loadRoute(url);
+    }
   });
 
+  // Handle browser back/forward navigation
   addEventListener('popstate', async () => {
     if (!useHash) {
       await loadRoute(location.pathname);
     }
   });
 
+  // Handle initial load based on useHash
   if (useHash) {
     addEventListener('hashchange', async () => {
       const url = location.hash.substring(1); // Get the URL from the hash, remove the leading '#'
