@@ -1,16 +1,38 @@
-// js/components/nav.js
+// File: js/components/nav.js
+// Repository: https://github.com/quantuminformation/vanillajs-patterns
 
 /**
- * IMPORTANT: This component assumes a single parent wrapper alongside a main sibling for content
- * so that it can change the flex direction of the parent.
+ * Navigation Component
+ * SPDX-License-Identifier: MIT
  *
- * @param {HTMLElement} hostComponent
+ * This component provides a responsive navigation menu with two modes: sidebar mode and header-bar mode.
+ * It includes optional "burger" button functionality for smaller screens in header-bar mode, allowing the navigation menu
+ * to toggle visibility. This component assumes it is wrapped by a parent element with a main sibling
+ * for the main content, allowing it to modify the flex direction of the parent to suit layout needs.
+ *
+ * IMPORTANT: Ensure that the parent element can adapt (i.e. it is using flex) its layout based on the flex direction change
+ * initiated by this component.
+ *
+ * @module NavComponent
+ * @version 0.1.1
+ * @param {HTMLElement} hostComponent - The root element for this navigation component. Must have
+ *                                      `data-component="nav"` attribute. Optionally, set
+ *                                      `data-header-bar="true"` for header-bar mode, and
+ *                                      `data-burger-px` to define the burger menu breakpoint.
  *
  * @example
- * In sidebar mode:
- * <nav data-component="nav" data-header-bar="true"></nav>
+ * // HTML Usage in Sidebar Mode
+ * <nav data-component="nav"></nav>
+ *
+ * @example
+ * // HTML Usage in Header-Bar Mode with Burger Menu
+ * <nav data-component="nav" data-header-bar="true" data-burger-px="768"></nav>
+ *
+ * @description
+ * - **Sidebar Mode**: Default mode, with vertical layout.
+ * - **Header-Bar Mode**: Enabled by setting `data-header-bar="true"`. In this mode, the navigation
+ *   aligns horizontally and includes a burger button for screen widths below the defined `burgerPx` breakpoint.
  */
-
 export default (hostComponent) => {
   const render = () => {
     const { burgerPx, headerBar } = hostComponent.dataset;
@@ -95,13 +117,13 @@ export default (hostComponent) => {
       }
     `;
 
-    // Add header-bar-mode class if applicable
+    // Apply header-bar-mode class and adjust parent layout if applicable
     if (headerBar === 'true') {
       hostComponent.classList.add('header-bar-mode');
       hostComponent.parentElement.style.flexDirection = 'column';
     }
 
-    // Function to toggle the burger menu visibility
+    // Toggle visibility of the burger menu
     const toggleNavVisibility = () => {
       hostComponent.classList.toggle('burger-open');
     };
@@ -109,47 +131,45 @@ export default (hostComponent) => {
     // Render the navigation items
     hostComponent.innerHTML = `
       <style>${navStyles}</style>
-      <a  href="/" title="Home">
+      <a href="/" title="Home">
         <span class="icon">&#x1F3E0;</span>
         <span class="text">Home</span>
       </a>
-      <a  href="/button-badge" title="Button + Badges Design System">
+      <a href="/button-badge" title="Button + Badges Design System">
         <span class="icon">&#x1F518;</span>
         <span class="text">Button + Badges</span>
       </a>
-      <a  href="/form" title="Form Design System">
+      <a href="/form" title="Form Design System">
         <span class="icon">&#x270F;</span>
         <span class="text">Form</span>
       </a>
-      <a  href="/heros" title="Heros">
-          <span class="icon">&#x1F9B8;</span> <!-- Superhero icon -->
-          <span class="text">Heros</span>
+      <a href="/heros" title="Heros">
+        <span class="icon">&#x1F9B8;</span>
+        <span class="text">Heros</span>
       </a>
-      
-      <a  href="/maps" title="Map example">
+      <a href="/maps" title="Map example">
         <span class="icon">&#x1F5FA;</span>
         <span class="text">Maps</span>
       </a>
-      <a  href="/calendar" title="Calendar Example">
+      <a href="/calendar" title="Calendar Example">
         <span class="icon">📆</span>
         <span class="text">Calendar</span>
       </a>
-      <a  href="/multiple-instances" title="Multiple instances">
+      <a href="/multiple-instances" title="Multiple instances">
         <span class="icon">🧬</span>
         <span class="text">Multiple instances</span>
       </a>
-      <a  href="/cookies" title="Elementary cookie popup permissions thing">
+      <a href="/cookies" title="Elementary cookie popup permissions">
         <span class="icon">🍪</span>
         <span class="text">Cookie popup</span>
       </a>
     `;
 
-
-    // Add burger button for header bar mode
+    // Insert burger button if in header-bar mode and a burger breakpoint is set
     if (headerBar === 'true' && burgerPx) {
       hostComponent.parentElement.insertAdjacentHTML(
-          'afterbegin',
-          `
+        'afterbegin',
+        `
           <button class="burger-button squarify wireframe border-none">
             <svg class="icon" viewBox="0 0 100 80" width="20" height="20" fill="currentColor">
               <rect width="100" height="20"></rect>
@@ -157,29 +177,26 @@ export default (hostComponent) => {
               <rect y="60" width="100" height="20"></rect>
             </svg>
           </button>
-        `
+        `,
       );
 
       const burgerButton = hostComponent.parentElement.querySelector('.burger-button');
 
-      // Single document-wide event listener
+      // Document-wide event listener for toggling navigation visibility
       document.addEventListener('click', (event) => {
         const isBurgerOpen = hostComponent.classList.contains('burger-open');
         const clickedBurgerButton = event.target.closest('.burger-button');
         const clickedNavItem = event.target.closest('a');
 
-        // If the burger button is clicked, toggle the menu visibility
         if (clickedBurgerButton) {
-          event.stopPropagation(); // Prevent the click from propagating to the document listener
+          event.stopPropagation();
           toggleNavVisibility();
         }
 
-        // If the nav item is clicked and the menu is open, close the menu
         if (isBurgerOpen && clickedNavItem) {
           toggleNavVisibility();
         }
 
-        // If clicked outside the nav and burger button, close the menu
         if (isBurgerOpen && !event.target.closest('nav') && !clickedBurgerButton) {
           toggleNavVisibility();
         }
