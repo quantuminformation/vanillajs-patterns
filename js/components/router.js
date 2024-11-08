@@ -1,34 +1,70 @@
+// File: js/components/router.js
+
 /**
- * Router module for handling client-side routing.
+ * Router Module
+ * SPDX-License-Identifier: MIT
+ *
+ * This module provides client-side routing functionality. It supports both hash-based and history API navigation, with route
+ * overrides available for custom paths.
+ *
  * @module components/router
  * @version 0.1.2
+ * @license MIT
+ * @copyright Nikos Katsikanis LTD
+ *
+ * @param {HTMLElement} hostComponent - The root component where the router operates.
+ *                                      Must include `data-component="router"` attribute.
+ *                                      Optional `data-use-hash` enables hash-based routing.
+ * @param {string} [baseUrl=config.BASE_URL] - Base URL used to resolve route paths.
+ *
+ * @example
+ * // HTML Usage
+ * <div data-component="router" data-use-hash="true"></div>
+ *
+ * // JavaScript Usage
+ * import router from './components/router';
+ * const routerElement = document.querySelector('[data-component="router"]');
+ * router(routerElement);
  */
+
+// Router CSS for flexible layout
+const routerStyles = `
+  [data-component='router'] {
+    flex-grow: 1;
+    flex-basis: 200px;
+    flex-shrink: 1;
+  }
+`;
+
+// Inject router-specific styles
+const styleElement = document.createElement('style');
+styleElement.textContent = routerStyles;
+document.head.appendChild(styleElement);
 
 import { importComponents, runComponents } from '../componentLoader.js';
 import config from '../config.js';
 
-/**
- * Main router function that initializes the routing based on hostComponent's attributes.
- *
- * @async
- * @function
- * @param {HTMLElement} hostComponent - The main component on which the router operates.
- * @param {string} [baseUrl=config.BASE_URL] - Base URL for routes.
- */
 export default async (hostComponent, baseUrl = config.BASE_URL) => {
   const useHash = 'useHash' in hostComponent.dataset;
 
   /**
    * @constant
    * @type {Object}
-   * This object defines the paths to your route files.
+   * Object defining custom paths for specific routes.
    */
   const routePathsOverrides = {
-    '/form': `${baseUrl}/routes/form.js`, // example of overriding the path
+    '/form': `${baseUrl}/routes/form.js`, // Example custom route override
   };
 
   /**
-   * Loads a given route.
+   * Dynamically loads a route based on the URL.
+   *
+   * @async
+   * @function
+   * @param {string} url - URL path to load the route.
+   */
+  /**
+   * Loads a given route based on file-based location convention.
    *
    * @async
    * @function
@@ -36,10 +72,9 @@ export default async (hostComponent, baseUrl = config.BASE_URL) => {
    */
   const loadRoute = async (url) => {
     try {
-      let routePath = routePathsOverrides[url];
-      if (!routePath) {
-        routePath = url === '/' || url === '' ? `${baseUrl}/routes/index.js` : `${baseUrl}/routes${url}.js`;
-      }
+      // Directly map URL to route file path based on the file-based location convention
+      const routePath =
+        url === '/' || url === '' ? `${baseUrl}/routes/index.js` : `${baseUrl}/routes${url}.js`;
 
       const route = await import(/* @vite-ignore */ routePath);
       route.default(hostComponent);
@@ -51,12 +86,10 @@ export default async (hostComponent, baseUrl = config.BASE_URL) => {
       console.error(`Failed to load route: ${url}`, err);
     }
   };
-
-  // Global click event listener to handle all internal links
+  // Handle click events for internal navigation
   document.addEventListener('click', async (event) => {
     const link = event.target.closest('a[href]');
-
-    if (!link) return; // Ignore clicks outside links
+    if (!link) return;
 
     const url = link.getAttribute('href');
 
@@ -83,10 +116,10 @@ export default async (hostComponent, baseUrl = config.BASE_URL) => {
     }
   });
 
-  // Handle initial load based on useHash
+  // Initial load handling for hash vs. history routing
   if (useHash) {
     addEventListener('hashchange', async () => {
-      const url = location.hash.substring(1); // Get the URL from the hash, remove the leading '#'
+      const url = location.hash.substring(1);
       await loadRoute(url);
     });
 

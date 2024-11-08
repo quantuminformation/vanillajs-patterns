@@ -21,13 +21,6 @@ body {
     color 0.5s;
 }
 
-
-[data-component='router'] {
-  flex-grow: 1;
-  flex-basis: 200px;
-  flex-shrink: 1;
-}
-
 footer {
   bottom: 0;
   width: 100%;
@@ -37,7 +30,9 @@ footer {
   display: flex;
   justify-content: center;
   flex-shrink: 0;
-  /*override button.css*/
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 body > div {
   flex: 1 0 auto;

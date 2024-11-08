@@ -144,10 +144,6 @@ export default (hostComponent) => {
       </a>
     `;
 
-    // Add button styles to links
-    hostComponent.querySelectorAll('a').forEach((navLink) => {
-      navLink.classList.add('button', 'secondary', 'squarify');
-    });
 
     // Add burger button for header bar mode
     if (headerBar === 'true' && burgerPx) {
