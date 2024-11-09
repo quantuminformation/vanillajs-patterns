@@ -8,6 +8,7 @@ export default (hostComponent) => {
   const indexHTML = `
     <h1>Homepage</h1>
     <p>This is some content for the homepage.</p>
+    <p>This is a <a href="/calendar">link</a> to another route.</p>
     <p class="minor">This is minor text.</p>
   `;
 

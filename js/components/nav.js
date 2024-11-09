@@ -14,7 +14,7 @@
  * initiated by this component.
  *
  * @module NavComponent
- * @version 0.1.1
+ * @version 0.2.0
  * @param {HTMLElement} hostComponent - The root element for this navigation component. Must have
  *                                      `data-component="nav"` attribute. Optionally, set
  *                                      `data-header-bar="true"` for header-bar mode, and
@@ -39,7 +39,6 @@ export default (hostComponent) => {
 
     const navStyles = `
       nav {
-        /* Common navigation styles */
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
@@ -54,6 +53,10 @@ export default (hostComponent) => {
           align-items: center;
         }
 
+        a.active {
+          color: var(--primary-color); /* Active link color */
+        }
+
         &.header-bar-mode {
           flex-direction: row;
           justify-content: center;
@@ -64,7 +67,7 @@ export default (hostComponent) => {
             flex-direction: column;
 
             a {
-              width: 100%; /* Take full width in header bar mode on smaller screens */
+              width: 100%;
             }
 
             align-items: center;
@@ -77,7 +80,6 @@ export default (hostComponent) => {
         }
       }
 
-      /* Burger button styles */
       .burger-button {
         position: absolute;
         right: 0;
@@ -87,7 +89,6 @@ export default (hostComponent) => {
         z-index: 100;
       }
 
-      /* Non-header-bar-mode specific styles */
       nav:not(.header-bar-mode) {
         @media (max-width: 499px) {
           .text {
@@ -102,14 +103,12 @@ export default (hostComponent) => {
         }
       }
 
-      /* Burger mode styles for header-bar-mode */
       @media (max-width: ${burgerPx}px) {
         nav.header-bar-mode.burger-open {
           display: flex !important;
         }
       }
 
-      /* Hide burger button for larger screens */
       @media (min-width: ${burgerPx}px) {
         .burger-button {
           display: none !important;
@@ -117,18 +116,15 @@ export default (hostComponent) => {
       }
     `;
 
-    // Apply header-bar-mode class and adjust parent layout if applicable
     if (headerBar === 'true') {
       hostComponent.classList.add('header-bar-mode');
       hostComponent.parentElement.style.flexDirection = 'column';
     }
 
-    // Toggle visibility of the burger menu
     const toggleNavVisibility = () => {
       hostComponent.classList.toggle('burger-open');
     };
 
-    // Render the navigation items
     hostComponent.innerHTML = `
       <style>${navStyles}</style>
       <a href="/" title="Home">
@@ -165,7 +161,19 @@ export default (hostComponent) => {
       </a>
     `;
 
-    // Insert burger button if in header-bar mode and a burger breakpoint is set
+    // Function to update the active link based on the current path
+    const updateActiveLink = () => {
+      const currentPath = window.location.pathname;
+      hostComponent.querySelectorAll('a').forEach((link) => {
+        const linkPath = link.getAttribute('href');
+        link.classList.toggle('active', linkPath === currentPath);
+      });
+    };
+    updateActiveLink();
+
+    // Listen for popstate events to update active link on browser navigation
+    window.addEventListener('popstate', updateActiveLink);
+
     if (headerBar === 'true' && burgerPx) {
       hostComponent.parentElement.insertAdjacentHTML(
         'afterbegin',
@@ -182,7 +190,6 @@ export default (hostComponent) => {
 
       const burgerButton = hostComponent.parentElement.querySelector('.burger-button');
 
-      // Document-wide event listener for toggling navigation visibility
       document.addEventListener('click', (event) => {
         const isBurgerOpen = hostComponent.classList.contains('burger-open');
         const clickedBurgerButton = event.target.closest('.burger-button');
@@ -204,6 +211,5 @@ export default (hostComponent) => {
     }
   };
 
-  // Initial render
   render();
 };
