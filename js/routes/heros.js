@@ -7,7 +7,7 @@ export default (hostComponent) => {
          data-header="This is a fullscreen-hero"
          data-text="Some text you want to right here"
          data-button-text="Add your link url here"
-         data-button-link="#"
+         data-button-link="/calendar"
          >
     </div>
 
