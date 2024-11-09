@@ -1,4 +1,4 @@
-/* Stored in /css/common.css */
+/* File: /css/common.css */
 :root {
   --rounded: 4px;
   --rounded-full: 40px;
@@ -33,9 +33,6 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-}
-body > div {
-  flex: 1 0 auto;
 }
 
 a {

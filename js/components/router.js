@@ -10,6 +10,7 @@
  *
  * @module components/router
  * @version 0.1.3
+ * @copyright Nikos Katsikanis
  * @license MIT
  * @param {HTMLElement} hostComponent - The main component where the router operates.
  *                                      Must include `data-component="router"` attribute.
