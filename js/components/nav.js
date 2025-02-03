@@ -4,6 +4,7 @@
 /**
  * Navigation Component
  * SPDX-License-Identifier: MIT
+ * @version 0.3 (added full height burger expand + hover secondary colour)
  *
  * This component provides a responsive navigation menu with two modes: sidebar mode and header-bar mode.
  * It includes optional "burger" button functionality for smaller screens in header-bar mode, allowing the navigation menu
@@ -14,7 +15,6 @@
  * initiated by this component.
  *
  * @module NavComponent
- * @version 0.2.0
  * @param {HTMLElement} hostComponent - The root element for this navigation component. Must have
  *                                      `data-component="nav"` attribute. Optionally, set
  *                                      `data-header-bar="true"` for header-bar mode, and
@@ -42,24 +42,31 @@ export default (hostComponent) => {
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-        gap: 1rem;
-        padding: 10px 20px;
+        gap: 0.4rem;
+        padding: 10px 10px;
         background-color: var(--nav-background-color);
-
+        z-index: 10;
         a {
           color: var(--default-text);
           display: flex;
-          gap: 1rem;
+          gap: 0.2rem;
           align-items: center;
+        padding:0.5rem 0.3rem;
+        border-radius:0.3rem;
         }
+
+  a:hover{
+            background-color:var(--secondary-color);
+          }
 
         a.active {
           color: var(--primary-color); /* Active link color */
         }
 
         &.header-bar-mode {
+        
           flex-direction: row;
-          justify-content: center;
+          justify-content: top;
           background-color: transparent;
           width: 100%;
 
@@ -73,8 +80,8 @@ export default (hostComponent) => {
             align-items: center;
             position: absolute;
             background-color: var(--nav-background-color);
-            top: 40px;
-            border-radius: 1rem;
+            top: 0;
+            bottom:0;
             display: none;
           }
         }
@@ -91,10 +98,13 @@ export default (hostComponent) => {
 
       nav:not(.header-bar-mode) {
         @media (max-width: 499px) {
+                padding: 10px 6px;
+
           .text {
             display: none;
           }
         }
+        a {padding:0.4rem 0.6rem;}
 
         @media (min-width: 500px) {
           .icon {
@@ -178,7 +188,7 @@ export default (hostComponent) => {
       hostComponent.parentElement.insertAdjacentHTML(
         'afterbegin',
         `
-          <button class="burger-button squarify wireframe border-none">
+          <button class="burger-button squarify wireframe border-none" title="Open or close nav menu">
             <svg class="icon" viewBox="0 0 100 80" width="20" height="20" fill="currentColor">
               <rect width="100" height="20"></rect>
               <rect y="30" width="100" height="20"></rect>
