@@ -1,3 +1,6 @@
+// File: routes/form.js
+// Purpose: A simple form to test the form components
+
 export default (hostComponent) => {
   hostComponent.innerHTML = '';
 

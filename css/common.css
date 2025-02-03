@@ -40,3 +40,11 @@ a {
   text-decoration: none;
   font-weight: bold;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}

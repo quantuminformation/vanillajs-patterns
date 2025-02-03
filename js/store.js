@@ -1,3 +1,6 @@
+// File js/store.js
+// Purpose: Create a store object to manage shared state and dispatch events when state changes
+
 export const store = (() => {
   let state = {
     sharedCount: 0,
