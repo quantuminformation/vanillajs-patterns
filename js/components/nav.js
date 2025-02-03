@@ -51,42 +51,34 @@ export default (hostComponent) => {
           display: flex;
           gap: 0.2rem;
           align-items: center;
-        padding:0.5rem 0.3rem;
-        border-radius:0.3rem;
+          padding: 0.5rem 0.3rem;
+          border-radius: 0.3rem;
         }
-
-  a:hover{
-            background-color:var(--secondary-color);
-          }
-
+        a:hover {
+          background-color: var(--secondary-color);
+        }
         a.active {
           color: var(--primary-color); /* Active link color */
         }
-
         &.header-bar-mode {
-        
           flex-direction: row;
           justify-content: top;
           background-color: transparent;
           width: 100%;
-
           @media (max-width: ${burgerPx}px) {
             flex-direction: column;
-
             a {
               width: 100%;
             }
-
             align-items: center;
             position: absolute;
             background-color: var(--nav-background-color);
             top: 0;
-            bottom:0;
+            bottom: 0;
             display: none;
           }
         }
       }
-
       .burger-button {
         position: absolute;
         right: 0;
@@ -95,34 +87,46 @@ export default (hostComponent) => {
         cursor: pointer;
         z-index: 100;
       }
-
       nav:not(.header-bar-mode) {
         @media (max-width: 499px) {
-                padding: 10px 6px;
-
+          padding: 10px 6px;
           .text {
             display: none;
           }
         }
-        a {padding:0.4rem 0.6rem;}
-
+        a {
+          padding: 0.4rem 0.6rem;
+        }
         @media (min-width: 500px) {
           .icon {
             display: none;
           }
         }
       }
-
       @media (max-width: ${burgerPx}px) {
         nav.header-bar-mode.burger-open {
           display: flex !important;
         }
       }
-
       @media (min-width: ${burgerPx}px) {
         .burger-button {
           display: none !important;
         }
+      }
+      /* Burger icon animation */
+      .burger-button svg rect {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+      .burger-button.open svg rect:nth-child(1) {
+        transform: translateY(30px) rotate(45deg);
+      }
+      .burger-button.open svg rect:nth-child(2) {
+        opacity: 0;
+      }
+      .burger-button.open svg rect:nth-child(3) {
+        transform: translateY(-30px) rotate(-45deg);
       }
     `;
 
@@ -131,8 +135,14 @@ export default (hostComponent) => {
       hostComponent.parentElement.style.flexDirection = 'column';
     }
 
+    // Declare burgerButton outside toggleNavVisibility to ensure accessibility within the closure.
+    let burgerButton;
+
     const toggleNavVisibility = () => {
       hostComponent.classList.toggle('burger-open');
+      if (burgerButton) {
+        burgerButton.classList.toggle('open');
+      }
     };
 
     hostComponent.innerHTML = `
@@ -171,7 +181,6 @@ export default (hostComponent) => {
       </a>
     `;
 
-    // Function to update the active link based on the current path
     const updateActiveLink = () => {
       const currentPath = window.location.pathname;
       hostComponent.querySelectorAll('a').forEach((link) => {
@@ -181,24 +190,23 @@ export default (hostComponent) => {
     };
     updateActiveLink();
 
-    // Listen for popstate events to update active link on browser navigation
     window.addEventListener('popstate', updateActiveLink);
 
     if (headerBar === 'true' && burgerPx) {
       hostComponent.parentElement.insertAdjacentHTML(
-        'afterbegin',
-        `
+          'afterbegin',
+          `
           <button class="burger-button squarify wireframe border-none" title="Open or close nav menu">
-            <svg class="icon" viewBox="0 0 100 80" width="20" height="20" fill="currentColor">
+            <svg class="icon" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet" width="20" height="20" fill="currentColor">
               <rect width="100" height="20"></rect>
               <rect y="30" width="100" height="20"></rect>
               <rect y="60" width="100" height="20"></rect>
             </svg>
           </button>
-        `,
+        `
       );
 
-      const burgerButton = hostComponent.parentElement.querySelector('.burger-button');
+      burgerButton = hostComponent.parentElement.querySelector('.burger-button');
 
       document.addEventListener('click', (event) => {
         const isBurgerOpen = hostComponent.classList.contains('burger-open');
@@ -208,13 +216,22 @@ export default (hostComponent) => {
         if (clickedBurgerButton) {
           event.stopPropagation();
           toggleNavVisibility();
+          return;
         }
 
         if (isBurgerOpen && clickedNavItem) {
           toggleNavVisibility();
+          return;
         }
 
         if (isBurgerOpen && !event.target.closest('nav') && !clickedBurgerButton) {
+          toggleNavVisibility();
+          return;
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && hostComponent.classList.contains('burger-open')) {
           toggleNavVisibility();
         }
       });
