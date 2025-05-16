@@ -2,7 +2,7 @@
 # Vanilla.js Patterns
 ![Test Status](https://github.com/quantuminformation/vanillajs-patterns/actions/workflows/test.yml/badge.svg)
 
-## [Live demo](https://quantuminformation.github.io/vanillajs-patterns/).
+## [Live demo](https://quantuminformation.github.io/vanillajs-patterns/)
 
 
 Watch [these videos](https://www.youtube.com/watch?v=HC8eo4lVoEo&list=PLualcIC6WNK2GOKf8S7x7O0T1xBu8_0hF) for a full background and latest info

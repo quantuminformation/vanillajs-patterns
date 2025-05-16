@@ -179,6 +179,10 @@ export default (hostComponent) => {
         <span class="icon">🍪</span>
         <span class="text">Cookie popup</span>
       </a>
+      <a href="/web-gpu" title="Web GPU experiments">
+        <span class="icon">🧮</span>
+        <span class="text">Web GPU</span>
+      </a>
     `;
 
     const updateActiveLink = () => {
