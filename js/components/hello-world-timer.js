@@ -1,4 +1,5 @@
-// stored in components/hello-world-timer.js
+// File: js/components/hello-world-timer.js
+// Purpose: This component displays the current time and updates it every second.
 
 export default (hostComponent) => {
   const updateCurrentTime = () => {

@@ -1,4 +1,5 @@
-// Stored in /routes/index.js
+// File js/routes/button-badge.js
+// Purpose: This route component contains the code for the button and badge design system page.
 
 export default (hostComponent) => {
   // Clear any existing content in the hostComponent

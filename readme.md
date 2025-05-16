@@ -41,7 +41,3 @@ Nothing is "wrong" per se with using a CSS preprocessor like Sass, but with the 
 
 
 You can also run without a server by enabling `use-hash` in the `router` component, which uses hash-based routing. This method is used in our GitHub Pages live demo: [Vanilla.js Patterns Live Demo](https://quantuminformation.github.io/vanillajs-patterns/).
-
-# Optional Backend
-Optional backend that the /users route points to.
-Setup instructions [here](backends/README.md).
