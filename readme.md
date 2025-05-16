@@ -2,6 +2,9 @@
 # Vanilla.js Patterns
 ![Test Status](https://github.com/quantuminformation/vanillajs-patterns/actions/workflows/test.yml/badge.svg)
 
+## [Live demo](https://quantuminformation.github.io/vanillajs-patterns/).
+
+
 Watch [these videos](https://www.youtube.com/watch?v=HC8eo4lVoEo&list=PLualcIC6WNK2GOKf8S7x7O0T1xBu8_0hF) for a full background and latest info
 
 This project presents a potent approach to web development using the fundamental building blocks of the web - Vanilla JavaScript and CSS. By doing so, we eliminate the overhead of heavy frameworks or libraries. Here's why we believe in this approach:
@@ -40,4 +43,4 @@ Nothing is "wrong" per se with using a CSS preprocessor like Sass, but with the 
 
 
 
-You can also run without a server by enabling `use-hash` in the `router` component, which uses hash-based routing. This method is used in our GitHub Pages live demo: [Vanilla.js Patterns Live Demo](https://quantuminformation.github.io/vanillajs-patterns/).
+You can also run without a server by enabling `use-hash` in the `router` component, which uses hash-based routing. This method is used in our GitHub Pages live demo: [Vanilla.js Patterns live demo](https://quantuminformation.github.io/vanillajs-patterns/).
