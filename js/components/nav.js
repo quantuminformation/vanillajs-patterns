@@ -179,7 +179,11 @@ export default (hostComponent) => {
         <span class="icon">🍪</span>
         <span class="text">Cookie popup</span>
       </a>
-      <a href="/web-gpu" title="Web GPU experiments">
+      <a href="/web-tutorial" title="Web GPU tutorial">
+        <span class="icon">🧮</span>
+        <span class="text">Web GPU tutorial</span>
+      </a>
+      <a href="/web-gpu" title="Web GPU Scene (wip)">
         <span class="icon">🧮</span>
         <span class="text">Web GPU</span>
       </a>
