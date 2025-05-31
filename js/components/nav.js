@@ -183,10 +183,10 @@ export default (hostComponent) => {
         <span class="icon">🧮</span>
         <span class="text">Web GPU tutorial</span>
       </a>
-      <a href="/web-gpu" title="Web GPU Scene (wip)">
+  <!--    <a href="/web-gpu" title="Web GPU Scene (wip)">
         <span class="icon">🧮</span>
         <span class="text">Web GPU</span>
-      </a>
+      </a>-->
     `;
 
     const updateActiveLink = () => {

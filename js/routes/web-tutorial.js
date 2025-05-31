@@ -1,94 +1,115 @@
 // File: js/routes/web-tutorial.js
 // Draw a 25 % cyan square; header & footer remain visible.
-// Works by relying 100 % on flex-layout (no manual pixel math).
+// Works by relying 100 % on flex‐layout (no manual pixel math).
 
-import { loadShader } from '../utils/shaderLoader.js'; // Import helper to load WGSL shader from file
+import { loadShader } from '../utils/shaderLoader.js'; // Helper to load WGSL from /wgsl
 
 export default async function WebGPUFlatSquare(host) {
   /* ───────────── 1 · LAYOUT (pure flex, no calculations) ───────────── */
-  host.replaceChildren(); // Clear any children in the host container
-  host.style.cssText = // Style host to expand in flex and contain an absolutely positioned canvas
+  host.replaceChildren(); // Remove any existing children in the host container
+  host.style.cssText =
       'flex:1 0 auto; position:relative; overflow:hidden; background:#000; margin:0; padding:0;';
+  // “host” now grows to fill the space between header & footer, and can contain an absolutely positioned canvas
 
-  const canvas = Object.assign(document.createElement('canvas'), { // Create a canvas and style it
+  const canvas = Object.assign(document.createElement('canvas'), {
     style: 'position:absolute; width:100%; height:100%; cursor:default;',
   });
-  host.appendChild(canvas); // Add canvas to host
+  host.appendChild(canvas); // Insert the canvas into “host”
 
   /* ───────────── 2 · WEBGPU INIT ───────────── */
-  if (!navigator.gpu) return alert('WebGPU not supported'); // Abort if WebGPU is not available
-  const adapter = await navigator.gpu.requestAdapter(); // Request GPU adapter
-  if (!adapter) return alert('No GPU adapter available'); // Abort if adapter fails
-  const device  = await adapter.requestDevice(); // Get logical GPU device
-  const ctx     = canvas.getContext('webgpu'); // Get WebGPU rendering context from canvas
-  const format  = navigator.gpu.getPreferredCanvasFormat(); // Get preferred texture format
+  if (!navigator.gpu) return alert('WebGPU not supported');      // Abort if no WebGPU
+  const adapter = await navigator.gpu.requestAdapter();         // Request a GPU adapter
+  if (!adapter) return alert('No GPU adapter available');       // Abort if none
+  const device  = await adapter.requestDevice();                 // Acquire a logical GPU device
+  const ctx     = canvas.getContext('webgpu');                   // Get WebGPU rendering context
+  const format  = navigator.gpu.getPreferredCanvasFormat();     // Recommended swapchain format
 
-  const resize = () => { // Resize canvas to match display resolution and DPR
-    const dpr = devicePixelRatio; // Get device pixel ratio
-    canvas.width  = host.clientWidth  * dpr; // Set canvas width in physical pixels
-    canvas.height = host.clientHeight * dpr; // Set canvas height in physical pixels
-    ctx.configure({ device, format, alphaMode:'premultiplied', size:[canvas.width, canvas.height] }); // Reconfigure context
+  const resize = () => {                                         // Resize handler
+    const dpr = devicePixelRatio;                                // Device‐pixel ratio
+    canvas.width  = host.clientWidth  * dpr;                     // Physical pixel width
+    canvas.height = host.clientHeight * dpr;                     // Physical pixel height
+    ctx.configure({
+      device,
+      format,
+      alphaMode: 'premultiplied',
+      size: [canvas.width, canvas.height],
+    });                                                           // Reconfigure the swapchain
   };
-  resize(); // Run resize initially
-  addEventListener('resize', resize); // React to window resizes
+  resize();                                                      // Initial sizing
+  addEventListener('resize', resize);                            // Update on window resize
 
   /* ───────────── 3 · SHADER & GEOMETRY ───────────── */
-  const wgsl   = await loadShader('square-flat.wgsl'); // Load shader source from file
-  const module = device.createShaderModule({ code: wgsl }); // Create shader module from WGSL code
+  const wgsl   = await loadShader('square-flat.wgsl');           // Load WGSL from /wgsl/square-flat.wgsl
+  const module = device.createShaderModule({ code: wgsl });      // Create GPUShaderModule
 
-  const s = 0.5; // Half-size (0.5 in NDC space) for a centered square
-  const vertices = new Float32Array([ // Vertex positions and colors
-    -s,-s,0,  0,1,1, // Bottom-left
-    s,-s,0,  0,1,1, // Bottom-right
-    s, s,0,  0,1,1, // Top-right
-    -s, s,0,  0,1,1, // Top-left
+  const s = 0.5; // Half‐size in NDC space (±0.5 covers 50 % of viewport)
+  // Vertex data: [x, y, z, r, g, b] for 4 corners of a square
+  const vertices = new Float32Array([
+    -s, -s, 0,   0, 0, 1,  // bottom‐left  (cyan)
+    s, -s, 0,   0, 1, 0,  // bottom‐right (cyan)
+    s,  s, 0,   1,0, 0,  // top‐right    (cyan)
+    -s,  s, 0,   1, 1,1,  // top‐left     (cyan)
   ]);
-  const indices = new Uint16Array([0,1,2, 0,2,3]); // Two triangles forming a square
+  // Indices to form two triangles (0→1→2 and 0→2→3) from those 4 vertices
+  const indices = new Uint16Array([0, 1, 2,  0, 2, 3,]);
 
-  const vb = device.createBuffer({ // Create vertex buffer
-    size:vertices.byteLength,
-    usage:GPUBufferUsage.VERTEX|GPUBufferUsage.COPY_DST,
+  // Create and upload vertex buffer
+  const vb = device.createBuffer({
+    size: vertices.byteLength,
+    usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
   });
-  device.queue.writeBuffer(vb,0,vertices); // Upload vertex data to GPU
+  device.queue.writeBuffer(vb, 0, vertices);
 
-  const ib = device.createBuffer({ // Create index buffer
-    size:indices.byteLength,
-    usage:GPUBufferUsage.INDEX |GPUBufferUsage.COPY_DST,
+  // Create and upload index buffer
+  const ib = device.createBuffer({
+    size: indices.byteLength,
+    usage: GPUBufferUsage.INDEX | GPUBufferUsage.COPY_DST,
   });
-  device.queue.writeBuffer(ib,0,indices); // Upload index data to GPU
+  device.queue.writeBuffer(ib, 0, indices);
 
-  const pipeline = device.createRenderPipeline({ // Create the graphics pipeline
-    layout:'auto', // Auto-layout for bindings
-    vertex:{ // Vertex stage configuration
-      module, entryPoint:'vs_main', // Entry point in shader
-      buffers:[{ // Vertex layout
-        arrayStride:24, // 6 floats per vertex (3 position + 3 color)
-        attributes:[
-          { shaderLocation:0, offset:0,  format:'float32x3' }, // Position attribute
-          { shaderLocation:1, offset:12, format:'float32x3' }, // Color attribute
+  // Create render pipeline
+  const pipeline = device.createRenderPipeline({
+    layout: 'auto',
+    vertex: {
+      module,
+      entryPoint: 'vs_main',
+      buffers: [{
+        arrayStride: 24, // 3 floats for position + 3 floats for color = 6×4 bytes = 24 bytes
+        attributes: [
+          { shaderLocation: 0, offset: 0,  format: 'float32x3' }, // position
+          { shaderLocation: 1, offset: 12, format: 'float32x3' }, // color
         ],
       }],
     },
-    fragment:{ module, entryPoint:'fs_main', targets:[{ format }] }, // Fragment shader config
-    primitive:{ topology:'triangle-list', cullMode:'none' }, // Primitive config: draw triangles, no face culling
+    fragment: {
+      module,
+      entryPoint: 'fs_main',
+      targets: [{ format }],
+    },
+    primitive: {
+      topology: 'triangle-list',
+      cullMode: 'none',
+    },
   });
 
   /* ───────────── 4 · RENDER LOOP ───────────── */
-  function frame(){ // Render frame
-    const enc = device.createCommandEncoder(); // Create GPU command encoder
-    const pass = enc.beginRenderPass({ // Start a render pass
-      colorAttachments:[{
-        view:ctx.getCurrentTexture().createView(), // Render target
-        loadOp:'clear', clearValue:{ r:0,g:0,b:0,a:1 }, storeOp:'store', // Clear screen to black
+  function frame() {
+    const enc = device.createCommandEncoder();                // Begin command encoding
+    const pass = enc.beginRenderPass({                        // Start a render pass
+      colorAttachments: [{
+        view: ctx.getCurrentTexture().createView(),            // Current swapchain texture
+        loadOp: 'clear',
+        clearValue: { r: 0, g: 0, b: 0, a: 1 },                // Clear to opaque black
+        storeOp: 'store',
       }],
     });
-    pass.setPipeline(pipeline); // Use render pipeline
-    pass.setVertexBuffer(0,vb); // Bind vertex buffer
-    pass.setIndexBuffer(ib,'uint16'); // Bind index buffer
-    pass.drawIndexed(6); // Draw square (2 triangles)
-    pass.end(); // End render pass
-    device.queue.submit([enc.finish()]); // Submit work to GPU
-    requestAnimationFrame(frame); // Schedule next frame
+    pass.setPipeline(pipeline);                                // Bind pipeline
+    pass.setVertexBuffer(0, vb);                               // Bind the vertex buffer
+    pass.setIndexBuffer(ib, 'uint16');                         // Bind the index buffer
+    pass.drawIndexed(6);                                       // Draw 6 indices (2 triangles)
+    pass.end();                                                // End the render pass
+    device.queue.submit([enc.finish()]);                       // Submit to GPU queue
+    requestAnimationFrame(frame);                              // Next frame
   }
-  requestAnimationFrame(frame); // Kick off first frame
+  requestAnimationFrame(frame);                                // Kick off rendering
 }
