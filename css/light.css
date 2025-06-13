@@ -1,9 +1,14 @@
-/* stored in /css/light.css */
+/*
+File: /css/light.css
+Version: 0.1: softer input bg-color and border-color
+*/
 
 :root {
   --base-hue: 240; /* Blue hue */
   --base-saturation: 80%;
   --base-lightness: 100%; /* this can be adjusted at runtime */
+  --form-control-bg-color: #f4f4f4;
+  --form-control-border-color: #d6d6d6;
 
   --bg-color: hsl(var(--base-hue), var(--base-saturation), var(--base-lightness));
   --primary-color: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) - 70%));

@@ -1,10 +1,13 @@
-/* stored in /css/dark.css */
-
+/*
+File: /css/dark.css
+Version: 0.1: softer input bg-color and border-color
+*/
 :root {
   --base-hue: 240; /* Blue hue */
   --base-saturation: 80%;
   --base-lightness: 0%; /* this can be adjusted at runtime */
-  --form-control-bg: #333;
+  --form-control-bg-color: #1b1b1b;
+  --form-control-border-color: #4c4c4c;
 
   --bg-color: hsl(var(--base-hue), var(--base-saturation), var(--base-lightness));
   --bg-wireframe-hover: hsl(var(--base-hue), var(--base-saturation), calc(var(--base-lightness) + 10%));
