@@ -1,4 +1,7 @@
-/* File: /css/common.css */
+/*
+File: /css/common.css
+Version: 0.1: added line-height 1.5 for readability and spacing between labels and form controls
+*/
 :root {
   --rounded: 4px;
   --rounded-full: 40px;
@@ -7,9 +10,11 @@
   --p-xs: 0.2rem;
   --p-sm: 0.5rem;
   --p-md: 1rem;
+  --sm: 600px;
 }
 
 body {
+  line-height: 1.5;
   color: var(--default-text);
   background-color: var(--bg-color);
   font-family: Arial, sans-serif;
