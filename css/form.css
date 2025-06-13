@@ -1,25 +1,28 @@
-/* Stored in /css/form.css */
-
 /*
-Good default for form with the form inputs with width: 100%
- */
-form.centered {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+File: css/form.css
+Version: 0.1: Made base form easier to work with devs with labels and form-controls
+*/
+form {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  @media screen and (min-width: 600px) {
-    width: 400px;
-    margin: 0 auto;
-  }
+form.grid {
+  display: grid;
+/*todo*/
 }
 
 input,
 textarea {
   padding: 0.5rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--default-text);
+  border-radius: var(--form-control-border-radius);
+  border: 1px solid var(--form-control-border-color);
   color: var(--default-text);
-  background-color: var(--form-control-bg);
+  background-color: var(--form-control-bg-color);
   width: 100%;
+}
+
+:root {
+  --form-control-border-radius: 4px;
 }

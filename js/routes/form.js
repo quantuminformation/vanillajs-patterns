@@ -7,32 +7,30 @@ export default (hostComponent) => {
   //language=HTML
   const indexHTML = `
 
-  <h1>Form</h1>
+  <h1>Form examples</h1>
 <form class="centered">
- <h2>Centered class form</h2>
-<span data-component="toggle-switch"></span>
+ <p>Linear form (repeating divs with label + form control pairs)</p>
   <div>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name">
+    <label for="name" >Name</label>
+    <input type="text" id="name" name="name" autocomplete="name" required>
     </div>
     <div>
     <label for="password">Password</label>
-    <input type="password" id="password" name="password">
+    <input type="password" id="password" name="password"  autocomplete="password" required>
   </div>
-
-<!--  <div>
-    <label for="iagree">I agree</label>
-    <input type="checkbox" name="iagree" id="iagree">
-  </div>-->
   <div>
     <label for="date">Date</label>
-    <input type="date" name="date" id="date">
+    <input type="date" name="date" id="date" required>
   </div>
   <div>
     <label for="range">Range</label>
-    <input type="range" name="range" id="range">
+    <input type="range" name="range" id="range" >
   </div>
-  <textarea id="message" name="message" rows="4" required></textarea>
+  <div>
+    <label for="message">message</label>
+  <textarea  name="message" rows="4" required></textarea>
+  </div>
+  <span data-component="toggle-switch"></span>
 
   <button type="submit">Submit</button>
 </form>
