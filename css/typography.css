@@ -1,7 +1,76 @@
 h1 {
   font-size: 2rem;
-  margin: 20px 0;
+  margin: 2rem 0;
+}
+h2 {
+  margin: 1rem 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: monospace;
 }
 .minor {
   color: var(--minor-text);
+}
+
+.blog-title {
+  font-family: monospace;
+  text-align: center;
+}
+
+.blog-list a {
+  font-family: monospace;
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  font-family: monospace;
+}
+.post-nav a {
+  flex: 1;
+}
+.post-nav .prev {
+  text-align: left;
+}
+.post-nav .next {
+  text-align: right;
+}
+
+.subscribe-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.share-buttons svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.embeddable-buttondown-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.embeddable-buttondown-form input[type="email"] {
+  flex: 1;
+  min-width: 200px;
 }
