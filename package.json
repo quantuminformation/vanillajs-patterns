@@ -10,7 +10,8 @@
     "start": "serve -s . -l 3000",
     "test": "vitest run --coverage",
     "test:watch": "vitest",
-    "prettier": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,html}\""
+    "prettier": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,html}\"",
+    "build:blog": "node scripts/build-blog.mjs"
   },
   "repository": {
     "type": "git",

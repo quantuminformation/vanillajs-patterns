@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Understanding Lorem Ipsum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Understanding Lorem Ipsum" />
+    <meta
+      property="og:description"
+      content="Lorem ipsum is placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content." />
+    <meta property="og:image" content="/img/nikos.jpg" />
+    <meta property="og:url" content="/blog/1-lorem-ipsum" />
+    <meta property="twitter:title" content="Understanding Lorem Ipsum" />
+    <meta
+      property="twitter:description"
+      content="Lorem ipsum is placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content." />
+    <meta property="twitter:image" content="/img/nikos.jpg" />
+    <meta property="twitter:url" content="/blog/1-lorem-ipsum" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="data:," />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/utility.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/form.css" />
+    <link rel="stylesheet" href="/css/button-badge.css" />
+    <link rel="stylesheet" href="/css/typography.css" />
+    <link rel="stylesheet" href="/css/light.css" media="(prefers-color-scheme: light)" />
+    <link rel="stylesheet" href="/css/dark.css" media="(prefers-color-scheme: dark)" />
+    <script src="/js/store.js" defer type="module"></script>
+    <script src="/js/componentLoader.js" defer type="module"></script>
+  </head>
+  <body class="flex flex-col">
+    <div class="site-container flex flex-col" style="flex: 1">
+      <nav data-component="nav" data-header-bar="true" data-burger-px="400"></nav>
+      <main data-component="router" style="padding: 1rem; width: 100%; flex: 1">
+        <h1 class="blog-title">Understanding Lorem Ipsum</h1>
+        <p class="minor">Nikos Katsikanis - January 1, 2025</p>
+        <div class="preview">
+          <p>
+            Lorem ipsum is placeholder text commonly used to demonstrate the visual form of a document without
+            relying on meaningful content.
+          </p>
+        </div>
+        <p>This article explores the history of lorem ipsum and why designers rely on it.</p>
+        <div data-component="discuss"></div>
+      </main>
+      <div class="flex justify-center">
+        <a href="https://github.com/quantuminformation/vanillajs-patterns" target="_blank">
+          Fork me on GitHub
+        </a>
+      </div>
+    </div>
+    <footer>
+      <span>Copyright Nikos Katsikanis LTD</span>
+      <div data-component="theme-switcher"></div>
+    </footer>
+  </body>
+</html>

@@ -151,6 +151,10 @@ export default (hostComponent) => {
         <span class="icon">&#x1F3E0;</span>
         <span class="text">Home</span>
       </a>
+      <a href="/blog" title="Blog">
+        <span class="icon">📝</span>
+        <span class="text">Blog</span>
+      </a>
       <a href="/button-badge" title="Button + Badges Design System">
         <span class="icon">&#x1F518;</span>
         <span class="text">Button + Badges</span>
