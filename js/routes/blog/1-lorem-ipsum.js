@@ -1,4 +1,4 @@
-import { VANILLA_JS } from './tags.js';
+import { GENERAL } from './tags.js';
 import postNav from '../../components/post-nav.js';
 import blogSubscribe from '../../components/blog-subscribe.js';
 import shareButtons from '../../components/share-buttons.js';
@@ -12,7 +12,7 @@ export const dateText = date.toLocaleDateString(undefined, {
   day: 'numeric',
 });
 export const author = 'Nikos Katsikanis';
-export const tags = [VANILLA_JS];
+export const tags = [GENERAL];
 
 export const content = `
   <h1 class="blog-title">Understanding Lorem Ipsum</h1>
