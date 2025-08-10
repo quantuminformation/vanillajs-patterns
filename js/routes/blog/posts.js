@@ -19,4 +19,9 @@ export const POSTS = [
     url: '/blog/4-adipiscing',
     author: 'Nikos Katsikanis',
   },
+  {
+    title: 'Vanilla JS Patterns Release News',
+    url: '/blog/5-breaking-news',
+    author: 'Nikos Katsikanis',
+  },
 ];
