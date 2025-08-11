@@ -33,6 +33,11 @@ main {
   width: 100%;
 }
 
+main.full-width {
+  max-width: none;
+  margin: 0;
+}
+
 footer {
   bottom: 0;
   width: 100%;
