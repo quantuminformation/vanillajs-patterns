@@ -1,4 +1,4 @@
-// File: js/components/hero.js
+// File: js/components/fullscreen-hero.js
 // Repository: https://github.com/quantuminformation/vanillajs-patterns
 
 /**
@@ -93,13 +93,15 @@ export default (hostComponent) => {
         margin-bottom: 1.5rem;
       }
     </style>
-    <div class="hero-container">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1 class="hero-header">${header}</h1>
-        <p class="hero-text">${text}</p>
-        <a href="${buttonLink}" class="button transparent squarify">${buttonText}</a>
+    <section class="u-breakout u-breakout--clip">
+      <div class="hero-container">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1 class="hero-header">${header}</h1>
+          <p class="hero-text">${text}</p>
+          <a href="${buttonLink}" class="button transparent squarify">${buttonText}</a>
+        </div>
       </div>
-    </div>
+    </section>
   `;
 };

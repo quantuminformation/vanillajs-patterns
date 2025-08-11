@@ -1,4 +1,5 @@
-// Updated narrow-hero component to maintain padding and a fixed height
+// File: js/components/narrow-hero.js
+// Repository: https://github.com/quantuminformation/vanillajs-patterns
 
 export default (hostComponent) => {
     const { header = "Default Header", text = "" } = hostComponent.dataset;
@@ -45,13 +46,15 @@ export default (hostComponent) => {
         }
       </style>
 
-      <section class="narrow-hero">
-        <div class="narrow-hero-overlay">
-          <div class="narrow-hero-content">
-            <h1>${header}</h1>
-            <p>${text}</p>
+      <section class="u-breakout u-breakout--clip">
+        <section class="narrow-hero">
+          <div class="narrow-hero-overlay">
+            <div class="narrow-hero-content">
+              <h1>${header}</h1>
+              <p>${text}</p>
+            </div>
           </div>
-        </div>
+        </section>
       </section>
     `;
     };
