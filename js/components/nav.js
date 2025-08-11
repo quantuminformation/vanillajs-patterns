@@ -194,6 +194,10 @@ export default (hostComponent) => {
         <span class="icon">🧮</span>
         <span class="text">Web GPU tutorial</span>
       </a>
+      <a href="/developers" title="Developer code examples">
+        <span class="icon">💻</span>
+        <span class="text">Developers</span>
+      </a>
   <!--    <a href="/web-gpu" title="Web GPU Scene (wip)">
         <span class="icon">🧮</span>
         <span class="text">Web GPU</span>
