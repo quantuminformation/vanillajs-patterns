@@ -183,6 +183,10 @@ export default (hostComponent) => {
         <span class="icon">🍪</span>
         <span class="text">Cookie popup</span>
       </a>
+      <a href="/contact" title="Contact page">
+        <span class="icon">✉️</span>
+        <span class="text">Contact</span>
+      </a>
       <a href="/web-tutorial" title="Web GPU tutorial">
         <span class="icon">🧮</span>
         <span class="text">Web GPU tutorial</span>
@@ -206,8 +210,8 @@ export default (hostComponent) => {
 
     if (headerBar === 'true' && burgerPx) {
       hostComponent.parentElement.insertAdjacentHTML(
-          'afterbegin',
-          `
+        'afterbegin',
+        `
           <button class="burger-button squarify wireframe border-none" title="Open or close nav menu">
             <svg class="icon" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet" width="20" height="20" fill="currentColor">
               <rect width="100" height="20"></rect>
@@ -215,7 +219,7 @@ export default (hostComponent) => {
               <rect y="60" width="100" height="20"></rect>
             </svg>
           </button>
-        `
+        `,
       );
 
       burgerButton = hostComponent.parentElement.querySelector('.burger-button');
