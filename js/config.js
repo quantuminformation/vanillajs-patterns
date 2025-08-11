@@ -1,7 +1,11 @@
 // File: js/config.js
 
 export function getBaseUrl() {
-  return (window.location.hostname === 'localhost' ? '' : '/vanillajs-patterns') + '/js';
+  // Only prefix with /vanillajs-patterns when hosted on GitHub Pages
+  if (window.location.hostname === 'quantuminformation.github.io') {
+    return '/vanillajs-patterns/js';
+  }
+  return '/js';
 }
 
 const config = {
