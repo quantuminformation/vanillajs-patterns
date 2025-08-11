@@ -44,6 +44,9 @@ export default (hostComponent) => {
         flex-direction: column;
         gap: 0.4rem;
         padding: 10px 10px;
+        max-width: var(--max-content-width);
+        margin: 0 auto;
+        width: 100%;
         background-color: var(--nav-background-color);
         z-index: 10;
         a {

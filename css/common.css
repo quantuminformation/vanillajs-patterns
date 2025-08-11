@@ -11,6 +11,7 @@ Version: 0.1: added line-height 1.5 for readability and spacing between labels a
   --p-sm: 0.5rem;
   --p-md: 1rem;
   --sm: 600px;
+  --max-content-width: 75rem;
 }
 
 body {
@@ -24,6 +25,12 @@ body {
   transition:
     background-color 0.5s,
     color 0.5s;
+}
+
+main {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  width: 100%;
 }
 
 footer {
