@@ -1,5 +1,6 @@
 export default (hostComponent) => {
   hostComponent.classList.add('full-width');
+  document.querySelector('nav')?.classList.add('overlay');
   // Define HTML structure with data attributes directly in the template
   const indexHTML = `
     <div data-component="fullscreen-hero"
