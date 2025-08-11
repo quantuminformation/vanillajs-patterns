@@ -82,6 +82,12 @@ export default (hostComponent) => {
           }
         }
       }
+      nav.overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
       .burger-button {
         position: absolute;
         right: 0;

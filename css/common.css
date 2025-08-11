@@ -31,11 +31,13 @@ main {
   max-width: var(--max-content-width);
   margin: 0 auto;
   width: 100%;
+  padding: var(--p-md);
 }
 
 main.full-width {
   max-width: none;
   margin: 0;
+  padding: 0 !important;
 }
 
 footer {

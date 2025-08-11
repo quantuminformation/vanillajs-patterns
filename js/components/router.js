@@ -43,6 +43,7 @@ export default async (hostComponent, baseUrl = config.BASE_URL) => {
   const loadRoute = async (url) => {
     try {
       hostComponent.classList.remove('full-width');
+      document.querySelector('nav')?.classList.remove('overlay');
       const routePath =
           url === '/' || url === '' ? `${baseUrl}/routes/index.js` : `${baseUrl}/routes${url}.js`;
 
